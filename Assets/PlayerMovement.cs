@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController playerController;
     [SerializeField] private float gravity;
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera playerCamera;
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 lookDirection = Vector3.ProjectOnPlane(camera.transform.forward, Vector3.up).normalized;
+        Vector3 lookDirection = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up).normalized;
 
         bool isGrounded = Physics.Raycast(playerController.transform.position, -transform.up, 1.05f, groundMask);
         
