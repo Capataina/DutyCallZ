@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class WeaponsClass : MonoBehaviour
@@ -11,27 +10,44 @@ public abstract class WeaponsClass : MonoBehaviour
     public float damage;
     public float magazineSize;
     public float maxAmmo;
+    public float burstNumber;
+    public float burstDelay;
+    public float accuracy;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask shootingMask;
 
     public virtual void Fire()
     {
-        if (canShoot == true)
+        if (canShoot)
         {
-            RaycastHit objectHit;
+            StartCoroutine(FireBurst()); 
+            timer = fireCooldown; 
+            canShoot = false;
+        }
+    }
 
-            Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out objectHit, 999f, shootingMask);
+    private IEnumerator FireBurst()
+    {
+        for (int i = 0; i < burstNumber; i++)
+        {
+            Shoot();
 
+            if (i < burstNumber - 1)
+            {
+                yield return new WaitForSeconds(burstDelay);
+            }
+        }
+    }
+
+    private void Shoot()
+    {
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out var objectHit, 999f, shootingMask))
+        {
             if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
             {
                 var zombie = objectHit.collider.gameObject.GetComponent<Zombie>();
-                
                 zombie.TakeDamage(damage);
-                
             }
-            
-            timer = fireCooldown;
-            canShoot = false;
         }
     }
 
@@ -48,6 +64,4 @@ public abstract class WeaponsClass : MonoBehaviour
             canShoot = true;
         }
     }
-    
-    
 }
