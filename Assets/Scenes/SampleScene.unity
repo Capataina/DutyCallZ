@@ -445,6 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbbe514d08ac09c41b2335a21dc21db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 1723885977}
 --- !u!1 &195813860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,6 +1289,7 @@ GameObject:
   - component: {fileID: 1723885976}
   - component: {fileID: 1723885975}
   - component: {fileID: 1723885974}
+  - component: {fileID: 1723885977}
   m_Layer: 0
   m_Name: Flux-Recoil Gun
   m_TagString: Untagged
@@ -1381,6 +1383,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723885972}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1723885977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723885972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c89433ff663b3458acfe6c7ffe97d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireCooldown: 1
+  reloadSpeed: 1
+  damage: 10
+  magazineSize: 0
+  maxAmmo: 0
+  playerCamera: {fileID: 330585545}
+  shootingMask:
+    serializedVersion: 2
+    m_Bits: 119
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

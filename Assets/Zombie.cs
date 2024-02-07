@@ -12,6 +12,12 @@ public class Zombie : MonoBehaviour
     [SerializeField] private float armor;
     [SerializeField] public Transform goal;
     private float health;
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        Debug.Log(health);
+    }
     
     // Start is called before the first frame update
     void Start()
