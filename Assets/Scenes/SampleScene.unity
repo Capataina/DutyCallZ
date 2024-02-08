@@ -1396,7 +1396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireCooldown: 1
-  reloadTimer: 1.5
+  reloadTimer: 5
   damage: 10
   magazineSize: 10
   maxAmmo: 100
