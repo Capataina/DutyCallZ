@@ -39,10 +39,15 @@ public abstract class WeaponsClass : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void Shoot()
     {
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out var objectHit, 999f, shootingMask))
+        float weaponSpread = 1 - accuracy;
+        Vector3 accuracyOffset = new Vector3(Random.Range(-1f,1f) * weaponSpread, Random.Range(-1f,1f) * weaponSpread, Random.Range(-1f,1f) * weaponSpread);
+        
+        if (Physics.Raycast(playerCamera.transform.position, Vector3.Normalize(playerCamera.transform.forward + accuracyOffset), out var objectHit, 999f, shootingMask))
         {
+            Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.position + Vector3.Normalize(playerCamera.transform.forward + accuracyOffset) * 999f, Color.green,5);
             if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
             {
                 var zombie = objectHit.collider.gameObject.GetComponent<Zombie>();
