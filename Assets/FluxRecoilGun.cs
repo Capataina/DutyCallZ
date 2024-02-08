@@ -4,9 +4,5 @@ using UnityEngine;
 
 public class FluxRecoilGun : WeaponsClass
 {
-
-    public override void Reload()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 }

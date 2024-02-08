@@ -1396,13 +1396,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireCooldown: 1
-  reloadSpeed: 1
+  reloadTimer: 1.5
   damage: 10
-  magazineSize: 0
-  maxAmmo: 0
-  burstNumber: 14
-  burstDelay: 0
-  accuracy: 0.8
+  magazineSize: 10
+  maxAmmo: 100
+  burstNumber: 2
+  burstDelay: 0.2
+  accuracy: 1
   playerCamera: {fileID: 330585545}
   shootingMask:
     serializedVersion: 2
