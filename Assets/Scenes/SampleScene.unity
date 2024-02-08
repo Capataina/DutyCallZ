@@ -1400,6 +1400,8 @@ MonoBehaviour:
   damage: 10
   magazineSize: 0
   maxAmmo: 0
+  burstNumber: 2
+  burstDelay: 0.1
   playerCamera: {fileID: 330585545}
   shootingMask:
     serializedVersion: 2
