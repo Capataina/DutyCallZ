@@ -10,15 +10,26 @@ public class PlayerShooting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gun = GetComponentInChildren<WeaponsClass>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (gun.automatic)
         {
-            gun.Fire();
+            if (Input.GetMouseButton(0))
+            {
+                gun.Fire();
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                gun.Fire();
+            }
+            
         }
     }
 }

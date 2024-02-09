@@ -8,6 +8,7 @@ public abstract class WeaponsClass : MonoBehaviour
     private float timer;
     private bool canShoot;
     private bool isReloading;
+    public bool automatic;
     public float fireCooldown;
     public float reloadTimer;
     public float damage;
@@ -69,8 +70,6 @@ public abstract class WeaponsClass : MonoBehaviour
             bulletsInMag -= 1;
         }
         
-        Debug.Log(bulletsInMag);
-        
         float weaponSpread = 1 - accuracy;
         Vector3 accuracyOffset = new Vector3(Random.Range(-1f,1f) * weaponSpread, Random.Range(-1f,1f) * weaponSpread, Random.Range(-1f,1f) * weaponSpread);
         
@@ -121,6 +120,7 @@ public abstract class WeaponsClass : MonoBehaviour
 
     private void Start()
     {
+        playerCamera = Camera.main;
         currentAmmo = maxAmmo;
         bulletsInMag = magazineSize;
     }
