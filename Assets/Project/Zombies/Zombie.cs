@@ -10,7 +10,7 @@ public class Zombie : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private float speed;
     [SerializeField] private float armor;
-    [SerializeField] public Transform goal;
+    private Transform goal;
     private float health;
 
     public void TakeDamage(float damage)
@@ -27,6 +27,7 @@ public class Zombie : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         health = maxHealth;
         agent.destination = goal.position;
 

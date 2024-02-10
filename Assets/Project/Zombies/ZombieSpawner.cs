@@ -1,23 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
+    
+    public GameObject zombiePrefab; // Assign in the inspector
+    public float spawnInterval = 5f; // Time between each spawn
 
-    [SerializeField] public GameObject zombie;
-    [SerializeField] public Transform spawnPosition;
-    
-    
-    // Start is called before the first frame update
+    private GameObject[] spawnPoints;
+    private float timer;
+
     void Start()
     {
-        //Instantiate(zombie, spawnPosition);
+        spawnPoints = GameObject.FindGameObjectsWithTag("ZombieSpawnPoint");
+        timer = spawnInterval;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        timer -= Time.deltaTime;
+        if (timer <= 0f && spawnPoints.Length > 0)
+        {
+            SpawnZombie();
+            timer = spawnInterval;
+        }
     }
+
+    void SpawnZombie()
+    {
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        GameObject spawnPoint = spawnPoints[spawnIndex];
+        Instantiate(zombiePrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
+    }
+    
 }
