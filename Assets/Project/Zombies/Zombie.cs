@@ -18,7 +18,7 @@ public class Zombie : MonoBehaviour
         health -= damage;
         Debug.Log(health);
         
-        if (health < 0)
+        if (health <= 0)
         {
             Die();
         }

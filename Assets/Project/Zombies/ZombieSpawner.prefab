@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 8882328567074598846, guid: fac08192eb9b55a4b86fcda37464e852,
     type: 3}
-  spawnInterval: 5
+  player: {fileID: 2765552673287750838, guid: 301c0dba6af20df4f845dd11ca812902, type: 3}

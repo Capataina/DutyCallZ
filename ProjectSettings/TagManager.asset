@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ZombieSpawnPoint
+  - Zombie
   layers:
   - Default
   - TransparentFX
