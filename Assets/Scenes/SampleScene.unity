@@ -1428,6 +1428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2d7d9b0c5fd0e4e9d63c4e50a64e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseSpeed: 15
   speed: 15
   playerController: {fileID: 1636498823680574037}
   gravity: 0.15
@@ -1672,6 +1673,7 @@ GameObject:
   - component: {fileID: 3197703256896854475}
   - component: {fileID: 7595255646215495700}
   - component: {fileID: 3535542515053034628}
+  - component: {fileID: 7595255646215495701}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1766,6 +1768,21 @@ MonoBehaviour:
   playerTransform: {fileID: 2610403802117210793}
   recoilCorrectionSpeed: 1.5
   recoilSpeed: 7
+--- !u!114 &7595255646215495701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6632370736086858009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c7b2e73a56e3c4a9eb7f96a7b12b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffDuration: 5
+  speedBuff: 0
+  regenBuff: 0
 --- !u!1 &7966137067202989106
 GameObject:
   m_ObjectHideFlags: 0

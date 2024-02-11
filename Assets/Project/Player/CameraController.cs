@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
         }
 
         float deltaX = Input.GetAxisRaw("Mouse X");
-        print(deltaX);
+        // print(deltaX);
         float deltaY = Input.GetAxisRaw("Mouse Y");
 
         var cameraEulerAngles = playerCamera.transform.localEulerAngles;
@@ -81,7 +81,7 @@ public class CameraController : MonoBehaviour
         else
         {
             var speed = targetRecoilRotation == Vector3.zero ? recoilCorrectionSpeed : recoilSpeed;
-            print(speed);
+            // print(speed);
             currentRecoilRotation = Vector3.Lerp(currentRecoilRotation, targetRecoilRotation, speed * Time.deltaTime);
             playerCameraParent.localRotation = Quaternion.Euler(currentRecoilRotation);
         }

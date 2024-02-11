@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    [SerializeField] private float speed;
+    public float baseSpeed;
+    public float speed;
     [SerializeField] private CharacterController playerController;
     [SerializeField] private float gravity;
     [SerializeField] private LayerMask groundMask;
@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        speed = baseSpeed;
     }
 
     // Update is called once per frame
