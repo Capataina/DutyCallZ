@@ -11,11 +11,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Camera playerCamera;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 lookDirection = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up).normalized;
 
         bool isGrounded = Physics.Raycast(playerController.transform.position, -transform.up, 1.05f, groundMask);
-        
-        Vector3 movementDirection = new Vector3(Input.GetAxisRaw("Horizontal"),0, Input.GetAxisRaw("Vertical"));
+
+        Vector3 movementDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         Quaternion lookDirectionQuaternion = Quaternion.LookRotation(lookDirection);
 
@@ -35,7 +35,13 @@ public class PlayerMovement : MonoBehaviour
         {
             movementDirection.y = -gravity;
         }
-        
+
         playerController.Move(movementDirection.normalized * (speed * Time.deltaTime));
+    }
+
+    public bool isMoving()
+    {
+        Vector3 movementVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        return movementVector.magnitude != 0;
     }
 }
