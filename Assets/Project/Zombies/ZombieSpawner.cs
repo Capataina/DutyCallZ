@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    [SerializeField] private float biasFactor = 2.0f;
+    [SerializeField] private float biasFactor;
     public GameObject zombiePrefab; // Assign in the inspector
     public GameObject player; // Assign in the inspector
     private float waveCount = 0;
