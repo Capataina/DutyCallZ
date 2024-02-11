@@ -37,7 +37,6 @@ public class CameraController : MonoBehaviour
         var cameraEulerAngles = playerCamera.transform.localEulerAngles;
         var playerEulerAngles = playerTransform.transform.eulerAngles;
 
-
         float newRotationY = playerEulerAngles.y + deltaX * mouseSensitivity;
         float newRotationX = cameraEulerAngles.x - deltaY * mouseSensitivity;
 
