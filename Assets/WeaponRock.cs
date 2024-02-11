@@ -22,7 +22,6 @@ public class WeaponRock : MonoBehaviour
             Vector3 displacement = new Vector3(deltaX, deltaY, 0);
 
             weapon.localPosition = displacement;
-            print(weapon.localPosition);
         }
         else if (weapon.localPosition.sqrMagnitude > 0.01f)
         {

@@ -27,7 +27,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movementDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-        Quaternion lookDirectionQuaternion = Quaternion.LookRotation(lookDirection);
+        Quaternion lookDirectionQuaternion;
+        if (lookDirection == Vector3.zero)
+            lookDirectionQuaternion = Quaternion.identity;
+        else
+            lookDirectionQuaternion = Quaternion.LookRotation(lookDirection);
 
         movementDirection = lookDirectionQuaternion * movementDirection;
 

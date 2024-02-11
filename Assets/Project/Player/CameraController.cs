@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
 
+    [SerializeField] private Transform playerCameraParent;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private float recoilCorrectionSpeed;
+    [SerializeField] float recoilSpeed;
 
-    // Start is called before the first frame update
+    Vector3 targetRecoilRotation;
+    Vector3 currentRecoilRotation;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -30,13 +31,15 @@ public class CameraController : MonoBehaviour
         }
 
         float deltaX = Input.GetAxisRaw("Mouse X");
+        print(deltaX);
         float deltaY = Input.GetAxisRaw("Mouse Y");
 
-        var cameraEulerAngles = playerCamera.transform.eulerAngles;
+        var cameraEulerAngles = playerCamera.transform.localEulerAngles;
         var playerEulerAngles = playerTransform.transform.eulerAngles;
 
-        float newRotationY = playerEulerAngles.y + deltaX * Time.deltaTime * mouseSensitivity;
-        float newRotationX = cameraEulerAngles.x - deltaY * Time.deltaTime * mouseSensitivity;
+
+        float newRotationY = playerEulerAngles.y + deltaX * mouseSensitivity;
+        float newRotationX = cameraEulerAngles.x - deltaY * mouseSensitivity;
 
         if (newRotationX is < 270 and > 180)
         {
@@ -47,10 +50,51 @@ public class CameraController : MonoBehaviour
             newRotationX = 90;
         }
 
-        Quaternion newRotationCamera = Quaternion.Euler(newRotationX, newRotationY, 0);
+        Quaternion newRotationCamera = Quaternion.Euler(newRotationX, 0, 0);
         Quaternion newRotationPlayer = Quaternion.Euler(0, newRotationY, 0);
 
-        playerCamera.transform.rotation = newRotationCamera;
-        playerTransform.transform.rotation = newRotationPlayer;
+        if (deltaX != 0 || deltaY != 0)
+        {
+            playerCamera.transform.localRotation = newRotationCamera;
+            playerTransform.transform.rotation = newRotationPlayer;
+        }
+
+        HandleRecoil();
+    }
+
+    void HandleRecoil()
+    {
+        if (Vector3.Magnitude(currentRecoilRotation - targetRecoilRotation) <= 0.05f)
+        {
+            if (targetRecoilRotation == Vector3.zero)
+            {
+
+                playerCameraParent.localRotation = Quaternion.identity;
+                currentRecoilRotation = Vector3.zero;
+            }
+            else
+            {
+                currentRecoilRotation = targetRecoilRotation;
+                targetRecoilRotation = Vector3.zero;
+            }
+        }
+        else
+        {
+            var speed = targetRecoilRotation == Vector3.zero ? recoilCorrectionSpeed : recoilSpeed;
+            print(speed);
+            currentRecoilRotation = Vector3.Lerp(currentRecoilRotation, targetRecoilRotation, speed * Time.deltaTime);
+            playerCameraParent.localRotation = Quaternion.Euler(currentRecoilRotation);
+        }
+
+        //targetRecoilRotation = Vector3.Lerp(targetRecoilRotation, Vector3.zero, recoilCorrectionSpeed * Time.deltaTime);
+        //currentRecoilRotation = Vector3.Slerp(currentRecoilRotation, targetRecoilRotation, recoilSpeed * Time.deltaTime);
+        //playerCameraParent.localRotation = Quaternion.Euler(currentRecoilRotation);
+
+
+    }
+
+    public void AddRecoil(float xRecoil, float yRecoil)
+    {
+        targetRecoilRotation += new Vector3(-xRecoil, 0, 0) * Time.deltaTime;
     }
 }

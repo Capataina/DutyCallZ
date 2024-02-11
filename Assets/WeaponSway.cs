@@ -16,14 +16,15 @@ public class WeaponSway : MonoBehaviour
 
         Quaternion newRotation = Quaternion.Euler(deltaY * strength * Time.deltaTime, deltaX * strength * Time.deltaTime, 0);
 
+        activeWeapon.localRotation *= newRotation;
 
-        if (deltaX == 0 && deltaY == 0 && activeWeapon.transform.localEulerAngles.magnitude > 0.05f)
+        if (activeWeapon.transform.localEulerAngles.sqrMagnitude > 0.05f)
         {
             activeWeapon.localRotation = Quaternion.Slerp(activeWeapon.localRotation, Quaternion.identity, returnSpeed);
         }
-        else
+        else if (deltaX == 0 && deltaY == 0)
         {
-            activeWeapon.localRotation *= newRotation;
+            activeWeapon.localRotation = Quaternion.Slerp(activeWeapon.localRotation, Quaternion.identity, returnSpeed);
         }
     }
 }

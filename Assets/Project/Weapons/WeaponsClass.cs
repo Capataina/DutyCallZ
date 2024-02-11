@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using Unity.IO.LowLevel.Unsafe;
+using UnityEditor.Experimental;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,6 +23,10 @@ public abstract class WeaponsClass : MonoBehaviour
     public float accuracy;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask shootingMask;
+    [SerializeField] private GameObject hitIndicator;
+    [SerializeField] private CameraController cameraController;
+    [SerializeField] private float hipXRecoil;
+    [SerializeField] private float hipYRecoil;
 
     public virtual void Fire()
     {
@@ -32,7 +38,7 @@ public abstract class WeaponsClass : MonoBehaviour
             {
                 bulletsInMag -= 1;
             }
-            
+
             timer = fireCooldown;
             canShoot = false;
         }
@@ -61,27 +67,36 @@ public abstract class WeaponsClass : MonoBehaviour
         }
     }
 
+    public virtual void HandleRecoil()
+    {
+        cameraController.AddRecoil(hipXRecoil, hipYRecoil);
+    }
+
     // ReSharper disable Unity.PerformanceAnalysis
     private void Shoot()
     {
-        
+
         if (burstDelay != 0)
         {
             bulletsInMag -= 1;
         }
-        
+
         float weaponSpread = 1 - accuracy;
-        Vector3 accuracyOffset = new Vector3(Random.Range(-1f,1f) * weaponSpread, Random.Range(-1f,1f) * weaponSpread, Random.Range(-1f,1f) * weaponSpread);
-        
+        Vector3 accuracyOffset = new Vector3(Random.Range(-1f, 1f) * weaponSpread, Random.Range(-1f, 1f) * weaponSpread, Random.Range(-1f, 1f) * weaponSpread);
+
         if (Physics.Raycast(playerCamera.transform.position, Vector3.Normalize(playerCamera.transform.forward + accuracyOffset), out var objectHit, 999f, shootingMask))
         {
-            Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.position + Vector3.Normalize(playerCamera.transform.forward + accuracyOffset) * 999f, Color.green,5);
+            GameObject newIndicator = Instantiate(hitIndicator);
+            newIndicator.transform.position = objectHit.point;
+            Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.position + Vector3.Normalize(playerCamera.transform.forward + accuracyOffset) * 999f, Color.green, 5);
             if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
             {
                 var zombie = objectHit.collider.gameObject.GetComponent<Zombie>();
                 zombie.TakeDamage(damage);
             }
         }
+
+        HandleRecoil();
     }
 
     protected virtual IEnumerator Reload()
@@ -95,10 +110,10 @@ public abstract class WeaponsClass : MonoBehaviour
         yield return new WaitForSeconds(reloadTimer);
 
         float bulletsToReload = magazineSize - bulletsInMag;
-        
+
         //Debug.Log("Bullets in mag before reload:" + bulletsInMag);
         //Debug.Log("Total ammo before reload:" + currentAmmo);
-        
+
         if (currentAmmo >= bulletsToReload)
         {
             bulletsInMag += bulletsToReload;
@@ -112,7 +127,7 @@ public abstract class WeaponsClass : MonoBehaviour
 
         //Debug.Log("Bullets in mag after reload:" + bulletsInMag);
         //Debug.Log("Total ammo after reload:" + currentAmmo);
-        
+
         isReloading = false;
         canShoot = true;
         //Debug.Log("Reload Complete");
