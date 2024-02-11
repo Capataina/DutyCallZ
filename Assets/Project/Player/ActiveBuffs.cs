@@ -6,10 +6,16 @@ public class ActiveBuffs : MonoBehaviour
 
     private GameObject player;
     public float buffDuration;
+    
     public bool speedBuff;
+    private bool hasSpeedBuff;
+    
     public bool regenBuff;
     private bool resistanceBuff;
     private PlayerMovement playerSpeed;
+    private float holdDownTimer;
+
+    private GameObject speedBuffStation;
     
     
     // Start is called before the first frame update
@@ -17,17 +23,18 @@ public class ActiveBuffs : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerSpeed = player.GetComponent<PlayerMovement>();
+
+        speedBuffStation = GameObject.FindGameObjectWithTag("SpeedBuffStation");
     }
 
     //Update is called once per frame
     void Update()
     {
-        if (speedBuff)
+
+        if (speedBuff && !hasSpeedBuff)
         {
             StartCoroutine(AddSpeedBuff());
-            // Debug.Log("This should be true:" + speedBuff);
             speedBuff = false;
-            // Debug.Log("This should be false:" + speedBuff);
         }
         
         if (regenBuff)
@@ -35,18 +42,56 @@ public class ActiveBuffs : MonoBehaviour
             StartCoroutine(AddRegenBuff());
             regenBuff = false;
         }
+        
+        CheckDistance(speedBuffStation);
     }
     
     private IEnumerator AddSpeedBuff()
     {
+        hasSpeedBuff = true;
         playerSpeed.speed = playerSpeed.baseSpeed * 1.2f;
         yield return new WaitForSeconds(buffDuration);
+        //Debug.Log("buff ended");
         playerSpeed.speed = playerSpeed.baseSpeed;
+        hasSpeedBuff = false;
     }
 
     private IEnumerator AddRegenBuff()
     {
         yield break;
     }
-    
+
+    void CheckDistance(GameObject buffStation)
+    {
+        if (Vector3.Distance(player.transform.position, buffStation.transform.position) <= 5)
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                holdDownTimer += Time.deltaTime;
+                
+                if (holdDownTimer >= 1)
+                {
+                    switch (buffStation.GetComponent<StationBuff>().buff)
+                    {
+                        case StationBuff.BuffType.Speed:
+                            if (!hasSpeedBuff)
+                            {
+                                speedBuff = true;
+                                // print("gave speed buff" + speedBuff);
+                                holdDownTimer = 0;
+                            }
+                            break;
+                        case StationBuff.BuffType.Regen:
+                            regenBuff = true;
+                            holdDownTimer = 0;
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                holdDownTimer = 0;
+            }
+        }
+    }
 }
