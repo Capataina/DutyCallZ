@@ -1121,6 +1121,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 766889537432872232}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2119109022 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+    type: 3}
+  m_PrefabInstance: {fileID: 766889537432872232}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340288e46786d304cb5dc48eb6f41de6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &606088541530154243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1230,7 +1242,7 @@ PrefabInstance:
     - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
       propertyPath: hipXRecoil
-      value: 500
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
@@ -1250,9 +1262,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
+      propertyPath: recoilDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 7595255646215495700}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: recoilController
+      value: 
+      objectReference: {fileID: 7595255646215495701}
     - target: {fileID: 6978956987493587287, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1672,6 +1694,7 @@ GameObject:
   - component: {fileID: 3197703256896854475}
   - component: {fileID: 7595255646215495700}
   - component: {fileID: 3535542515053034628}
+  - component: {fileID: 7595255646215495701}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1766,6 +1789,24 @@ MonoBehaviour:
   playerTransform: {fileID: 2610403802117210793}
   recoilCorrectionSpeed: 1.5
   recoilSpeed: 7
+--- !u!114 &7595255646215495701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6632370736086858009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f0ed85c261f8e45be3c944dd179c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 3938223492670737321}
+  playerCameraParent: {fileID: 8924063612792880141}
+  currentWeapon: {fileID: 2119109022}
+  returnSpeed: 2.5
+  returnForceDamp: 7
+  maxReturnHeight: 3
 --- !u!1 &7966137067202989106
 GameObject:
   m_ObjectHideFlags: 0
