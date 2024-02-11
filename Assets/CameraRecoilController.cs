@@ -10,21 +10,17 @@ public class CameraRecoilController : MonoBehaviour
     [SerializeField] Transform playerCameraParent;
     [SerializeField] WeaponsClass currentWeapon;
     [SerializeField] float returnSpeed;
-    [SerializeField] float returnForceDamp;
     [SerializeField] float maxReturnHeight;
 
     float time;
     float duration;
     float height;
-    float currentReturnForce;
-    bool recoilActive;
 
     public void AddRecoil(float xRecoil, float duration)
     {
         height = xRecoil;
         this.duration = duration;
         time = duration;
-        recoilActive = true;
     }
 
     void Update()
