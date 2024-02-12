@@ -7,6 +7,7 @@ TagManager:
   - ZombieSpawnPoint
   - Zombie
   - SpeedBuffStation
+  - WeaponParent
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Zombies
-  - 
+  - Weapon Stations
   - 
   - 
   - 

@@ -61,7 +61,7 @@ public class ActiveBuffs : MonoBehaviour
         yield break;
     }
 
-    void CheckDistance(GameObject buffStation)
+    private void CheckDistance(GameObject buffStation)
     {
         if (Vector3.Distance(player.transform.position, buffStation.transform.position) <= 5)
         {
