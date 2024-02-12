@@ -13,10 +13,12 @@ public class CameraRecoilController : MonoBehaviour
     [SerializeField] float maxReturnHeight;
     [SerializeField] float cameraShakeReturnSpeed;
     [SerializeField] float cameraShakeSpeed;
+    [SerializeField] float zShapeFaze;
 
     float time;
     float duration;
     float height;
+    float perlinTime;
 
     Vector3 targetRotation;
     Vector3 currentRotation;
@@ -31,7 +33,8 @@ public class CameraRecoilController : MonoBehaviour
 
     public void AddCameraShake(float XShakeStrengh, float YShakeStrengh, float ZShakeStrength)
     {
-        float zShake = Random.Range(-ZShakeStrength, ZShakeStrength);
+        //float zShake = Random.Range(-ZShakeStrength, ZShakeStrength);
+        float zShake = Mathf.PerlinNoise1D(perlinTime) * ZShakeStrength * 2 - ZShakeStrength;
         float yShake = Random.Range(-YShakeStrengh, YShakeStrengh);
 
         targetRotation += new Vector3(0, yShake, zShake);
@@ -68,6 +71,7 @@ public class CameraRecoilController : MonoBehaviour
         currentRotation = Vector3.Lerp(currentRotation, targetRotation, cameraShakeSpeed * Time.deltaTime);
 
         cameraShakeParent.transform.localRotation = Quaternion.Euler(currentRotation);
+        perlinTime += Time.deltaTime * zShapeFaze;
     }
 
     void Update()
