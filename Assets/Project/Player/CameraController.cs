@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    [SerializeField] private Camera playerCamera;
+    [SerializeField] private Transform playerCamera;
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private Transform playerTransform;
 

@@ -1,4 +1,3 @@
-using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -8,22 +7,37 @@ public class CameraRecoilController : MonoBehaviour
 
     [SerializeField] Transform playerCamera;
     [SerializeField] Transform playerCameraParent;
+    [SerializeField] Transform cameraShakeParent;
     [SerializeField] WeaponsClass currentWeapon;
     [SerializeField] float returnSpeed;
     [SerializeField] float maxReturnHeight;
+    [SerializeField] float cameraShakeReturnSpeed;
+    [SerializeField] float cameraShakeSpeed;
 
     float time;
     float duration;
     float height;
 
+    Vector3 targetRotation;
+    Vector3 currentRotation;
+
     public void AddRecoil(float xRecoil, float duration)
     {
+        // Vertical Recoil
         height = xRecoil;
         this.duration = duration;
         time = duration;
     }
 
-    void Update()
+    public void AddCameraShake(float XShakeStrengh, float YShakeStrengh, float ZShakeStrength)
+    {
+        float zShake = Random.Range(-ZShakeStrength, ZShakeStrength);
+        float yShake = Random.Range(-YShakeStrengh, YShakeStrengh);
+
+        targetRotation += new Vector3(0, yShake, zShake);
+    }
+
+    void HandleVerticalRecoil()
     {
         if (time > 0)
         {
@@ -46,6 +60,19 @@ public class CameraRecoilController : MonoBehaviour
             playerCameraParent.localRotation = Quaternion.Slerp(playerCameraParent.localRotation, Quaternion.identity, returnSpeed * Time.deltaTime);
             //recoilActive = false;
         }
+    }
 
+    void HandleCameraShake()
+    {
+        targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, cameraShakeReturnSpeed * Time.deltaTime);
+        currentRotation = Vector3.Lerp(currentRotation, targetRotation, cameraShakeSpeed * Time.deltaTime);
+
+        cameraShakeParent.transform.localRotation = Quaternion.Euler(currentRotation);
+    }
+
+    void Update()
+    {
+        HandleVerticalRecoil();
+        HandleCameraShake();
     }
 }

@@ -979,6 +979,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1015343649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1015343650}
+  m_Layer: 3
+  m_Name: CameraShakeParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1015343650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015343649}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3938223492670737321}
+  m_Father: {fileID: 1642495710}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1600784499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1047,6 +1079,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbcb1266ec6c3f347815453bb2b4ea9b, type: 3}
+--- !u!1 &1642495709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642495710}
+  m_Layer: 3
+  m_Name: CameraAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1642495710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642495709}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1015343650}
+  - {fileID: 4279257790661541344}
+  m_Father: {fileID: 8924063612792880141}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1758464638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1228,6 +1293,21 @@ PrefabInstance:
         type: 3}
       propertyPath: damage
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: xShake
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: yShake
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: zShake
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
@@ -1557,9 +1637,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4279257790661541344}
-  m_Father: {fileID: 8924063612792880141}
+  m_Children: []
+  m_Father: {fileID: 1015343650}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4279257790661541344
 Transform:
@@ -1575,7 +1654,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2119109021}
-  m_Father: {fileID: 3938223492670737321}
+  m_Father: {fileID: 1642495710}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4618453611171405220
 MonoBehaviour:
@@ -1783,12 +1862,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6871770f27664924ba33ee4474f04f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCameraParent: {fileID: 8924063612792880141}
-  playerCamera: {fileID: 7499230455302424690}
+  playerCamera: {fileID: 1642495710}
   mouseSensitivity: 1
   playerTransform: {fileID: 2610403802117210793}
-  recoilCorrectionSpeed: 1.5
-  recoilSpeed: 7
 --- !u!114 &7595255646215495701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1801,12 +1877,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f0ed85c261f8e45be3c944dd179c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 3938223492670737321}
+  playerCamera: {fileID: 1642495710}
   playerCameraParent: {fileID: 8924063612792880141}
+  cameraShakeParent: {fileID: 1015343650}
   currentWeapon: {fileID: 2119109022}
   returnSpeed: 2.5
-  returnForceDamp: 7
   maxReturnHeight: 3
+  cameraShakeReturnSpeed: 3
+  cameraShakeSpeed: 90
 --- !u!1 &7966137067202989106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,7 +1917,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3938223492670737321}
+  - {fileID: 1642495710}
   m_Father: {fileID: 2610403802117210793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807

@@ -29,6 +29,9 @@ public abstract class WeaponsClass : MonoBehaviour
     [SerializeField] private float hipXRecoil;
     [SerializeField] private float hipYRecoil;
     [SerializeField] private float recoilDuration;
+    [SerializeField] private float xShake;
+    [SerializeField] private float yShake;
+    [SerializeField] private float zShake;
 
     public virtual void Fire()
     {
@@ -72,6 +75,7 @@ public abstract class WeaponsClass : MonoBehaviour
     public virtual void HandleRecoil()
     {
         recoilController.AddRecoil(hipXRecoil, recoilDuration);
+        recoilController.AddCameraShake(xShake, yShake, zShake);
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
