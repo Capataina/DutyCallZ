@@ -1180,6 +1180,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbcb1266ec6c3f347815453bb2b4ea9b, type: 3}
+--- !u!1 &1901038352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1901038353}
+  m_Layer: 3
+  m_Name: WeaponRecoilParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1901038353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901038352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2119109021}
+  m_Father: {fileID: 4279257790661541344}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2119109021 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6978956987493587287, guid: 5e18c44af9fcef54190cf6e7fcf82828,
@@ -1282,7 +1314,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4279257790661541344}
+    m_TransformParent: {fileID: 1901038353}
     m_Modifications:
     - target: {fileID: 2639023526062894591, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
@@ -1331,6 +1363,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
+      propertyPath: recoilAnimX
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: recoilAnimY
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: recoilAnimZ
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
       propertyPath: hitIndicator
       value: 
       objectReference: {fileID: 229353022325318298, guid: 6fb20f688152d9f46b32c75eb73a2fec,
@@ -1339,6 +1386,36 @@ PrefabInstance:
         type: 3}
       propertyPath: magazineSize
       value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: recoilAnimXPos
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: recoilAnimXRot
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: recoilAnimYPos
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: recoilAnimYRot
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: recoilAnimZPos
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: recoilAnimZRot
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
@@ -1355,6 +1432,11 @@ PrefabInstance:
       propertyPath: recoilController
       value: 
       objectReference: {fileID: 7595255646215495701}
+    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
+        type: 3}
+      propertyPath: weaponRecoilAnimation
+      value: 
+      objectReference: {fileID: 7186806271265529984}
     - target: {fileID: 6978956987493587287, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1653,7 +1735,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2119109021}
+  - {fileID: 1901038353}
   m_Father: {fileID: 1642495710}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4618453611171405220
@@ -1670,7 +1752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeWeapon: {fileID: 2119109021}
   returnSpeed: 0.025
-  strength: 20
+  strength: 24
 --- !u!1001 &4928527192909098693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1754,9 +1836,11 @@ MonoBehaviour:
   playerMovement: {fileID: 3197703256896854475}
   weapon: {fileID: 2119109021}
   returnSpeed: 1
-  xStrength: 0.01
-  yStrength: 0.01
+  xStrengthMoving: 0.01
+  yStrengthMoving: 0.02
+  yStrengthIdle: 0.01
   speed: 12
+  speedIdle: 2
 --- !u!1 &6632370736086858009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,6 +1876,7 @@ GameObject:
   - component: {fileID: 4279257790661541344}
   - component: {fileID: 4618453611171405220}
   - component: {fileID: 5858608466369394659}
+  - component: {fileID: 7186806271265529984}
   m_Layer: 3
   m_Name: WeaponParent
   m_TagString: Untagged
@@ -1799,6 +1884,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7186806271265529984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7186806271265529983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52eea4831573c2246a0b6eac85d5a630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoilParent: {fileID: 1901038353}
+  returnSpeedPos: 10
+  recoilSpeedPos: 20
+  returnSpeedRot: 10
+  recoilSpeedRot: 20
 --- !u!20 &7499230455302424690
 Camera:
   m_ObjectHideFlags: 0
@@ -1862,9 +1964,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6871770f27664924ba33ee4474f04f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 1642495710}
-  mouseSensitivity: 1
+  cameraAnchor: {fileID: 1642495710}
   playerTransform: {fileID: 2610403802117210793}
+  mouseSensitivity: 1
+  zTiltStrength: 0.17
+  zTiltReturnSpeed: 15
 --- !u!114 &7595255646215495701
 MonoBehaviour:
   m_ObjectHideFlags: 0
