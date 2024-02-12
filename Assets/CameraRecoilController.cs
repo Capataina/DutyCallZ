@@ -35,6 +35,7 @@ public class CameraRecoilController : MonoBehaviour
     {
         //float zShake = Random.Range(-ZShakeStrength, ZShakeStrength);
         float zShake = Mathf.PerlinNoise1D(perlinTime) * ZShakeStrength * 2 - ZShakeStrength;
+        //float zShake = Mathf.Sin(perlinTime) * ZShakeStrength;
         float yShake = Random.Range(-YShakeStrengh, YShakeStrengh);
 
         targetRotation += new Vector3(0, yShake, zShake);

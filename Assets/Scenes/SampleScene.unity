@@ -1307,7 +1307,7 @@ PrefabInstance:
     - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
       propertyPath: zShake
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
@@ -1884,8 +1884,8 @@ MonoBehaviour:
   returnSpeed: 2.5
   maxReturnHeight: 3
   cameraShakeReturnSpeed: 3
-  cameraShakeSpeed: 90
-  zShapeFaze: 10
+  cameraShakeSpeed: 40
+  zShapeFaze: 35.59
 --- !u!1 &7966137067202989106
 GameObject:
   m_ObjectHideFlags: 0
