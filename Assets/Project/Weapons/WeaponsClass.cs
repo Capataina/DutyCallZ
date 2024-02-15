@@ -21,11 +21,11 @@ public abstract class WeaponsClass : MonoBehaviour
     public float burstNumber;
     public float burstDelay;
     public float accuracy;
-    [SerializeField] private Camera playerCamera;
+    [SerializeField] public Camera playerCamera;
     [SerializeField] private LayerMask shootingMask;
     [SerializeField] private GameObject hitIndicator;
-    [SerializeField] private CameraController cameraController;
-    [SerializeField] private CameraRecoilController recoilController;
+    [SerializeField] public CameraController cameraController;
+    [SerializeField] public CameraRecoilController recoilController;
     [SerializeField] private float hipXRecoil;
     [SerializeField] private float hipYRecoil;
     [SerializeField] private float recoilDuration;

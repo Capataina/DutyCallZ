@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2351152057484511870}
   m_Layer: 7
   m_Name: Vector Gun Station
-  m_TagString: Untagged
+  m_TagString: Weapon Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

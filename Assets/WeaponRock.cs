@@ -3,7 +3,7 @@ using UnityEngine;
 public class WeaponRock : MonoBehaviour
 {
     [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] Transform weapon;
+    [SerializeField] public Transform weapon;
     [SerializeField] float returnSpeed;
     [SerializeField] float xStrength;
     [SerializeField] float yStrength;
@@ -13,21 +13,25 @@ public class WeaponRock : MonoBehaviour
 
     void Update()
     {
-
-        if (playerMovement.isMoving())
+        if (weapon)
         {
-            float deltaX = Mathf.Sin(time * speed) * xStrength;
-            float deltaY = Mathf.Abs(Mathf.Sin(time * speed) * yStrength) - yStrength;
+            if (playerMovement.isMoving())
+            {
+                float deltaX = Mathf.Sin(time * speed) * xStrength;
+                float deltaY = Mathf.Abs(Mathf.Sin(time * speed) * yStrength) - yStrength;
 
-            Vector3 displacement = new Vector3(deltaX, deltaY, 0);
+                Vector3 displacement = new Vector3(deltaX, deltaY, 0);
 
-            weapon.localPosition = displacement;
+                weapon.localPosition = displacement;
+            }
+            else if (weapon.localPosition.sqrMagnitude > 0.01f)
+            {
+                weapon.localPosition = Vector3.MoveTowards(weapon.localPosition, Vector3.zero, returnSpeed * Time.deltaTime);
+            }
+
+            time = (time + Time.deltaTime) % (Mathf.PI * 2);
         }
-        else if (weapon.localPosition.sqrMagnitude > 0.01f)
-        {
-            weapon.localPosition = Vector3.MoveTowards(weapon.localPosition, Vector3.zero, returnSpeed * Time.deltaTime);
-        }
 
-        time = (time + Time.deltaTime) % (Mathf.PI * 2);
+        
     }
 }

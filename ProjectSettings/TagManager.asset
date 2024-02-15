@@ -8,6 +8,7 @@ TagManager:
   - Zombie
   - SpeedBuffStation
   - WeaponParent
+  - Weapon Station
   layers:
   - Default
   - TransparentFX

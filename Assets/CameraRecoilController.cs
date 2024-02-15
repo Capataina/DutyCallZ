@@ -8,7 +8,7 @@ public class CameraRecoilController : MonoBehaviour
     [SerializeField] Transform playerCamera;
     [SerializeField] Transform playerCameraParent;
     [SerializeField] Transform cameraShakeParent;
-    [SerializeField] WeaponsClass currentWeapon;
+    [SerializeField] public WeaponsClass currentWeapon;
     [SerializeField] float returnSpeed;
     [SerializeField] float maxReturnHeight;
     [SerializeField] float cameraShakeReturnSpeed;
