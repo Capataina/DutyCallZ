@@ -30,6 +30,7 @@ public class WeaponPickup : MonoBehaviour
         var playerCameraRecoilController = player.GetComponent<CameraRecoilController>();
         
         GameObject newWeapon = Instantiate(weapon, weaponParent.transform, false);
+        newWeapon.transform.localPosition = Vector3.zero;
         
         var newWeaponClass = newWeapon.GetComponent<WeaponsClass>();
         
