@@ -8,6 +8,7 @@ public class StationWeapon : MonoBehaviour
     public WeaponType weapon;
     public enum WeaponType
     {
-        Vector
+        Vector,
+        KS23
     }
 }

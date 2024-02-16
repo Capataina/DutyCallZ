@@ -18,7 +18,8 @@ public class WeaponPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckDistance(); // Now passing an array of all weapon stations
+        CheckDistance(); // Searching through all weapon stations
+        
     }
 
     void GiveWeapon(GameObject weapon)
