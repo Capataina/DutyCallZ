@@ -39,7 +39,7 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    void ActivateWeapon(int weaponIndex)
+    public void ActivateWeapon(int weaponIndex)
     {
         for (int i = 0; i < currentWeapons.Count; i++)
         {
