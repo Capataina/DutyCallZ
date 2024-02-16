@@ -4,37 +4,55 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    
-    public WeaponsClass gun;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        gun = GetComponentInChildren<WeaponsClass>();
-    }
+    public List<GameObject> currentWeapons;
+    public WeaponsClass heldWeapon;
 
-    // Update is called once per frame
     void Update()
     {
-        
-        if (gun)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && currentWeapons.Count > 0)
         {
-            if (gun.automatic)
+            print("pressed 1");
+            ActivateWeapon(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) && currentWeapons.Count > 1)
+        {
+            ActivateWeapon(1);
+        }
+
+        if (heldWeapon)
+        {
+            if (heldWeapon.automatic)
             {
                 if (Input.GetMouseButton(0))
                 {
-                    gun.Fire();
+                    heldWeapon.Fire();
                 }
             }
             else
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    gun.Fire();
+                    heldWeapon.Fire();
                 }
-            
             }
         }
-        
+    }
+
+    void ActivateWeapon(int weaponIndex)
+    {
+        for (int i = 0; i < currentWeapons.Count; i++)
+        {
+            if (i == weaponIndex)
+            {
+                currentWeapons[i].SetActive(true);
+                print(currentWeapons[i].name);
+                heldWeapon = currentWeapons[i].GetComponent<WeaponsClass>();
+            }
+            else
+            {
+                currentWeapons[i].SetActive(false);
+            }
+        }
     }
 }

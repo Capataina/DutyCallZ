@@ -33,7 +33,8 @@ public class WeaponPickup : MonoBehaviour
         var newWeaponClass = newWeapon.GetComponent<WeaponsClass>();
         
         newWeaponClass.playerCamera = Camera.main;
-        player.GetComponent<PlayerShooting>().gun = newWeaponClass;
+        player.GetComponent<PlayerShooting>().heldWeapon = newWeaponClass;
+        player.GetComponent<PlayerShooting>().currentWeapons.Add(newWeapon);
         playerCameraRecoilController.currentWeapon = newWeaponClass;
         
         newWeaponClass.cameraController = player.GetComponent<CameraController>();
