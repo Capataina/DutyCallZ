@@ -730,84 +730,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1901038353}
     m_Modifications:
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: xShake
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: zShake
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: accuracy
-      value: 0.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: automatic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: hipXRecoil
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: burstNumber
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: fireCooldown
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: recoilAnimXRot
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: recoilDuration
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: cameraController
-      value: 
-      objectReference: {fileID: 7595255646215495700}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: recoilController
-      value: 
-      objectReference: {fileID: 7595255646215495701}
-    - target: {fileID: 2245932673502115570, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: weaponRecoilAnimation
-      value: 
-      objectReference: {fileID: 7186806271265529984}
     - target: {fileID: 6527137763087784338, guid: ceb222f2d364690489afad4a110477f8,
         type: 3}
       propertyPath: m_Name
       value: KS23 Gun
       objectReference: {fileID: 0}
-    - target: {fileID: 6756423905942053341, guid: ceb222f2d364690489afad4a110477f8,
+    - target: {fileID: 6527137763087784338, guid: ceb222f2d364690489afad4a110477f8,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756423905942053341, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756423905942053341, guid: ceb222f2d364690489afad4a110477f8,
-        type: 3}
-      propertyPath: m_LocalScale.z
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6756423905942053341, guid: ceb222f2d364690489afad4a110477f8,
@@ -860,11 +790,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6756423905942053341, guid: ceb222f2d364690489afad4a110477f8,
+    - target: {fileID: 7030853872414428389, guid: ceb222f2d364690489afad4a110477f8,
         type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 7595255646215495700}
+    - target: {fileID: 7030853872414428389, guid: ceb222f2d364690489afad4a110477f8,
+        type: 3}
+      propertyPath: recoilController
+      value: 
+      objectReference: {fileID: 7595255646215495701}
+    - target: {fileID: 7030853872414428389, guid: ceb222f2d364690489afad4a110477f8,
+        type: 3}
+      propertyPath: recoilAnimMaxXRot
+      value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7030853872414428389, guid: ceb222f2d364690489afad4a110477f8,
+        type: 3}
+      propertyPath: recoilAnimMinXRot
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030853872414428389, guid: ceb222f2d364690489afad4a110477f8,
+        type: 3}
+      propertyPath: weaponRecoilAnimation
+      value: 
+      objectReference: {fileID: 7186806271265529984}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1576,104 +1526,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
-      propertyPath: damage
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: xShake
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: yShake
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: zShake
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: maxAmmo
-      value: 999
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
       propertyPath: accuracy
       value: 0.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: hipXRecoil
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: hipYRecoil
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: recoilAnimX
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: recoilAnimY
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: recoilAnimZ
-      value: 0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: hitIndicator
-      value: 
-      objectReference: {fileID: 229353022325318298, guid: 6fb20f688152d9f46b32c75eb73a2fec,
-        type: 3}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: magazineSize
-      value: 999
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: recoilAnimXPos
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: recoilAnimXRot
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: recoilAnimYPos
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: recoilAnimYRot
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: recoilAnimZPos
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: recoilAnimZRot
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
-        type: 3}
-      propertyPath: recoilDuration
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828,
         type: 3}
@@ -1740,8 +1594,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3963420100244683231, guid: 5e18c44af9fcef54190cf6e7fcf82828, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2221,7 +2074,7 @@ MonoBehaviour:
   cameraAnchor: {fileID: 1642495710}
   playerTransform: {fileID: 2610403802117210793}
   mouseSensitivity: 1
-  zTiltStrength: 0.17
+  zTiltStrength: 0.15
   zTiltReturnSpeed: 15
 --- !u!114 &7595255646215495701
 MonoBehaviour:

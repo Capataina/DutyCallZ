@@ -36,7 +36,8 @@ public abstract class WeaponsClass : MonoBehaviour
     [SerializeField] private float recoilAnimXPos;
     [SerializeField] private float recoilAnimYPos;
     [SerializeField] private float recoilAnimZPos;
-    [SerializeField] private float recoilAnimXRot;
+    [SerializeField] private float recoilAnimMaxXRot;
+    [SerializeField] private float recoilAnimMinXRot;
     [SerializeField] private float recoilAnimYRot;
     [SerializeField] private float recoilAnimZRot;
     private float currentAmmo;
@@ -87,7 +88,7 @@ public abstract class WeaponsClass : MonoBehaviour
     public virtual void HandleRecoilAnimation()
     {
         weaponRecoilAnimation.PlayRecoilAnimationPos(recoilAnimXPos, recoilAnimYPos, recoilAnimZPos);
-        weaponRecoilAnimation.PlayRecoilAnimationRot(recoilAnimXRot, recoilAnimYRot, recoilAnimZRot);
+        weaponRecoilAnimation.PlayRecoilAnimationRot(recoilAnimMaxXRot, recoilAnimMinXRot, recoilAnimYRot, recoilAnimZRot);
     }
 
     public virtual void HandleRecoil()

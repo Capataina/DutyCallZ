@@ -20,9 +20,9 @@ public class WeaponRecoilAnimation : MonoBehaviour
         targetPosition += new Vector3(xVal, yVal, -zVal);
     }
 
-    public void PlayRecoilAnimationRot(float xRecoil, float yRecoil, float zRecoil)
+    public void PlayRecoilAnimationRot(float xMaxRecoil, float xMinRecoil, float yRecoil, float zRecoil)
     {
-        float xVal = Random.Range(-xRecoil / 2, xRecoil);
+        float xVal = Random.Range(xMinRecoil, xMaxRecoil);
         float yVal = Random.Range(-yRecoil, yRecoil);
         float zVal = Random.Range(-zRecoil, zRecoil);
         targetRotation += new Vector3(-xVal, yVal, zVal);

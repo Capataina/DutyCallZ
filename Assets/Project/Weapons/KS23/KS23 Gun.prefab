@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6756423905942053341}
-  - component: {fileID: 2245932673502115570}
+  - component: {fileID: 7030853872414428389}
   m_Layer: 0
   m_Name: KS23 Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6756423905942053341
 Transform:
   m_ObjectHideFlags: 0
@@ -28,12 +28,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -114.144485, y: 2.132909, z: 1.9918259}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7251679595544902459}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2245932673502115570
+--- !u!114 &7030853872414428389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,18 +42,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6527137763087784338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 340288e46786d304cb5dc48eb6f41de6, type: 3}
+  m_Script: {fileID: 11500000, guid: b60f91bb282c2bd4e8aa1878964daa6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  automatic: 1
-  fireCooldown: 0.08
+  automatic: 0
+  fireCooldown: 0.2
   reloadTimer: 1
   damage: 100
   magazineSize: 999
   maxAmmo: 999
-  burstNumber: 1
+  burstNumber: 6
   burstDelay: 0
-  accuracy: 0.98
+  accuracy: 0.96
   shootingMask:
     serializedVersion: 2
     m_Bits: 119
@@ -63,16 +63,17 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   recoilController: {fileID: 0}
   weaponRecoilAnimation: {fileID: 0}
-  hipXRecoil: 1
+  hipXRecoil: 3
   hipYRecoil: 2
-  recoilDuration: 0.1
-  xShake: 0.05
+  recoilDuration: 0.2
+  xShake: 0.1
   yShake: 0.5
-  zShake: 2
+  zShake: 4
   recoilAnimXPos: 0.005
   recoilAnimYPos: 0.01
   recoilAnimZPos: 0.1
-  recoilAnimXRot: 3
+  recoilAnimMaxXRot: 15
+  recoilAnimMinXRot: 5
   recoilAnimYRot: 3
   recoilAnimZRot: 3
 --- !u!1001 &7145415279510265040

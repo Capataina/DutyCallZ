@@ -54,10 +54,28 @@ MonoBehaviour:
   burstNumber: 1
   burstDelay: 0
   accuracy: 0.93
-  playerCamera: {fileID: 0}
   shootingMask:
     serializedVersion: 2
     m_Bits: 119
+  playerCamera: {fileID: 0}
+  hitIndicator: {fileID: 229353022325318298, guid: 6fb20f688152d9f46b32c75eb73a2fec,
+    type: 3}
+  cameraController: {fileID: 0}
+  recoilController: {fileID: 0}
+  weaponRecoilAnimation: {fileID: 0}
+  hipXRecoil: 1.5
+  hipYRecoil: 1
+  recoilDuration: 0.1
+  xShake: 0.05
+  yShake: 0.5
+  zShake: 2
+  recoilAnimXPos: 0.005
+  recoilAnimYPos: 0.01
+  recoilAnimZPos: 0.1
+  recoilAnimMaxXRot: 3
+  recoilAnimMinXRot: -3
+  recoilAnimYRot: 3
+  recoilAnimZRot: 3
 --- !u!1001 &2302600806277289312
 PrefabInstance:
   m_ObjectHideFlags: 0
