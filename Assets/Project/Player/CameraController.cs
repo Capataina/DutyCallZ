@@ -1,14 +1,16 @@
+using System;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
 
-    [SerializeField] private Transform playerCamera;
-    [SerializeField] private float mouseSensitivity;
+    [SerializeField] private Transform cameraAnchor;
     [SerializeField] private Transform playerTransform;
+    [SerializeField] private float mouseSensitivity;
+    [SerializeField] private float zTiltStrength;
+    [SerializeField] private float zTiltReturnSpeed;
 
-    Vector3 targetRecoilRotation;
-    Vector3 currentRecoilRotation;
+    float currentTilt;
 
     void Start()
     {
@@ -30,11 +32,13 @@ public class CameraController : MonoBehaviour
         float deltaX = Input.GetAxisRaw("Mouse X");
         float deltaY = Input.GetAxisRaw("Mouse Y");
 
-        var cameraEulerAngles = playerCamera.transform.localEulerAngles;
+        var cameraEulerAngles = cameraAnchor.transform.localEulerAngles;
         var playerEulerAngles = playerTransform.transform.eulerAngles;
 
         float newRotationY = playerEulerAngles.y + deltaX * mouseSensitivity;
         float newRotationX = cameraEulerAngles.x - deltaY * mouseSensitivity;
+
+        currentTilt -= deltaX * zTiltStrength;
 
         if (newRotationX is < 270 and > 180)
         {
@@ -45,15 +49,13 @@ public class CameraController : MonoBehaviour
             newRotationX = 90;
         }
 
-        Quaternion newRotationCamera = Quaternion.Euler(newRotationX, 0, 0);
+        Quaternion newRotationCamera = Quaternion.Euler(newRotationX, 0, currentTilt);
         Quaternion newRotationPlayer = Quaternion.Euler(0, newRotationY, 0);
 
-        if (deltaX != 0 || deltaY != 0)
-        {
-            playerCamera.transform.localRotation = newRotationCamera;
-            playerTransform.transform.rotation = newRotationPlayer;
-        }
+        cameraAnchor.transform.localRotation = newRotationCamera;
+        playerTransform.transform.rotation = newRotationPlayer;
 
+        currentTilt = Mathf.Lerp(currentTilt, 0, zTiltReturnSpeed * Time.deltaTime);
     }
 
 }

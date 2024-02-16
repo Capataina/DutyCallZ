@@ -7,31 +7,47 @@ using Random = UnityEngine.Random;
 
 public abstract class WeaponsClass : MonoBehaviour
 {
-    private float timer;
-    private bool canShoot;
-    private bool isReloading;
+    [Header("Weapon Properties")]
     public bool automatic;
-    public float fireCooldown;
-    public float reloadTimer;
-    public float damage;
-    public float magazineSize;
     private float bulletsInMag;
-    public float maxAmmo;
     private float currentAmmo;
-    public float burstNumber;
-    public float burstDelay;
-    public float accuracy;
     [SerializeField] public Camera playerCamera;
+    [SerializeField] private float fireCooldown;
+    [SerializeField] private float reloadTimer;
+    [SerializeField] private float damage;
+    [SerializeField] private float magazineSize;
+    [SerializeField] private float maxAmmo;
+    [SerializeField] private float burstNumber;
+    [SerializeField] private float burstDelay;
+    [SerializeField] private float accuracy;
     [SerializeField] private LayerMask shootingMask;
+    [Header("Dependencies")]
+    [SerializeField] private Camera playerCamera;
     [SerializeField] private GameObject hitIndicator;
     [SerializeField] public CameraController cameraController;
     [SerializeField] public CameraRecoilController recoilController;
+    [SerializeField] private WeaponRecoilAnimation weaponRecoilAnimation;
+    [Header("Camera Recoil")]
     [SerializeField] private float hipXRecoil;
     [SerializeField] private float hipYRecoil;
     [SerializeField] private float recoilDuration;
+    [Header("Camera Shake")]
     [SerializeField] private float xShake;
     [SerializeField] private float yShake;
     [SerializeField] private float zShake;
+    [Header("Weapon Recoil")]
+    [SerializeField] private float recoilAnimXPos;
+    [SerializeField] private float recoilAnimYPos;
+    [SerializeField] private float recoilAnimZPos;
+    [SerializeField] private float recoilAnimMaxXRot;
+    [SerializeField] private float recoilAnimMinXRot;
+    [SerializeField] private float recoilAnimYRot;
+    [SerializeField] private float recoilAnimZRot;
+    private float currentAmmo;
+    private float bulletsInMag;
+    private float timer;
+    private bool canShoot;
+    private bool isReloading;
 
     public virtual void Fire()
     {
@@ -72,6 +88,12 @@ public abstract class WeaponsClass : MonoBehaviour
         }
     }
 
+    public virtual void HandleRecoilAnimation()
+    {
+        weaponRecoilAnimation.PlayRecoilAnimationPos(recoilAnimXPos, recoilAnimYPos, recoilAnimZPos);
+        weaponRecoilAnimation.PlayRecoilAnimationRot(recoilAnimMaxXRot, recoilAnimMinXRot, recoilAnimYRot, recoilAnimZRot);
+    }
+
     public virtual void HandleRecoil()
     {
         recoilController.AddRecoil(hipXRecoil, recoilDuration);
@@ -103,6 +125,7 @@ public abstract class WeaponsClass : MonoBehaviour
         }
 
         HandleRecoil();
+        HandleRecoilAnimation();
     }
 
     protected virtual IEnumerator Reload()
