@@ -9,9 +9,6 @@ public abstract class WeaponsClass : MonoBehaviour
 {
     [Header("Weapon Properties")]
     public bool automatic;
-    private float bulletsInMag;
-    private float currentAmmo;
-    [SerializeField] public Camera playerCamera;
     [SerializeField] private float fireCooldown;
     [SerializeField] private float reloadTimer;
     [SerializeField] private float damage;
@@ -22,11 +19,11 @@ public abstract class WeaponsClass : MonoBehaviour
     [SerializeField] private float accuracy;
     [SerializeField] private LayerMask shootingMask;
     [Header("Dependencies")]
-    [SerializeField] private Camera playerCamera;
+    [SerializeField] public Camera playerCamera;
     [SerializeField] private GameObject hitIndicator;
     [SerializeField] public CameraController cameraController;
     [SerializeField] public CameraRecoilController recoilController;
-    [SerializeField] private WeaponRecoilAnimation weaponRecoilAnimation;
+    [SerializeField] public WeaponRecoilAnimation weaponRecoilAnimation;
     [Header("Camera Recoil")]
     [SerializeField] private float hipXRecoil;
     [SerializeField] private float hipYRecoil;

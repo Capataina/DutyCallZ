@@ -7,6 +7,8 @@ public class WeaponPickup : MonoBehaviour
     private GameObject player;
     private float holdDownTimer;
     private List<StationWeapon.WeaponType> inventory = new List<StationWeapon.WeaponType>(); // Ensure inventory is initialized
+    [SerializeField] private GameObject attachWeapon;
+    [SerializeField] private GameObject weaponParent;
 
     private GameObject[] allWeaponStations; // Array to hold all weapon stations
     
@@ -26,10 +28,9 @@ public class WeaponPickup : MonoBehaviour
     void GiveWeapon(GameObject weapon)
     {
         // Debug.Log("Spawned weapon");
-        var weaponParent = GameObject.FindGameObjectWithTag("WeaponParent");
         var playerCameraRecoilController = player.GetComponent<CameraRecoilController>();
         
-        GameObject newWeapon = Instantiate(weapon, weaponParent.transform, false);
+        GameObject newWeapon = Instantiate(weapon, attachWeapon.transform, false);
         newWeapon.transform.localPosition = Vector3.zero;
         
         var newWeaponClass = newWeapon.GetComponent<WeaponsClass>();
@@ -43,6 +44,8 @@ public class WeaponPickup : MonoBehaviour
         
         weaponParent.GetComponent<WeaponSway>().activeWeapon = newWeapon.transform;
         weaponParent.GetComponent<WeaponRock>().weapon = newWeapon.transform;
+
+        newWeaponClass.weaponRecoilAnimation = weaponParent.GetComponent<WeaponRecoilAnimation>();
     }
     
     private void CheckDistance(GameObject[] weaponStations)
