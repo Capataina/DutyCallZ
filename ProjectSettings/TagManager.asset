@@ -9,6 +9,7 @@ TagManager:
   - SpeedBuffStation
   - WeaponParent
   - Weapon Station
+  - RegenBuffStation
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - Zombies
   - Weapon Stations
-  - 
+  - Buff Stations
   - 
   - 
   - 

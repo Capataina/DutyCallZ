@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ActiveBuffs : MonoBehaviour
@@ -6,68 +7,83 @@ public class ActiveBuffs : MonoBehaviour
 
     private GameObject player;
     public float buffDuration;
+
+    private List<StationBuff.BuffType> activeBuffs = new List<StationBuff.BuffType>();
     
     public bool speedBuff;
-    private bool hasSpeedBuff;
-    
     public bool regenBuff;
-    private bool hasRegenBuff;
-    
     private bool resistanceBuff;
-    private PlayerMovement playerSpeed;
-    private float holdDownTimer;
-
-    private GameObject speedBuffStation;
     
+    private PlayerMovement playerSpeed;
+    private PlayerStats playerStats;
+    private float holdDownTimer;
     
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerSpeed = player.GetComponent<PlayerMovement>();
-
-        speedBuffStation = GameObject.FindGameObjectWithTag("SpeedBuffStation");
+        playerStats = player.GetComponent<PlayerStats>();
     }
 
     //Update is called once per frame
     void Update()
     {
 
-        if (speedBuff && !hasSpeedBuff)
+        if (speedBuff)
         {
             StartCoroutine(AddSpeedBuff());
             speedBuff = false;
         }
         
-        if (regenBuff && !hasRegenBuff)
+        if (regenBuff)
         {
             StartCoroutine(AddRegenBuff());
             regenBuff = false;
         }
         
-        CheckDistance(speedBuffStation);
+        CheckDistance();
     }
     
     private IEnumerator AddSpeedBuff()
     {
-        hasSpeedBuff = true;
+        activeBuffs.Add(StationBuff.BuffType.Speed);
         playerSpeed.speed = playerSpeed.baseSpeed * 1.2f;
         yield return new WaitForSeconds(buffDuration);
-        //Debug.Log("buff ended");
         playerSpeed.speed = playerSpeed.baseSpeed;
-        hasSpeedBuff = false;
+        activeBuffs.Remove(StationBuff.BuffType.Speed);
     }
 
     private IEnumerator AddRegenBuff()
     {
-        hasRegenBuff = true;
-        yield break;
-        hasRegenBuff = false;
+        activeBuffs.Add(StationBuff.BuffType.Regen);
+        playerStats.healthRegen = playerStats.baseHealthRegen + 3;
+        yield return new WaitForSeconds(buffDuration);
+        playerStats.healthRegen = playerStats.baseHealthRegen;
+        activeBuffs.Remove(StationBuff.BuffType.Regen);
     }
 
-    private void CheckDistance(GameObject buffStation)
+    private void CheckDistance()
     {
-        if (Vector3.Distance(player.transform.position, buffStation.transform.position) <= 5)
+        Collider[] buffStations = Physics.OverlapSphere(player.transform.position, 5f, LayerMask.GetMask("Buff Stations"));
+        
+        GameObject closestStation = null;
+        
+        if (buffStations.Length > 0)
+        {
+            closestStation = buffStations[0].gameObject;
+        }
+        
+        foreach (var station in buffStations)
+        {
+            if (Vector3.Distance(player.transform.position, station.gameObject.transform.position) <=
+                Vector3.Distance(player.transform.position, closestStation.transform.position))
+            {
+                closestStation = station.gameObject;
+            }
+        }
+
+        if (closestStation)
         {
             if (Input.GetKey(KeyCode.E))
             {
@@ -75,18 +91,21 @@ public class ActiveBuffs : MonoBehaviour
                 
                 if (holdDownTimer >= 1)
                 {
-                    switch (buffStation.GetComponent<StationBuff>().buff)
+                    switch (closestStation.GetComponent<StationBuff>().buff)
                     {
                         case StationBuff.BuffType.Speed:
-                            if (!hasSpeedBuff)
+                            if (!activeBuffs.Contains(StationBuff.BuffType.Speed))
                             {
                                 speedBuff = true;
                                 holdDownTimer = 0;
                             }
                             break;
                         case StationBuff.BuffType.Regen:
-                            regenBuff = true;
-                            holdDownTimer = 0;
+                            if (!activeBuffs.Contains(StationBuff.BuffType.Regen))
+                            {
+                                regenBuff = true;
+                                holdDownTimer = 0;
+                            }
                             break;
                     }
                 }
