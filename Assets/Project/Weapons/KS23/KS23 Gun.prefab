@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6527137763087784338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6756423905942053341}
+  - component: {fileID: 2245932673502115570}
+  m_Layer: 0
+  m_Name: KS23 Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6756423905942053341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527137763087784338}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -114.144485, y: 2.132909, z: 1.9918259}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7251679595544902459}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2245932673502115570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527137763087784338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340288e46786d304cb5dc48eb6f41de6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  automatic: 1
+  fireCooldown: 0.08
+  reloadTimer: 1
+  damage: 100
+  magazineSize: 999
+  maxAmmo: 999
+  burstNumber: 1
+  burstDelay: 0
+  accuracy: 0.98
+  shootingMask:
+    serializedVersion: 2
+    m_Bits: 119
+  playerCamera: {fileID: 0}
+  hitIndicator: {fileID: 229353022325318298, guid: 6fb20f688152d9f46b32c75eb73a2fec,
+    type: 3}
+  cameraController: {fileID: 0}
+  recoilController: {fileID: 0}
+  weaponRecoilAnimation: {fileID: 0}
+  hipXRecoil: 1
+  hipYRecoil: 2
+  recoilDuration: 0.1
+  xShake: 0.05
+  yShake: 0.5
+  zShake: 2
+  recoilAnimXPos: 0.005
+  recoilAnimYPos: 0.01
+  recoilAnimZPos: 0.1
+  recoilAnimXRot: 3
+  recoilAnimYRot: 3
+  recoilAnimZRot: 3
+--- !u!1001 &7145415279510265040
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6756423905942053341}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90c6784f544c8a243bde51f2e41a1e74,
+        type: 3}
+      propertyPath: m_Name
+      value: KS23 Model
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 90c6784f544c8a243bde51f2e41a1e74, type: 3}
+--- !u!4 &7251679595544902459 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 90c6784f544c8a243bde51f2e41a1e74,
+    type: 3}
+  m_PrefabInstance: {fileID: 7145415279510265040}
+  m_PrefabAsset: {fileID: 0}
