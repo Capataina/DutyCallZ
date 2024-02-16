@@ -792,6 +792,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7030853872414428389, guid: ceb222f2d364690489afad4a110477f8,
         type: 3}
+      propertyPath: yShake
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030853872414428389, guid: ceb222f2d364690489afad4a110477f8,
+        type: 3}
+      propertyPath: zShake
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030853872414428389, guid: ceb222f2d364690489afad4a110477f8,
+        type: 3}
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 7595255646215495700}
@@ -2094,9 +2104,9 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   returnSpeed: 5
   maxReturnHeight: 3
-  cameraShakeReturnSpeed: 3
+  cameraShakeReturnSpeed: 15
   cameraShakeSpeed: 40
-  zShapeFaze: 35.59
+  zShapeFaze: 10
 --- !u!1 &7966137067202989106
 GameObject:
   m_ObjectHideFlags: 0
