@@ -9,20 +9,16 @@ public class WeaponPickup : MonoBehaviour
     private List<StationWeapon.WeaponType> inventory = new List<StationWeapon.WeaponType>(); // Ensure inventory is initialized
     [SerializeField] private GameObject attachWeapon;
     [SerializeField] private GameObject weaponParent;
-
-    private GameObject[] allWeaponStations; // Array to hold all weapon stations
     
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        // Find all game objects with the tag "Weapon Station" and assign them to the array
-        allWeaponStations = GameObject.FindGameObjectsWithTag("Weapon Station");
     } 
 
     // Update is called once per frame
     void Update()
     {
-        CheckDistance(allWeaponStations); // Now passing an array of all weapon stations
+        CheckDistance(); // Now passing an array of all weapon stations
     }
 
     void GiveWeapon(GameObject weapon)
@@ -48,32 +44,28 @@ public class WeaponPickup : MonoBehaviour
         newWeaponClass.weaponRecoilAnimation = weaponParent.GetComponent<WeaponRecoilAnimation>();
     }
     
-    private void CheckDistance(GameObject[] weaponStations)
+    private void CheckDistance()
     {
-        float closestDistance = Mathf.Infinity; // Track the closest distance found
-        GameObject closestStation = null; // Track the closest station
+        
+        Collider[] weaponStations = Physics.OverlapSphere(player.transform.position, 5f, LayerMask.GetMask("Weapon Stations"));
+        GameObject closestStation = null;
 
-        // Iterate over all weapon stations to find the closest one
+        if (weaponStations.Length > 0)
+        {
+            closestStation = weaponStations[0].gameObject;
+        }
+
         foreach (var station in weaponStations)
         {
-            float distance = Vector3.Distance(player.transform.position, station.transform.position);
-            if (distance < closestDistance)
+            if (Vector3.Distance(player.transform.position, station.gameObject.transform.position) <=
+                Vector3.Distance(player.transform.position, closestStation.transform.position))
             {
-                Collider[] hitColliders = Physics.OverlapSphere(player.transform.position, 5f, LayerMask.GetMask("Weapon Stations"));
-                foreach (var hitCollider in hitColliders)
-                {
-                    if (hitCollider.gameObject == station)
-                    {
-                        closestDistance = distance;
-                        closestStation = station;
-                        break; // Found a station within range, no need to check further
-                    }
-                }
+                closestStation = station.gameObject;
             }
         }
 
         // If a closest station is found and within range, process the weapon pickup
-        if (closestStation != null && closestDistance <= 5f)
+        if (closestStation)
         {
             // Debug.Log("In distance to the closest station");
             if (Input.GetKey(KeyCode.E))

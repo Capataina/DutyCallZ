@@ -6,10 +6,6 @@ TagManager:
   tags:
   - ZombieSpawnPoint
   - Zombie
-  - SpeedBuffStation
-  - WeaponParent
-  - Weapon Station
-  - RegenBuffStation
   layers:
   - Default
   - TransparentFX

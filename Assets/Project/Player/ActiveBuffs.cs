@@ -96,6 +96,7 @@ public class ActiveBuffs : MonoBehaviour
                         case StationBuff.BuffType.Speed:
                             if (!activeBuffs.Contains(StationBuff.BuffType.Speed))
                             {
+                                print("gave speed buff");
                                 speedBuff = true;
                                 holdDownTimer = 0;
                             }
@@ -103,6 +104,7 @@ public class ActiveBuffs : MonoBehaviour
                         case StationBuff.BuffType.Regen:
                             if (!activeBuffs.Contains(StationBuff.BuffType.Regen))
                             {
+                                print("gave regen buff");
                                 regenBuff = true;
                                 holdDownTimer = 0;
                             }
