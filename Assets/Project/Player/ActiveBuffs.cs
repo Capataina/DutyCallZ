@@ -11,6 +11,8 @@ public class ActiveBuffs : MonoBehaviour
     private bool hasSpeedBuff;
     
     public bool regenBuff;
+    private bool hasRegenBuff;
+    
     private bool resistanceBuff;
     private PlayerMovement playerSpeed;
     private float holdDownTimer;
@@ -37,7 +39,7 @@ public class ActiveBuffs : MonoBehaviour
             speedBuff = false;
         }
         
-        if (regenBuff)
+        if (regenBuff && !hasRegenBuff)
         {
             StartCoroutine(AddRegenBuff());
             regenBuff = false;
@@ -58,7 +60,9 @@ public class ActiveBuffs : MonoBehaviour
 
     private IEnumerator AddRegenBuff()
     {
+        hasRegenBuff = true;
         yield break;
+        hasRegenBuff = false;
     }
 
     private void CheckDistance(GameObject buffStation)
@@ -77,7 +81,6 @@ public class ActiveBuffs : MonoBehaviour
                             if (!hasSpeedBuff)
                             {
                                 speedBuff = true;
-                                // print("gave speed buff" + speedBuff);
                                 holdDownTimer = 0;
                             }
                             break;
