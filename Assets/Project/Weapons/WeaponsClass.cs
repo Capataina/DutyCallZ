@@ -101,7 +101,7 @@ public abstract class WeaponsClass : MonoBehaviour
     private void Shoot()
     {
         
-        print("Shooting");
+        // print("Shooting");
 
         if (burstDelay != 0)
         {
