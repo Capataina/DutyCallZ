@@ -130,7 +130,8 @@ public class ZombieSpawner : MonoBehaviour
         if (selectedIndex != -1)
         {
             GameObject spawnPoint = spawnPoints[selectedIndex];
-            Instantiate(zombiePrefab, spawnPoint.transform.position, Quaternion.identity);
+            GameObject zombie = Instantiate(zombiePrefab, spawnPoint.transform.position, Quaternion.identity);
+            zombie.GetComponent<Zombie>().AdjustHealthAndArmor((int)waveCount);
         }
         else
         {
