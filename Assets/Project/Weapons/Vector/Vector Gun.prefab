@@ -56,7 +56,7 @@ MonoBehaviour:
   accuracy: 0.98
   shootingMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 247
   playerCamera: {fileID: 0}
   hitIndicator: {fileID: 229353022325318298, guid: 6fb20f688152d9f46b32c75eb73a2fec,
     type: 3}

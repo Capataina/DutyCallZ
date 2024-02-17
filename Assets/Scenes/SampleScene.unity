@@ -1575,6 +1575,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fa154bd772dba14ca69de2110558bfe, type: 3}
+--- !u!1001 &2249596158904872441
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 701206086895201942, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_Name
+      value: Glock Gun Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -118.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 141d9fd396cc61b45927ef5e1eb3173f, type: 3}
 --- !u!4 &2610403802117210793
 Transform:
   m_ObjectHideFlags: 0
@@ -1623,7 +1691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbbe514d08ac09c41b2335a21dc21db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
+  currentWeapons: []
+  heldWeapon: {fileID: 0}
 --- !u!33 &3587773168897478178
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2154,3 +2223,4 @@ SceneRoots:
   - {fileID: 286241268}
   - {fileID: 1883339597431438953}
   - {fileID: 1482862520788909742}
+  - {fileID: 2249596158904872441}

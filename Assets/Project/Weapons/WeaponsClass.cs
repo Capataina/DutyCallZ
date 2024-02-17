@@ -100,6 +100,8 @@ public abstract class WeaponsClass : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private void Shoot()
     {
+        
+        print("Shooting");
 
         if (burstDelay != 0)
         {

@@ -26,6 +26,7 @@ public class WeaponPickup : MonoBehaviour
     {
         // Debug.Log("Spawned weapon");
         var playerCameraRecoilController = player.GetComponent<CameraRecoilController>();
+        var playerShooting = player.GetComponent<PlayerShooting>();
         
         GameObject newWeapon = Instantiate(weapon, attachWeapon.transform, false);
         newWeapon.transform.localPosition = Vector3.zero;
@@ -34,9 +35,31 @@ public class WeaponPickup : MonoBehaviour
         
         newWeaponClass.playerCamera = Camera.main;
         
-        player.GetComponent<PlayerShooting>().heldWeapon = newWeaponClass;
-        player.GetComponent<PlayerShooting>().currentWeapons.Add(newWeapon);
-        player.GetComponent<PlayerShooting>().ActivateWeapon(player.GetComponent<PlayerShooting>().currentWeapons.Count - 1);
+        // playerShooting.heldWeapon = newWeaponClass;
+        // playerShooting.currentWeapons.Add(newWeapon);
+        // playerShooting.ActivateWeapon(playerShooting.currentWeapons.Count - 1);
+        
+        if (playerShooting.currentWeapons.Count < 2)
+        {
+            // If less than 2 weapons, just add the new weapon
+            playerShooting.currentWeapons.Add(newWeapon);
+            playerShooting.ActivateWeapon(playerShooting.currentWeapons.Count - 1);
+        }
+        else
+        {
+            // If already 2 weapons, replace the currently held weapon
+            int replaceIndex = playerShooting.currentWeapons.IndexOf(playerShooting.heldWeapon.gameObject);
+        
+            // If the held weapon is not found for some reason, default to replacing the first weapon
+            if (replaceIndex == -1) replaceIndex = 0;
+        
+            // Remove the current held weapon from the game
+            Destroy(playerShooting.currentWeapons[replaceIndex]);
+
+            // Replace with the new weapon
+            playerShooting.currentWeapons[replaceIndex] = newWeapon;
+            playerShooting.ActivateWeapon(replaceIndex);
+        }
         
         playerCameraRecoilController.currentWeapon = newWeaponClass;
         
