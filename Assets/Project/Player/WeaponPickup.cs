@@ -9,44 +9,44 @@ public class WeaponPickup : MonoBehaviour
     private List<StationWeapon.WeaponType> inventory = new List<StationWeapon.WeaponType>(); // Ensure inventory is initialized
     [SerializeField] private GameObject attachWeapon;
     [SerializeField] private GameObject weaponParent;
-    
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-    } 
+    }
 
     // Update is called once per frame
     void Update()
     {
         CheckDistance(); // Searching through all weapon stations
-        
+
     }
 
     void GiveWeapon(GameObject weapon)
     {
-        // Debug.Log("Spawned weapon");
+        print("Spawned weapon");
         var playerCameraRecoilController = player.GetComponent<CameraRecoilController>();
         var playerShooting = player.GetComponent<PlayerShooting>();
-        
+
         GameObject newWeapon = Instantiate(weapon, attachWeapon.transform, false);
         newWeapon.transform.localPosition = Vector3.zero;
-        
+
         var newWeaponClass = newWeapon.GetComponent<WeaponsClass>();
-        
+
         newWeaponClass.playerCamera = Camera.main;
-        
+
         // playerShooting.heldWeapon = newWeaponClass;
         // playerShooting.currentWeapons.Add(newWeapon);
         // playerShooting.ActivateWeapon(playerShooting.currentWeapons.Count - 1);
-        
+
         StationWeapon stationWeapon = newWeapon.GetComponent<StationWeapon>(); // Assuming this exists to get the weapon type
-        
+
         if (playerShooting.currentWeapons.Count < 2)
         {
             // If less than 2 weapons, just add the new weapon
             playerShooting.currentWeapons.Add(newWeapon);
             playerShooting.ActivateWeapon(playerShooting.currentWeapons.Count - 1);
-            
+
             if (stationWeapon && !inventory.Contains(stationWeapon.weapon))
             {
                 inventory.Add(stationWeapon.weapon);
@@ -56,18 +56,18 @@ public class WeaponPickup : MonoBehaviour
         {
             // If already 2 weapons, replace the currently held weapon
             int replaceIndex = playerShooting.currentWeapons.IndexOf(playerShooting.heldWeapon.gameObject);
-        
+
             // If the held weapon is not found for some reason, default to replacing the first weapon
             if (replaceIndex == -1) replaceIndex = 0;
-            
+
             var oldWeaponClass = playerShooting.currentWeapons[replaceIndex].GetComponent<WeaponsClass>();
             StationWeapon oldStationWeapon = oldWeaponClass ? oldWeaponClass.GetComponent<StationWeapon>() : null;
-        
+
             if (oldStationWeapon)
             {
                 inventory.Remove(oldStationWeapon.weapon); // Remove the weapon type from inventory
             }
-            
+
             // Remove the current held weapon from the game
             Destroy(playerShooting.currentWeapons[replaceIndex]);
 
@@ -75,30 +75,34 @@ public class WeaponPickup : MonoBehaviour
             {
                 inventory.Add(stationWeapon.weapon); // Add the new weapon type
             }
-            
+
             // Replace with the new weapon
             playerShooting.currentWeapons[replaceIndex] = newWeapon;
             playerShooting.ActivateWeapon(replaceIndex);
         }
-        
+
         playerCameraRecoilController.currentWeapon = newWeaponClass;
-        
+
         newWeaponClass.cameraController = player.GetComponent<CameraController>();
         newWeaponClass.recoilController = playerCameraRecoilController;
-        
+
         weaponParent.GetComponent<WeaponSway>().activeWeapon = newWeapon.transform;
         weaponParent.GetComponent<WeaponRock>().weapon = newWeapon.transform;
 
         newWeaponClass.weaponRecoilAnimation = weaponParent.GetComponent<WeaponRecoilAnimation>();
     }
-    
+
     private void CheckDistance()
     {
-        
-        Collider[] weaponStations = Physics.OverlapSphere(player.transform.position, 5f, LayerMask.GetMask("Weapon Stations"));
-        GameObject closestStation = null;
 
-        if (weaponStations.Length > 0)
+        Collider[] weaponStations = Physics.OverlapSphere(player.transform.position, 5f, LayerMask.GetMask("Weapon Stations"));
+        GameObject closestStation;
+
+        if (weaponStations.Length == 0)
+        {
+            return;
+        }
+        else
         {
             closestStation = weaponStations[0].gameObject;
         }
@@ -118,7 +122,7 @@ public class WeaponPickup : MonoBehaviour
             // Debug.Log("In distance to the closest station");
             if (Input.GetKey(KeyCode.E))
             {
-                // Debug.Log("Holding E");
+                print("Holding E");
                 holdDownTimer += Time.deltaTime;
 
                 if (holdDownTimer >= 1)
