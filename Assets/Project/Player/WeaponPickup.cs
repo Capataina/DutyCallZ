@@ -39,11 +39,18 @@ public class WeaponPickup : MonoBehaviour
         // playerShooting.currentWeapons.Add(newWeapon);
         // playerShooting.ActivateWeapon(playerShooting.currentWeapons.Count - 1);
         
+        StationWeapon stationWeapon = newWeapon.GetComponent<StationWeapon>(); // Assuming this exists to get the weapon type
+        
         if (playerShooting.currentWeapons.Count < 2)
         {
             // If less than 2 weapons, just add the new weapon
             playerShooting.currentWeapons.Add(newWeapon);
             playerShooting.ActivateWeapon(playerShooting.currentWeapons.Count - 1);
+            
+            if (stationWeapon && !inventory.Contains(stationWeapon.weapon))
+            {
+                inventory.Add(stationWeapon.weapon);
+            }
         }
         else
         {
@@ -52,10 +59,23 @@ public class WeaponPickup : MonoBehaviour
         
             // If the held weapon is not found for some reason, default to replacing the first weapon
             if (replaceIndex == -1) replaceIndex = 0;
+            
+            var oldWeaponClass = playerShooting.currentWeapons[replaceIndex].GetComponent<WeaponsClass>();
+            StationWeapon oldStationWeapon = oldWeaponClass ? oldWeaponClass.GetComponent<StationWeapon>() : null;
         
+            if (oldStationWeapon)
+            {
+                inventory.Remove(oldStationWeapon.weapon); // Remove the weapon type from inventory
+            }
+            
             // Remove the current held weapon from the game
             Destroy(playerShooting.currentWeapons[replaceIndex]);
 
+            if (stationWeapon)
+            {
+                inventory.Add(stationWeapon.weapon); // Add the new weapon type
+            }
+            
             // Replace with the new weapon
             playerShooting.currentWeapons[replaceIndex] = newWeapon;
             playerShooting.ActivateWeapon(replaceIndex);
@@ -105,13 +125,8 @@ public class WeaponPickup : MonoBehaviour
                 {
                     // Debug.Log("Giving weapon");
                     StationWeapon stationWeapon = closestStation.GetComponent<StationWeapon>();
-                    
-                    if (!inventory.Contains(stationWeapon.weapon))
-                    {
-                        inventory.Add(stationWeapon.weapon);
-                        GiveWeapon(stationWeapon.weaponPrefab);
-                        holdDownTimer = 0;
-                    }
+                    GiveWeapon(stationWeapon.weaponPrefab);
+                    holdDownTimer = 0;
                 }
             }
             else
