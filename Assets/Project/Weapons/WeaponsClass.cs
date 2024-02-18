@@ -24,6 +24,7 @@ public abstract class WeaponsClass : MonoBehaviour
     [SerializeField] public CameraController cameraController;
     [SerializeField] public CameraRecoilController recoilController;
     [SerializeField] public WeaponRecoilAnimation weaponRecoilAnimation;
+    [SerializeField] public MuzzleFlashSpawner muzzleFlashSpawner;
     [Header("Camera Recoil")]
     [SerializeField] private float hipXRecoil;
     [SerializeField] private float hipYRecoil;
@@ -53,6 +54,8 @@ public abstract class WeaponsClass : MonoBehaviour
     {
         if (canShoot && !isReloading && bulletsInMag > 0)
         {
+            muzzleFlashSpawner.SpawnMuzzleFlash();
+
             StartCoroutine(FireBurst());
 
             if (burstDelay == 0)

@@ -4,7 +4,8 @@ public class PlayerStats : MonoBehaviour
 {
     private float currentHealth;
     [SerializeField] private float maxHealth;
-
+    // Should probably not be here
+    [SerializeField] Animator cameraAnimator;
     [HideInInspector] public float healthRegen;
     [SerializeField] public float baseHealthRegen;
 
@@ -35,5 +36,6 @@ public class PlayerStats : MonoBehaviour
     public void takeDamage(float damage)
     {
         print("took: " + damage + " damage");
+        cameraAnimator.Play("PlayerHit", 0);
     }
 }
