@@ -132,6 +132,7 @@ public class ZombieSpawner : MonoBehaviour
             GameObject spawnPoint = spawnPoints[selectedIndex];
             GameObject zombie = Instantiate(zombiePrefab, spawnPoint.transform.position, Quaternion.identity);
             zombie.GetComponent<Zombie>().player = player.transform;
+            zombie.GetComponent<Zombie>().AdjustHealthAndArmor((int)waveCount);
         }
         else
         {
