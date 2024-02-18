@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,39 +11,38 @@ public class Zombie : MonoBehaviour
     [SerializeField] private float attackRange;
     [SerializeField] private float armor;
     [SerializeField] private float speed;
-    [SerializeField] private BoxCollider hitBox;
     private Transform goal;
     private float health;
     private bool isAttacking;
     public Transform player;
 
-    public void TakeDamage(float damage)
-    {
-        if (damage > armor)
-        {
-            damage -= armor;
-        }
-        else
-        {
-            damage = Mathf.Round(armor / damage);
-        }
 
+    private void Start()
+    {
+        CustomEventSystem.current.onZombieTakeDamage += TakeDamageEvent;
+        goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        health = maxHealth;
+        agent.destination = goal.position;
+    }
+
+    public void TakeDamageEvent(float damage)
+    {
+        //if (damage > armor)
+        //{
+        //    damage -= armor;
+        //}
+        //else
+        //{
+        //    damage = Mathf.Round(armor / damage);
+        //}
         health -= damage;
+        print("zombie took: " + damage + " damage");
         if (health <= 0)
         {
             Die();
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        health = maxHealth;
-        agent.destination = goal.position;
-    }
-
-    // Update is called once per frame
     void Update()
     {
         agent.destination = goal.position;
@@ -109,6 +105,11 @@ public class Zombie : MonoBehaviour
     //     Debug.Log($"Zombie health adjusted to: {health}, armor adjusted to: {armor}");
     // }
 
+    public void ObjectParameter(object test)
+    {
+        print("received: " + test);
+    }
+
     public void AdjustHealthAndArmor(int waveCount)
     {
         float baseHealth = 80; // Starting health at wave 1
@@ -134,9 +135,6 @@ public class Zombie : MonoBehaviour
 
         Debug.Log($"Zombie health set to: {health}, armor set to: {armor}");
     }
-
-
-
 
 
 }

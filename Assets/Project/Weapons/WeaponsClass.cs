@@ -125,8 +125,8 @@ public abstract class WeaponsClass : MonoBehaviour
             Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.position + Vector3.Normalize(playerCamera.transform.forward + accuracyOffset) * 999f, Color.green, 5);
             if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
             {
-                var zombie = objectHit.collider.gameObject.GetComponent<Zombie>();
-                zombie.TakeDamage(damage);
+                var hurtbox = objectHit.collider.GetComponent<Hurtbox>();
+                hurtbox.TakeDamage(damage);
             }
         }
 

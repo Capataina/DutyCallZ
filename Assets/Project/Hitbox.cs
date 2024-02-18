@@ -19,7 +19,7 @@ public class Hitbox : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerStats pStats = other.GetComponent<PlayerStats>();
-            pStats.takeDamage(damage);
+            pStats.TakeDamage(damage);
         }
     }
 }
