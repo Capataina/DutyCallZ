@@ -122,7 +122,6 @@ public class WeaponPickup : MonoBehaviour
             // Debug.Log("In distance to the closest station");
             if (Input.GetKey(KeyCode.E))
             {
-                print("Holding E");
                 holdDownTimer += Time.deltaTime;
 
                 if (holdDownTimer >= 1)

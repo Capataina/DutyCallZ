@@ -4,13 +4,13 @@ public class PlayerStats : MonoBehaviour
 {
     private float currentHealth;
     [SerializeField] private float maxHealth;
-    
+
     [HideInInspector] public float healthRegen;
     [SerializeField] public float baseHealthRegen;
-    
+
     private float currentArmor;
     [SerializeField] private float baseArmor;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +28,12 @@ public class PlayerStats : MonoBehaviour
         }
         else if (currentHealth > maxHealth)
         {
-             currentHealth = maxHealth;
+            currentHealth = maxHealth;
         }
+    }
+
+    public void takeDamage(float damage)
+    {
+        print("took: " + damage + " damage");
     }
 }

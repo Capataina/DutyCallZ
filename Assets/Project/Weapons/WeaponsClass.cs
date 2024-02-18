@@ -40,6 +40,9 @@ public abstract class WeaponsClass : MonoBehaviour
     [SerializeField] private float recoilAnimMinXRot;
     [SerializeField] private float recoilAnimYRot;
     [SerializeField] private float recoilAnimZRot;
+    [Header("Debugging")]
+    [SerializeField] private bool showHitIndicator;
+
     private float currentAmmo;
     private float bulletsInMag;
     private float timer;
@@ -100,9 +103,6 @@ public abstract class WeaponsClass : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private void Shoot()
     {
-        
-        print("Shooting");
-
         if (burstDelay != 0)
         {
             bulletsInMag -= 1;
@@ -113,8 +113,12 @@ public abstract class WeaponsClass : MonoBehaviour
 
         if (Physics.Raycast(playerCamera.transform.position, Vector3.Normalize(playerCamera.transform.forward + accuracyOffset), out var objectHit, 999f, shootingMask))
         {
-            GameObject newIndicator = Instantiate(hitIndicator);
-            newIndicator.transform.position = objectHit.point;
+            if (showHitIndicator)
+            {
+                GameObject newIndicator = Instantiate(hitIndicator);
+                newIndicator.transform.position = objectHit.point;
+            }
+
             Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.position + Vector3.Normalize(playerCamera.transform.forward + accuracyOffset) * 999f, Color.green, 5);
             if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
             {
