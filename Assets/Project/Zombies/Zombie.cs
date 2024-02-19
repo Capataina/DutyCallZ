@@ -11,18 +11,24 @@ public class Zombie : MonoBehaviour
     [SerializeField] private float attackRange;
     [SerializeField] private float armor;
     [SerializeField] private float speed;
-    private Transform goal;
+    private Transform player;
     private float health;
     private bool isAttacking;
-    public Transform player;
 
 
     private void Start()
     {
-        CustomEventSystem.current.onZombieTakeDamage += TakeDamageEvent;
-        goal = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        //CustomEventSystem.current.onZombieTakeDamage += TakeDamageEvent;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         health = maxHealth;
-        agent.destination = goal.position;
+        agent.destination = player.position;
+
+        // setup hurtboxes
+        Hurtbox[] hurtboxes = GetComponentsInChildren<Hurtbox>();
+        foreach (Hurtbox hurtbox in hurtboxes)
+        {
+            hurtbox.takeDamageFunction = TakeDamageEvent;
+        }
     }
 
     public void TakeDamageEvent(float damage)
@@ -45,7 +51,7 @@ public class Zombie : MonoBehaviour
 
     void Update()
     {
-        agent.destination = goal.position;
+        agent.destination = player.position;
 
         if (isAttacking)
         {
