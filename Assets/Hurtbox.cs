@@ -3,8 +3,11 @@ using UnityEngine;
 public class Hurtbox : MonoBehaviour
 {
     [SerializeField] float damageMultiplier;
-    public void TakeDamage(float damage)
+    [SerializeField] Color damageColor = Color.white;
+    public void TakeDamage(float damage, Vector3 hitPoint)
     {
-        CustomEventSystem.current.ZombieTakeDamage(damageMultiplier * damage);
+        float totalDamage = damage * damageMultiplier;
+        CustomEventSystem.current.ZombieTakeDamage(totalDamage);
+        CustomEventSystem.current.SpawnDamageText(totalDamage, hitPoint, damageColor);
     }
 }

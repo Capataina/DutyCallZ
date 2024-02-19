@@ -76,34 +76,10 @@ public class Zombie : MonoBehaviour
         }
     }
 
-
     private void Die()
     {
         Destroy(gameObject); // Destroy the entire zombie game object
     }
-
-    // public void AdjustHealthAndArmor(int waveCount)
-    // {
-    //     // Calculate the progress towards the max wave for scaling
-    //     float progress = Mathf.Clamp01((waveCount - 1) / 19f); // Scales from wave 1 to 20
-    //
-    //     // Adjust randomness factor with a more controlled growth
-    //     float healthRandomFactor = Mathf.Pow(progress, 2); // Squaring the progress to slow down scaling at start
-    //     float healthRandomness = Random.Range(0f, 1f) * (0.5f + 0.5f * healthRandomFactor); // Ensuring it starts from 0 and gradually increases
-    //
-    //     // For armor, we use a simpler approach since its max value is much lower
-    //     float armorRandomness = Random.Range(0f, 1f) * (0.5f + 0.5f * Mathf.Sqrt(progress)); // Using square root to slow growth
-    //
-    //     // Use the randomness factor to skew towards higher values more in later waves
-    //     float healthScale = Mathf.Lerp(80, 120, Mathf.Clamp01(healthRandomness));
-    //     float armorScale = Mathf.Lerp(0, 3, Mathf.Clamp01(armorRandomness));
-    //
-    //     maxHealth = healthScale;
-    //     health = maxHealth;
-    //     armor = armorScale;
-    //
-    //     Debug.Log($"Zombie health adjusted to: {health}, armor adjusted to: {armor}");
-    // }
 
     public void ObjectParameter(object test)
     {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7460412187751212439}
   - component: {fileID: 9049810127116261979}
-  - component: {fileID: 8138127446850574450}
+  - component: {fileID: 3537790722180678510}
   m_Layer: 6
   m_Name: LegHurtboxLowerLeft
   m_TagString: Untagged
@@ -56,7 +56,7 @@ CapsuleCollider:
   m_Height: 0.55
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8138127446850574450
+--- !u!114 &3537790722180678510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 0.7
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1207014972052183090
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8724587118846988025}
   - component: {fileID: 8029497530599078561}
-  - component: {fileID: 4531010214561435066}
+  - component: {fileID: 7850430246449782911}
   m_Layer: 6
   m_Name: ArmHurtboxLowerRight
   m_TagString: Untagged
@@ -125,7 +126,7 @@ CapsuleCollider:
   m_Height: 0.31
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4531010214561435066
+--- !u!114 &7850430246449782911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 0.9
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2354719372384672808
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +152,7 @@ GameObject:
   - component: {fileID: 5618877315946340333}
   - component: {fileID: 3870275319246854941}
   - component: {fileID: 56735929018211260}
+  - component: {fileID: 4693376281523609364}
   m_Layer: 6
   m_Name: Hitbox
   m_TagString: Untagged
@@ -221,6 +224,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitbox: {fileID: 5618877315946340333}
   damage: 10
+--- !u!114 &4693376281523609364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2354719372384672808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed04a4a84ada8cb4280d1b7f8042129f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitbox: {fileID: 5618877315946340333}
+  damage: 10
 --- !u!1 &2711170367403072513
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163223885261257304}
   - component: {fileID: 7405643596863662416}
-  - component: {fileID: 8402194793570795184}
+  - component: {fileID: 8390327113007173660}
   m_Layer: 6
   m_Name: LegHurtboxUpperRight
   m_TagString: Untagged
@@ -277,7 +294,7 @@ CapsuleCollider:
   m_Height: 0.43
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8402194793570795184
+--- !u!114 &8390327113007173660
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -290,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 0.7
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2711201858614060309
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7029325075641608723}
   - component: {fileID: 6895700531300665140}
-  - component: {fileID: 55430001665805824}
+  - component: {fileID: 822148930346927280}
   m_Layer: 6
   m_Name: ArmHurtboxUpperLeft
   m_TagString: Untagged
@@ -346,7 +364,7 @@ CapsuleCollider:
   m_Height: 0.35
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &55430001665805824
+--- !u!114 &822148930346927280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -359,6 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 0.9
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &4417212916210811281
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 365850803069382150}
   - component: {fileID: 3685546322957366395}
-  - component: {fileID: 1340034599165955451}
+  - component: {fileID: 1716933110992522627}
   m_Layer: 6
   m_Name: ArmHurtboxLowerLeft
   m_TagString: Untagged
@@ -415,7 +434,7 @@ CapsuleCollider:
   m_Height: 0.31
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1340034599165955451
+--- !u!114 &1716933110992522627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -428,6 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 0.9
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &4590952858507645577
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 1
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &6203533378745577262
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2911781995383773807}
   - component: {fileID: 5135727680621183748}
-  - component: {fileID: 1698380156834570313}
+  - component: {fileID: 5188024055836778502}
   m_Layer: 6
   m_Name: LegHurtboxLowerRight
   m_TagString: Untagged
@@ -551,7 +572,7 @@ CapsuleCollider:
   m_Height: 0.55
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1698380156834570313
+--- !u!114 &5188024055836778502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -564,6 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 0.7
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7148065340763194124
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,7 +596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7946334425292085046}
   - component: {fileID: 8118946475558412395}
-  - component: {fileID: 5883503884087503255}
+  - component: {fileID: 982226766719447895}
   m_Layer: 6
   m_Name: LegHurtboxUpperLeft
   m_TagString: Untagged
@@ -620,7 +642,7 @@ CapsuleCollider:
   m_Height: 0.43
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5883503884087503255
+--- !u!114 &982226766719447895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -633,6 +655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 0.7
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7397100849492897097
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 2
+  damageColor: {r: 1, g: 0.25, b: 0.25, a: 1}
 --- !u!1 &8466157514948288437
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,7 +736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8807819944670960661}
   - component: {fileID: 9005997943772873204}
-  - component: {fileID: 1804845368806982883}
+  - component: {fileID: 1915529014555241179}
   m_Layer: 6
   m_Name: ArmHurtboxUpperRight
   m_TagString: Untagged
@@ -758,7 +782,7 @@ CapsuleCollider:
   m_Height: 0.35
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1804845368806982883
+--- !u!114 &1915529014555241179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -771,6 +795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 0.9
+  damageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &8882328567074598846
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5eb0d9ad0b01624d888830b28bd87c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 9999
   agent: {fileID: 6880813356652800066}
   animator: {fileID: 3885363721209158725}
   attackRange: 1

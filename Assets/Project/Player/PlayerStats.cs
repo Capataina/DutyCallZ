@@ -12,7 +12,14 @@ public class PlayerStats : MonoBehaviour
     private float currentArmor;
     [SerializeField] private float baseArmor;
 
-    // Start is called before the first frame update
+    public static PlayerStats current;
+
+    private void Awake()
+    {
+        current = this;
+    }
+
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -20,7 +27,6 @@ public class PlayerStats : MonoBehaviour
         currentArmor = baseArmor;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (currentHealth < maxHealth)

@@ -126,7 +126,7 @@ public abstract class WeaponsClass : MonoBehaviour
             if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
             {
                 var hurtbox = objectHit.collider.GetComponent<Hurtbox>();
-                hurtbox.TakeDamage(damage);
+                hurtbox.TakeDamage(damage, objectHit.point);
             }
         }
 
