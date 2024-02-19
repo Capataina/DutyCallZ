@@ -7,19 +7,30 @@ public class PlayerShooting : MonoBehaviour
 {
     public List<GameObject> currentWeapons;
     public WeaponsClass heldWeapon;
+    [SerializeField] private float playerMeleeDamage;
 
     private WeaponSway weaponSway;
     private WeaponRock weaponRock;
     private CameraRecoilController playerCameraRecoilController;
+    private MeleeAttack meleeAttack;
     private void Awake()
     {
         weaponSway = GetComponentInChildren<WeaponSway>();
         weaponRock = GetComponentInChildren<WeaponRock>();
         playerCameraRecoilController = GetComponentInChildren<CameraRecoilController>();
+        meleeAttack = GetComponentInChildren<MeleeAttack>();
+        meleeAttack.damage = playerMeleeDamage;
     }
 
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            meleeAttack.meleeCollider.enabled = true;
+        }
+        
+        
         if (Input.GetKeyDown(KeyCode.Alpha1) && currentWeapons.Count > 0)
         {
             print("pressed 1");
