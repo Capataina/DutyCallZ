@@ -8,8 +8,8 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private float biasFactor;
     public GameObject zombiePrefab; // Assign in the inspector
     public GameObject player; // Assign in the inspector
-    private float waveCount = 0;
-    private bool waveEnded = false; // Initialize to true to start the first wave immediately
+    private float waveCount;
+    private bool waveEnded; // Initialize to true to start the first wave immediately
     private float waveCooldown;
     private float zombiesToSpawn;
     private GameObject[] spawnPoints;
@@ -65,43 +65,6 @@ public class ZombieSpawner : MonoBehaviour
         Debug.Log("Total zombies spawned is: " + zombiesToSpawn);
         waveEnded = false; // Allow the next wave to be prepared once all zombies are dead
     }
-
-    // void SpawnZombie()
-    // {
-    //     // Calculate the distance from each spawn point to the player and store them
-    //     List<float> distances = new List<float>();
-    //     foreach (GameObject spawnPoint in spawnPoints)
-    //     {
-    //         float distance = Vector3.Distance(player.transform.position, spawnPoint.transform.position);
-    //         distances.Add(distance);
-    //     }
-    //
-    //     // Convert distances to weights, smaller distances should result in higher weights
-    //     // This can be adjusted based on your game's needs, for example using 1/distance as a basic approach
-    //     List<float> weights = distances.Select(distance => 1 / distance).ToList();
-    //
-    //     // Normalize weights to get probabilities
-    //     float totalWeight = weights.Sum();
-    //     List<float> probabilities = weights.Select(weight => weight / totalWeight).ToList();
-    //
-    //     // Select a spawn point based on these probabilities
-    //     float randomPoint = Random.value;
-    //     float currentSum = 0;
-    //     int selectedIndex = 0;
-    //     for (int i = 0; i < probabilities.Count; i++)
-    //     {
-    //         currentSum += probabilities[i];
-    //         if (randomPoint <= currentSum)
-    //         {
-    //             selectedIndex = i;
-    //             break;
-    //         }
-    //     }
-    //
-    //     // Spawn the zombie at the selected spawn point
-    //     GameObject zombieSpawnPoint = spawnPoints[selectedIndex];
-    //     Instantiate(zombiePrefab, zombieSpawnPoint.transform.position, Quaternion.identity);
-    // }
 
     void SpawnZombie()
     {

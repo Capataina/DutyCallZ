@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,16 @@ public class PlayerShooting : MonoBehaviour
 {
     public List<GameObject> currentWeapons;
     public WeaponsClass heldWeapon;
+
+    private WeaponSway weaponSway;
+    private WeaponRock weaponRock;
+    private CameraRecoilController playerCameraRecoilController;
+    private void Awake()
+    {
+        weaponSway = GetComponentInChildren<WeaponSway>();
+        weaponRock = GetComponentInChildren<WeaponRock>();
+        playerCameraRecoilController = GetComponentInChildren<CameraRecoilController>();
+    }
 
     void Update()
     {
@@ -54,5 +65,12 @@ public class PlayerShooting : MonoBehaviour
                 currentWeapons[i].SetActive(false);
             }
         }
+        
+        
+        var heldWeaponTransform = heldWeapon.transform;
+        playerCameraRecoilController.currentWeapon = heldWeapon;
+        weaponSway.activeWeapon = heldWeaponTransform;
+        weaponRock.weapon = heldWeaponTransform;
+
     }
 }

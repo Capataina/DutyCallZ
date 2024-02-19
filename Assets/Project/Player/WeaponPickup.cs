@@ -81,13 +81,8 @@ public class WeaponPickup : MonoBehaviour
             playerShooting.ActivateWeapon(replaceIndex);
         }
 
-        playerCameraRecoilController.currentWeapon = newWeaponClass;
-
         newWeaponClass.cameraController = player.GetComponent<CameraController>();
         newWeaponClass.recoilController = playerCameraRecoilController;
-
-        weaponParent.GetComponent<WeaponSway>().activeWeapon = newWeapon.transform;
-        weaponParent.GetComponent<WeaponRock>().weapon = newWeapon.transform;
 
         newWeaponClass.weaponRecoilAnimation = weaponParent.GetComponent<WeaponRecoilAnimation>();
     }
