@@ -15,7 +15,6 @@ public class Hitbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("enter collision");
         if (other.tag == "Player")
         {
             PlayerStats pStats = other.GetComponent<PlayerStats>();

@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   automatic: 1
-  fireCooldown: 0.08
+  fireCooldown: 0.05
   reloadTimer: 1
-  damage: 5
+  damage: 10
   magazineSize: 24
   maxAmmo: 240
   burstNumber: 1
