@@ -2033,7 +2033,7 @@ MonoBehaviour:
   crouchSpeed: 2
   slideSpeed: 25
   slideDeceleration: 0.8
-  jumpForce: 0.07
+  jumpForce: 0.06
   playerController: {fileID: 1636498823680574037}
   gravity: 0.25
   groundMask:
@@ -2046,6 +2046,7 @@ MonoBehaviour:
   isCrouching: 0
   isSliding: 0
   activeSpeed: 0
+  currentMovementState: 0
 --- !u!114 &3535542515053034628
 MonoBehaviour:
   m_ObjectHideFlags: 0

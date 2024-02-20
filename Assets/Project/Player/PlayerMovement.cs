@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEditor.U2D;
 using UnityEngine;
@@ -30,6 +31,17 @@ public class PlayerMovement : MonoBehaviour
     float cachedJumpSpeed;
     bool isJumping;
 
+    public enum MovementStates
+    {
+        Walk,
+        Crouch,
+        Slide,
+        Sprint,
+        Airborne
+    };
+
+    [HideInInspector] public MovementStates currentMovementState = MovementStates.Walk;
+
     void Start()
     {
         speed = walkSpeed;
@@ -39,48 +51,101 @@ public class PlayerMovement : MonoBehaviour
     {
 
         Vector3 lookDirection = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up).normalized;
-
-
         Vector3 inputDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         // THIS WILL BREAK THE SPEED BUFF
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CrouchOrSlide(inputDirection, lookDirection);
-        }
 
-        if (isSliding && speed < 5f)
+        switch (currentMovementState)
         {
-            isSliding = false;
-            isCrouching = true;
-            speed = crouchSpeed;
+            case MovementStates.Walk:
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    speed = crouchSpeed;
+                    CrouchCollider();
+                    currentMovementState = MovementStates.Crouch;
+                }
+                else if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    speed = sprintSpeed;
+                    currentMovementState = MovementStates.Sprint;
+                }
+                else if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    currentMovementState = MovementStates.Airborne;
+                    verticalVelocity.y = jumpForce;
+                    cachedJumpSpeed = speed;
+                    ResetCollider();
+                }
+                break;
+            case MovementStates.Slide:
+                print("sliding");
+                if (speed < 4.5f)
+                {
+                    speed = crouchSpeed;
+                    currentMovementState = MovementStates.Crouch;
+                }
+                else if (Input.GetKeyDown(KeyCode.C))
+                {
+                    speed = walkSpeed;
+                    ResetCollider();
+                    currentMovementState = MovementStates.Walk;
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    speed = sprintSpeed;
+                    ResetCollider();
+                    currentMovementState = MovementStates.Sprint;
+                }
+                else if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    currentMovementState = MovementStates.Airborne;
+                    verticalVelocity.y = jumpForce;
+                    cachedJumpSpeed = speed;
+                    ResetCollider();
+                }
+                break;
+            case MovementStates.Sprint:
+                if (Input.GetKeyUp(KeyCode.LeftShift))
+                {
+                    speed = walkSpeed;
+                    currentMovementState = MovementStates.Walk;
+                }
+                else if (Input.GetKeyDown(KeyCode.C))
+                {
+                    speed = slideSpeed;
+                    CrouchCollider();
+                    currentMovementState = MovementStates.Slide;
+                    slideDirection = (Quaternion.LookRotation(lookDirection.normalized) * inputDirection).normalized;
+                }
+                else if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    currentMovementState = MovementStates.Airborne;
+                    verticalVelocity.y = jumpForce;
+                    cachedJumpSpeed = speed;
+                    ResetCollider();
+                }
+                break;
+            case MovementStates.Crouch:
+                if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Space))
+                {
+                    speed = walkSpeed;
+                    ResetCollider();
+                    currentMovementState = MovementStates.Walk;
+                }
+                break;
+            case MovementStates.Airborne:
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    speed = slideSpeed;
+                    CrouchCollider();
+                    currentMovementState = MovementStates.Slide;
+                    slideDirection = (Quaternion.LookRotation(lookDirection.normalized) * inputDirection).normalized;
+                }
+                break;
         }
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            if (!isSliding && !isCrouching)
-            {
-                isSprinting = true;
-                speed = sprintSpeed;
-            }
-        }
-        else { isSprinting = false; }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            isCrouching = false;
-            isSliding = false;
-            ResetCollider();
-        }
-
-        if (!isSprinting && !isSliding && !isCrouching)
-        {
-            speed = walkSpeed;
-        }
-
 
         bool isGrounded;
-        if (isSliding || isCrouching)
+        if (currentMovementState is MovementStates.Crouch or MovementStates.Slide)
         {
             isGrounded = Physics.Raycast(playerController.transform.position, -transform.up, .3f, groundMask);
         }
@@ -95,9 +160,8 @@ public class PlayerMovement : MonoBehaviour
         else
             lookDirectionQuaternion = Quaternion.LookRotation(lookDirection);
 
-
         Vector3 movementDirection;
-        if (!isSliding)
+        if (currentMovementState != MovementStates.Slide)
         {
             movementDirection = lookDirectionQuaternion * inputDirection;
         }
@@ -114,29 +178,11 @@ public class PlayerMovement : MonoBehaviour
         else if (verticalVelocity.y < 0)
         {
             verticalVelocity.y = 0;
-            if (isJumping)
-                isJumping = false;
+            if (currentMovementState == MovementStates.Airborne)
+                currentMovementState = MovementStates.Walk;
         }
 
-
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isCrouching)
-            {
-                isCrouching = false;
-            }
-            else
-            {
-                isJumping = true;
-                verticalVelocity.y = jumpForce;
-                cachedJumpSpeed = speed;
-                isSliding = false;
-            }
-            ResetCollider();
-        }
-
-        if (isJumping)
+        if (currentMovementState == MovementStates.Airborne)
         {
             speed = cachedJumpSpeed;
         }
