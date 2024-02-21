@@ -2119,7 +2119,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeapons: []
   heldWeapon: {fileID: 0}
-  playerMeleeDamage: 200
+  meleeDamage: 100
+  meleeMask:
+    serializedVersion: 2
+    m_Bits: 247
+  meleeRange: 2
+  meleeRadius: 0.25
 --- !u!33 &3587773168897478178
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2456,6 +2461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f06ee5f0187464cbbf3c55c183570c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentScore: 0
   maxHealth: 100
   cameraAnimator: {fileID: 1175693888}
   healthRegen: 3

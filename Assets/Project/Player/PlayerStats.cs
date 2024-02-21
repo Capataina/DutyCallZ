@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public float currentScore = 0;
+    
     private float currentHealth;
     [SerializeField] private float maxHealth;
     // Should probably not be here

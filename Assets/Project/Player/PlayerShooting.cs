@@ -7,19 +7,26 @@ public class PlayerShooting : MonoBehaviour
 {
     public List<GameObject> currentWeapons;
     public WeaponsClass heldWeapon;
-    [SerializeField] private float playerMeleeDamage;
 
     private WeaponSway weaponSway;
     private WeaponRock weaponRock;
     private CameraRecoilController playerCameraRecoilController;
-    private MeleeAttack meleeAttack;
+    // private MeleeAttack meleeAttack;
+    private Camera playerCamera;
+    
+    [Header("Melee")]
+    [SerializeField] private float meleeDamage;
+    [SerializeField] private LayerMask meleeMask;
+    [SerializeField] private float meleeRange;
+    [SerializeField] private float meleeRadius;
     private void Awake()
     {
         weaponSway = GetComponentInChildren<WeaponSway>();
         weaponRock = GetComponentInChildren<WeaponRock>();
         playerCameraRecoilController = GetComponentInChildren<CameraRecoilController>();
-        meleeAttack = GetComponentInChildren<MeleeAttack>();
-        meleeAttack.damage = playerMeleeDamage;
+        // meleeAttack = GetComponentInChildren<MeleeAttack>();
+        // meleeAttack.damage = playerMeleeDamage;
+        playerCamera = Camera.main;
     }
 
     void Update()
@@ -27,7 +34,7 @@ public class PlayerShooting : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            meleeAttack.meleeCollider.enabled = true;
+            MeleeAttack();
         }
         
         
@@ -83,5 +90,19 @@ public class PlayerShooting : MonoBehaviour
         weaponSway.activeWeapon = heldWeaponTransform;
         weaponRock.weapon = heldWeaponTransform;
 
+    }
+
+    void MeleeAttack()
+    {
+        var playerCameraPosition = playerCamera.transform;
+        if (Physics.SphereCast(playerCameraPosition.position,meleeRadius, playerCameraPosition.forward, out var objectHit, meleeRange, meleeMask))
+        {
+            Debug.DrawRay(playerCameraPosition.position, playerCameraPosition.position + playerCameraPosition.forward * meleeRange, Color.blue, 5);
+            if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
+            {
+                var hurtbox = objectHit.collider.GetComponent<Hurtbox>();
+                hurtbox.TakeDamage(meleeDamage, objectHit.point);
+            }
+        }
     }
 }
