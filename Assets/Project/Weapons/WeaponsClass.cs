@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using Unity.IO.LowLevel.Unsafe;
-using UnityEditor.Experimental;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -44,8 +41,8 @@ public abstract class WeaponsClass : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] private bool showHitIndicator;
 
-    private float currentAmmo;
-    private float bulletsInMag;
+    public float currentAmmo;
+    public float bulletsInMag;
     private float timer;
     private bool canShoot;
     private bool isReloading;
@@ -58,7 +55,7 @@ public abstract class WeaponsClass : MonoBehaviour
 
             StartCoroutine(FireBurst());
 
-            if (burstDelay == 0)
+            if (burstDelay == 0 && burstNumber > 1)
             {
                 bulletsInMag -= 1;
             }
@@ -77,7 +74,7 @@ public abstract class WeaponsClass : MonoBehaviour
         for (int i = 0; i < burstNumber; i++)
         {
             Shoot();
-
+            
             if (bulletsInMag <= 0)
             {
                 StartCoroutine(Reload());
@@ -106,7 +103,7 @@ public abstract class WeaponsClass : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private void Shoot()
     {
-        if (burstDelay != 0)
+        if (burstDelay != 0 || burstNumber == 1)
         {
             bulletsInMag -= 1;
         }
@@ -129,7 +126,8 @@ public abstract class WeaponsClass : MonoBehaviour
                 hurtbox.TakeDamage(damage, objectHit.point);
             }
         }
-
+    
+        UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
         HandleRecoil();
         HandleRecoilAnimation();
     }
@@ -159,6 +157,8 @@ public abstract class WeaponsClass : MonoBehaviour
             bulletsInMag += currentAmmo;
             currentAmmo = 0;
         }
+        
+        UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
 
         //Debug.Log("Bullets in mag after reload:" + bulletsInMag);
         //Debug.Log("Total ammo after reload:" + currentAmmo);
@@ -168,7 +168,7 @@ public abstract class WeaponsClass : MonoBehaviour
         //Debug.Log("Reload Complete");
     }
 
-    private void Start()
+    private void Awake()
     {
         playerCamera = Camera.main;
         currentAmmo = maxAmmo;

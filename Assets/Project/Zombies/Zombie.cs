@@ -114,7 +114,7 @@ public class Zombie : MonoBehaviour
         float armorScale = Mathf.Lerp(0, 3, (waveCount - 1) / 19f);
         armor = Mathf.Round(Mathf.Clamp(armorScale + Random.Range(-1f, 1f), 0, 5)); // Slightly increase variance in armor as well
 
-        Debug.Log($"Zombie health set to: {health}, armor set to: {armor}");
+        // Debug.Log($"Zombie health set to: {health}, armor set to: {armor}");
     }
 
 

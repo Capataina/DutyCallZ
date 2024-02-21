@@ -11,7 +11,7 @@ public class Hurtbox : MonoBehaviour
     {
         float totalDamage = damage * damageMultiplier;
         PlayerStats.current.currentScore += Mathf.Floor(totalDamage / 2);
-        print(PlayerStats.current.currentScore);
+        UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
         takeDamageFunction.Invoke(totalDamage);
         CustomEventSystem.current.SpawnDamageText(totalDamage, hitPoint, damageColor);
     }
