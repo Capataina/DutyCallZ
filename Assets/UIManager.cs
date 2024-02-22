@@ -30,7 +30,6 @@ public class UIManager : MonoBehaviour
         }
         
         player = GameObject.FindGameObjectWithTag("Player");
-        scoreText.text = "Score: 0";
     }
 
     public void UpdateScore(float score)
