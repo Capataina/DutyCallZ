@@ -136,6 +136,8 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   recoilController: {fileID: 0}
   weaponRecoilAnimation: {fileID: 0}
+  muzzleFlashSpawner: {fileID: 0}
+  weaponType: 2
   hipXRecoil: 1.5
   hipYRecoil: 1
   recoilDuration: 0.1
@@ -149,3 +151,6 @@ MonoBehaviour:
   recoilAnimMinXRot: -3
   recoilAnimYRot: 3
   recoilAnimZRot: 3
+  showHitIndicator: 0
+  currentAmmo: 0
+  bulletsInMag: 0

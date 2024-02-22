@@ -83,7 +83,7 @@ public class PlayerShooting : MonoBehaviour
                 currentWeapons[i].SetActive(false);
             }
         }
-        print(heldWeapon.currentAmmo + "javdjaygdvawhjdbawkdHBWAJUWAbdjukaWBDAUjADB");
+        // print(heldWeapon.currentAmmo + "javdjaygdvawhjdbawkdHBWAJUWAbdjukaWBDAUjADB");
         UIManager.instance.UpdateAmmo(heldWeapon.bulletsInMag, heldWeapon.currentAmmo);
         var heldWeaponTransform = heldWeapon.transform;
         playerCameraRecoilController.currentWeapon = heldWeapon;

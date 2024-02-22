@@ -6,6 +6,8 @@ public class StationWeapon : MonoBehaviour
 {
     public GameObject weaponPrefab;
     public WeaponType weapon;
+    public float weaponCost;
+    public float ammoCost;
     public enum WeaponType
     {
         Vector,

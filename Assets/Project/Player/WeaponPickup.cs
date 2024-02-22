@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
@@ -19,12 +20,11 @@ public class WeaponPickup : MonoBehaviour
     void Update()
     {
         CheckDistance(); // Searching through all weapon stations
-
     }
 
     void GiveWeapon(GameObject weapon)
     {
-        print("Spawned weapon");
+        // print("Spawned weapon");
         var playerCameraRecoilController = player.GetComponent<CameraRecoilController>();
         var playerShooting = player.GetComponent<PlayerShooting>();
 
@@ -46,11 +46,6 @@ public class WeaponPickup : MonoBehaviour
             // If less than 2 weapons, just add the new weapon
             playerShooting.currentWeapons.Add(newWeapon);
             playerShooting.ActivateWeapon(playerShooting.currentWeapons.Count - 1);
-
-            if (stationWeapon && !inventory.Contains(stationWeapon.weapon))
-            {
-                inventory.Add(stationWeapon.weapon);
-            }
         }
         else
         {
@@ -61,12 +56,10 @@ public class WeaponPickup : MonoBehaviour
             if (replaceIndex == -1) replaceIndex = 0;
 
             var oldWeaponClass = playerShooting.currentWeapons[replaceIndex].GetComponent<WeaponsClass>();
-            StationWeapon oldStationWeapon = oldWeaponClass ? oldWeaponClass.GetComponent<StationWeapon>() : null;
 
-            if (oldStationWeapon)
-            {
-                inventory.Remove(oldStationWeapon.weapon); // Remove the weapon type from inventory
-            }
+            
+            inventory.Remove(oldWeaponClass.weaponType); // Remove the weapon type from inventory
+            
 
             // Remove the current held weapon from the game
             Destroy(playerShooting.currentWeapons[replaceIndex]);
@@ -123,8 +116,21 @@ public class WeaponPickup : MonoBehaviour
                 {
                     // Debug.Log("Giving weapon");
                     StationWeapon stationWeapon = closestStation.GetComponent<StationWeapon>();
-                    GiveWeapon(stationWeapon.weaponPrefab);
-                    holdDownTimer = 0;
+                    var playersWeapon = player.GetComponent<PlayerShooting>().heldWeapon;
+                    
+                    if (!inventory.Contains(stationWeapon.weapon) && PlayerStats.current.currentScore > stationWeapon.weaponCost)
+                    {
+                        inventory.Add(stationWeapon.weapon);
+                        GiveWeapon(stationWeapon.weaponPrefab);
+                        PlayerStats.current.currentScore -= stationWeapon.weaponCost;
+                        UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
+                        holdDownTimer = 0;
+                    } else if(inventory.Contains(stationWeapon.weapon) && playersWeapon.GetComponent<WeaponsClass>().weaponType == stationWeapon.weapon && PlayerStats.current.currentScore > stationWeapon.ammoCost)
+                    {
+                        playersWeapon.ReplenishAmmo();
+                        PlayerStats.current.currentScore -= stationWeapon.ammoCost;
+                        UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
+                    }
                 }
             }
             else

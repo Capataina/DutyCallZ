@@ -123,3 +123,5 @@ MonoBehaviour:
   weaponPrefab: {fileID: 8010371965732762512, guid: 2ba110ee88340a647ac535893d133bad,
     type: 3}
   weapon: 2
+  weaponCost: 400
+  ammoCost: 200
