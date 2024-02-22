@@ -59,10 +59,12 @@ public class UIManager : MonoBehaviour
         var stationsLayerMask = LayerMask.GetMask("Weapon Stations", "Buff Stations");
         Collider[] allStations = Physics.OverlapSphere(playerPosition, 2f, stationsLayerMask);
         
-        GameObject closestStation = null;
+        GameObject closestStation;
 
         if (allStations.Length == 0)
         {
+            closestStation = null;
+            purchaseText.gameObject.SetActive(false);
             return;
         }
         else
@@ -78,7 +80,7 @@ public class UIManager : MonoBehaviour
                 closestStation = station.gameObject;
             }
         }
-        
+
         if (closestStation)
         {
             if (closestStation.gameObject.layer == LayerMask.NameToLayer("Weapon Stations"))
@@ -90,32 +92,21 @@ public class UIManager : MonoBehaviour
                 if (!playerWeaponPickup.inventory.Contains(weaponStation.weapon))
                 {
                     UpdatePurchaseText(weaponStation.weapon.ToString(), weaponStation.weaponCost);
-                } else if (playersWeapon.weaponType == weaponStation.weapon)
+                }
+                else if (playersWeapon.weaponType == weaponStation.weapon)
                 {
                     UpdateReplenishText(weaponStation.ammoCost);
                 }
-                purchaseText.gameObject.SetActive(true);
-            } 
+            }
             else if (closestStation.gameObject.layer == LayerMask.NameToLayer("Buff Stations"))
             {
                 var buffStation = closestStation.GetComponent<StationBuff>();
-                
+
                 UpdatePurchaseText(buffStation.buff.ToString(), buffStation.buffCost);
-                purchaseText.gameObject.SetActive(true);
                 
+
             }
-            else
-            {
-                print("no stations close");
-                purchaseText.gameObject.SetActive(false);
-            }
+            purchaseText.gameObject.SetActive(true);
         }
-        // else
-        // {
-        //     print("no stations close");
-        //     purchaseText.gameObject.SetActive(false);
-        // }
-        
-        
     }
 }
