@@ -169,11 +169,16 @@ public abstract class WeaponsClass : MonoBehaviour
         //Debug.Log("Reload Complete");
     }
 
-    public void ReplenishAmmo()
+    public void ReplenishAmmo(float ammoCost)
     {
-        currentAmmo = maxAmmo;
-        bulletsInMag = magazineSize;
-        UIManager.instance.UpdateAmmo(bulletsInMag, currentAmmo);
+        if (currentAmmo < maxAmmo || bulletsInMag < magazineSize)
+        {
+            currentAmmo = maxAmmo;
+            bulletsInMag = magazineSize;
+            UIManager.instance.UpdateAmmo(bulletsInMag, currentAmmo);
+            PlayerStats.current.currentScore -= ammoCost;
+            UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
+        }
     }
 
     private void Awake()

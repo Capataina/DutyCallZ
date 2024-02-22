@@ -7,7 +7,7 @@ public class WeaponPickup : MonoBehaviour
 {
     private GameObject player;
     private float holdDownTimer;
-    private List<StationWeapon.WeaponType> inventory = new List<StationWeapon.WeaponType>(); // Ensure inventory is initialized
+    public List<StationWeapon.WeaponType> inventory = new List<StationWeapon.WeaponType>(); // Ensure inventory is initialized
     [SerializeField] private GameObject attachWeapon;
     [SerializeField] private GameObject weaponParent;
 
@@ -83,7 +83,7 @@ public class WeaponPickup : MonoBehaviour
     private void CheckDistance()
     {
 
-        Collider[] weaponStations = Physics.OverlapSphere(player.transform.position, 5f, LayerMask.GetMask("Weapon Stations"));
+        Collider[] weaponStations = Physics.OverlapSphere(player.transform.position, 2f, LayerMask.GetMask("Weapon Stations"));
         GameObject closestStation;
 
         if (weaponStations.Length == 0)
@@ -107,6 +107,12 @@ public class WeaponPickup : MonoBehaviour
         // If a closest station is found and within range, process the weapon pickup
         if (closestStation)
         {
+            
+            // UIManager.instance.UpdatePurchaseText();
+            
+            
+            
+            
             // Debug.Log("In distance to the closest station");
             if (Input.GetKey(KeyCode.E))
             {
@@ -118,18 +124,16 @@ public class WeaponPickup : MonoBehaviour
                     StationWeapon stationWeapon = closestStation.GetComponent<StationWeapon>();
                     var playersWeapon = player.GetComponent<PlayerShooting>().heldWeapon;
                     
-                    if (!inventory.Contains(stationWeapon.weapon) && PlayerStats.current.currentScore > stationWeapon.weaponCost)
+                    if (!inventory.Contains(stationWeapon.weapon) && PlayerStats.current.currentScore >= stationWeapon.weaponCost)
                     {
                         inventory.Add(stationWeapon.weapon);
                         GiveWeapon(stationWeapon.weaponPrefab);
                         PlayerStats.current.currentScore -= stationWeapon.weaponCost;
                         UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
                         holdDownTimer = 0;
-                    } else if(inventory.Contains(stationWeapon.weapon) && playersWeapon.GetComponent<WeaponsClass>().weaponType == stationWeapon.weapon && PlayerStats.current.currentScore > stationWeapon.ammoCost)
+                    } else if(inventory.Contains(stationWeapon.weapon) && playersWeapon.GetComponent<WeaponsClass>().weaponType == stationWeapon.weapon && PlayerStats.current.currentScore >= stationWeapon.ammoCost)
                     {
-                        playersWeapon.ReplenishAmmo();
-                        PlayerStats.current.currentScore -= stationWeapon.ammoCost;
-                        UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
+                        playersWeapon.ReplenishAmmo(stationWeapon.ammoCost);
                     }
                 }
             }
