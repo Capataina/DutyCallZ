@@ -10,11 +10,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TextMeshProUGUI purchaseText;
+    private float storedPlayerScore = 0;
 
     private GameObject player;
 
     private void Update()
     {
+        if (storedPlayerScore != PlayerStats.current.currentScore)
+        {
+            print("scoreChanged");
+            storedPlayerScore = PlayerStats.current.currentScore;
+            UpdateScore(storedPlayerScore);
+        }
         CheckStationDistance();
     }
 

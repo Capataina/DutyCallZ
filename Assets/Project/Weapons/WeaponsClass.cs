@@ -177,7 +177,7 @@ public abstract class WeaponsClass : MonoBehaviour
             bulletsInMag = magazineSize;
             UIManager.instance.UpdateAmmo(bulletsInMag, currentAmmo);
             PlayerStats.current.currentScore -= ammoCost;
-            UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
+            // UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
         }
     }
 

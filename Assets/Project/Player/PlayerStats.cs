@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         current = this;
-        UIManager.instance.UpdateScore(currentScore);
+        // UIManager.instance.UpdateScore(currentScore);
     }
 
 
