@@ -41,7 +41,7 @@ public class Zombie : MonoBehaviour
         //    damage = Mathf.Round(armor / damage);
         //}
         health -= damage;
-        print("zombie took: " + damage + " damage");
+        // print("zombie took: " + damage + " damage");
         if (health <= 0)
         {
             Die();

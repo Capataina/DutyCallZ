@@ -44,7 +44,7 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        print("took: " + damage + " damage");
+        // print("took: " + damage + " damage");
         cameraAnimator.Play("PlayerHit", 0);
     }
 }
