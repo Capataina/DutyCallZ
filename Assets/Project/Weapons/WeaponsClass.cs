@@ -42,8 +42,8 @@ public abstract class WeaponsClass : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] private bool showHitIndicator;
 
-    public float currentAmmo;
-    public float bulletsInMag;
+    [HideInInspector] public float currentAmmo;
+    [HideInInspector] public float bulletsInMag;
     private float timer;
     private bool canShoot;
     private bool isReloading;
