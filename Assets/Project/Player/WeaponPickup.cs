@@ -129,7 +129,7 @@ public class WeaponPickup : MonoBehaviour
                         inventory.Add(stationWeapon.weapon);
                         GiveWeapon(stationWeapon.weaponPrefab);
                         PlayerStats.current.currentScore -= stationWeapon.weaponCost;
-                        UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
+                        // UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
                         holdDownTimer = 0;
                     } else if(inventory.Contains(stationWeapon.weapon) && playersWeapon.GetComponent<WeaponsClass>().weaponType == stationWeapon.weapon && PlayerStats.current.currentScore >= stationWeapon.ammoCost)
                     {

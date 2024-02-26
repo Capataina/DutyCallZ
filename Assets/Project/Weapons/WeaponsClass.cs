@@ -128,7 +128,7 @@ public abstract class WeaponsClass : MonoBehaviour
             }
         }
     
-        UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
+        // UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
         HandleRecoil();
         HandleRecoilAnimation();
     }
@@ -159,7 +159,7 @@ public abstract class WeaponsClass : MonoBehaviour
             currentAmmo = 0;
         }
         
-        UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
+        // UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
 
         //Debug.Log("Bullets in mag after reload:" + bulletsInMag);
         //Debug.Log("Total ammo after reload:" + currentAmmo);
@@ -175,9 +175,9 @@ public abstract class WeaponsClass : MonoBehaviour
         {
             currentAmmo = maxAmmo;
             bulletsInMag = magazineSize;
-            UIManager.instance.UpdateAmmo(bulletsInMag, currentAmmo);
+            // UIManager.instance.UpdateAmmo(bulletsInMag, currentAmmo);
             PlayerStats.current.currentScore -= ammoCost;
-            UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
+            // UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
         }
     }
 

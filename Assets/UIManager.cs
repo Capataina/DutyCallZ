@@ -10,11 +10,34 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private TextMeshProUGUI purchaseText;
+    private float storedPlayerScore = 0;
+    private float storedPlayerAmmo = 0;
+    private float storedPlayerBulletsInMag = 0;
 
     private GameObject player;
 
     private void Update()
     {
+        var playersWeapon = player.GetComponent<PlayerShooting>().heldWeapon;
+        
+        if (Math.Abs(storedPlayerScore - PlayerStats.current.currentScore) > 0)
+        {
+            // print("scoreChanged");
+            storedPlayerScore = PlayerStats.current.currentScore;
+            UpdateScore(storedPlayerScore);
+        }
+
+        if (playersWeapon)
+        {
+            if (Math.Abs(storedPlayerAmmo - playersWeapon.currentAmmo) > 0 || Math.Abs(storedPlayerBulletsInMag - playersWeapon.bulletsInMag) > 0)
+            {
+                // print("ammo changed");
+                storedPlayerBulletsInMag = playersWeapon.bulletsInMag;
+                storedPlayerAmmo = playersWeapon.currentAmmo;
+                UpdateAmmo(storedPlayerBulletsInMag, storedPlayerAmmo);
+            }
+        }
+        
         CheckStationDistance();
     }
 

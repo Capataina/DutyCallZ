@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public float currentScore = 0;
-    
+
     private float currentHealth;
     [SerializeField] private float maxHealth;
     // Should probably not be here
@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         current = this;
-        UIManager.instance.UpdateScore(currentScore);
+        // UIManager.instance.UpdateScore(currentScore);
     }
 
 
@@ -45,7 +45,6 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
         damage -= currentArmor;
-        print("took: " + damage + " damage");
         cameraAnimator.Play("PlayerHit", 0);
     }
 }

@@ -28,7 +28,7 @@ public class ZombieSpawner : MonoBehaviour
             var zombies = GameObject.FindGameObjectsWithTag("Zombie");
             if (zombies.Length <= 0)
             {
-                Debug.Log("Wave ended.");
+                // Debug.Log("Wave ended.");
                 PrepareNextWave();
             }
         }

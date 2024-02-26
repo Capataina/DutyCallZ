@@ -100,7 +100,7 @@ public class ActiveBuffs : MonoBehaviour
                             {
                                 print("gave speed buff");
                                 PlayerStats.current.currentScore -= closestStationBuff.buffCost;
-                                UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
+                                // UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
                                 speedBuff = true;
                                 holdDownTimer = 0;
                             }
@@ -110,7 +110,7 @@ public class ActiveBuffs : MonoBehaviour
                             {
                                 print("gave regen buff");
                                 PlayerStats.current.currentScore -= closestStationBuff.buffCost;
-                                UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
+                                // UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
                                 regenBuff = true;
                                 holdDownTimer = 0;
                             }

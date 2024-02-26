@@ -40,7 +40,7 @@ public class PlayerShooting : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Alpha1) && currentWeapons.Count > 0)
         {
-            print("pressed 1");
+            // print("pressed 1");
             ActivateWeapon(0);
         }
 
@@ -75,7 +75,7 @@ public class PlayerShooting : MonoBehaviour
             if (i == weaponIndex)
             {
                 currentWeapons[i].SetActive(true);
-                print(currentWeapons[i].name);
+                // print(currentWeapons[i].name);
                 heldWeapon = currentWeapons[i].GetComponent<WeaponsClass>();
             }
             else
@@ -84,7 +84,7 @@ public class PlayerShooting : MonoBehaviour
             }
         }
         // print(heldWeapon.currentAmmo + "javdjaygdvawhjdbawkdHBWAJUWAbdjukaWBDAUjADB");
-        UIManager.instance.UpdateAmmo(heldWeapon.bulletsInMag, heldWeapon.currentAmmo);
+        // UIManager.instance.UpdateAmmo(heldWeapon.bulletsInMag, heldWeapon.currentAmmo);
         var heldWeaponTransform = heldWeapon.transform;
         playerCameraRecoilController.currentWeapon = heldWeapon;
         weaponSway.activeWeapon = heldWeaponTransform;
