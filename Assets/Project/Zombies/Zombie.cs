@@ -10,10 +10,12 @@ public class Zombie : MonoBehaviour
     [SerializeField] private float attackRange;
     [SerializeField] private float armor;
     [SerializeField] private float speed;
+    [HideInInspector] public bool isLiving = true;
     private Transform player;
     private float health;
     private bool isAttacking;
     private Rigidbody[] rigidbodies;
+    private Hurtbox[] hurtboxes;
 
     private void Start()
     {
@@ -23,7 +25,7 @@ public class Zombie : MonoBehaviour
         agent.destination = player.position;
 
         // setup hurtboxes
-        Hurtbox[] hurtboxes = GetComponentsInChildren<Hurtbox>();
+        hurtboxes = GetComponentsInChildren<Hurtbox>();
         foreach (Hurtbox hurtbox in hurtboxes)
         {
             hurtbox.takeDamageFunction = TakeDamageEvent;
@@ -55,6 +57,9 @@ public class Zombie : MonoBehaviour
 
     void Update()
     {
+        if (!isLiving)
+            return;
+
         agent.destination = player.position;
 
         if (isAttacking)
@@ -88,11 +93,18 @@ public class Zombie : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject); // Destroy the entire zombie game object
+        //Destroy(gameObject); // Destroy the entire zombie game object
+        animator.enabled = false;
+        agent.enabled = false;
         foreach (Rigidbody rigidbody in rigidbodies)
         {
             rigidbody.isKinematic = false;
         }
+        foreach (Hurtbox hurtbox in hurtboxes)
+        {
+            hurtbox.enabled = false;
+        }
+        isLiving = false;
     }
 
     public void ObjectParameter(object test)

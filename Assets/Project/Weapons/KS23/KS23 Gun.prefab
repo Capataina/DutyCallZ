@@ -49,7 +49,7 @@ MonoBehaviour:
   automatic: 0
   fireCooldown: 0.2
   reloadTimer: 1
-  damage: 10
+  damage: 30
   magazineSize: 999
   maxAmmo: 999
   burstNumber: 6
