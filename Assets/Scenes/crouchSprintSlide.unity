@@ -566,74 +566,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1001 &552746859
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -105.324
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.414
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.895
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 23f76d7de9f713045b227c516a7ee178,
-        type: 3}
-      propertyPath: m_Name
-      value: grenade (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 23f76d7de9f713045b227c516a7ee178, type: 3}
 --- !u!1001 &594982294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1355,7 +1287,7 @@ Transform:
   m_GameObject: {fileID: 1454878553}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 46.324196, y: -34.370117, z: 39.899208}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1687,7 +1619,7 @@ GameObject:
   - component: {fileID: 1831242407}
   - component: {fileID: 1831242406}
   - component: {fileID: 1831242410}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: WorldSpaceCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1847,7 +1779,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 32
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2068,7 +2000,7 @@ PrefabInstance:
     - target: {fileID: 3949743739835622435, guid: b89180db31b237e4990eef7971b2d66f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8358702278008737297, guid: b89180db31b237e4990eef7971b2d66f,
         type: 3}
@@ -2450,25 +2382,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2d7d9b0c5fd0e4e9d63c4e50a64e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 7
-  sprintSpeed: 12
-  crouchSpeed: 2
-  slideSpeed: 25
-  slideDeceleration: 0.8
-  jumpForce: 0.06
+  baseSpeed: 8
+  speed: 8
   playerController: {fileID: 1636498823680574037}
-  gravity: 0.25
+  gravity: 0.15
   groundMask:
     serializedVersion: 2
     m_Bits: 1
   playerCamera: {fileID: 7499230455302424690}
-  playerCollider: {fileID: 3838438195449178916}
-  speed: 8
-  isSprinting: 0
-  isCrouching: 0
-  isSliding: 0
-  activeSpeed: 0
-  currentMovementState: 0
 --- !u!114 &3535542515053034628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2590,7 +2511,7 @@ Transform:
   m_GameObject: {fileID: 7186806271265529983}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.257, y: -0.238, z: 0.363}
+  m_LocalPosition: {x: 0.29457855, y: -0.33200002, z: 0.52629876}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2734,7 +2655,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2957,4 +2878,3 @@ SceneRoots:
   - {fileID: 1639916757}
   - {fileID: 706800199}
   - {fileID: 1831242409}
-  - {fileID: 552746859}

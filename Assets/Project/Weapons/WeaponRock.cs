@@ -17,7 +17,7 @@ public class WeaponRock : MonoBehaviour
     {
         if (weapon)
         {
-            if (playerMovement.isMoving())
+            if (playerMovement.isMoving() && !playerMovement.isSliding)
             {
                 float deltaX = Mathf.Sin(time * speed) * xStrengthMoving;
                 float deltaY = Mathf.Abs(Mathf.Sin(time * speed) * yStrengthMoving) - yStrengthMoving;
@@ -43,9 +43,9 @@ public class WeaponRock : MonoBehaviour
             //        }
             //
             time = (time + Time.deltaTime) % (Mathf.PI * 2);
-            
+
         }
 
-        
+
     }
 }

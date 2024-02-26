@@ -9,15 +9,15 @@ public class ActiveBuffs : MonoBehaviour
     public float buffDuration;
 
     private List<StationBuff.BuffType> activeBuffs = new List<StationBuff.BuffType>();
-    
+
     public bool speedBuff;
     public bool regenBuff;
     private bool resistanceBuff;
-    
+
     private PlayerMovement playerSpeed;
     private PlayerStats playerStats;
     private float holdDownTimer;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,22 +35,22 @@ public class ActiveBuffs : MonoBehaviour
             StartCoroutine(AddSpeedBuff());
             speedBuff = false;
         }
-        
+
         if (regenBuff)
         {
             StartCoroutine(AddRegenBuff());
             regenBuff = false;
         }
-        
+
         CheckDistance();
     }
-    
+
     private IEnumerator AddSpeedBuff()
     {
         activeBuffs.Add(StationBuff.BuffType.Speed);
-        playerSpeed.speed = playerSpeed.baseSpeed * 1.2f;
+        playerSpeed.speed = playerSpeed.walkSpeed * 1.2f;
         yield return new WaitForSeconds(buffDuration);
-        playerSpeed.speed = playerSpeed.baseSpeed;
+        playerSpeed.speed = playerSpeed.walkSpeed;
         activeBuffs.Remove(StationBuff.BuffType.Speed);
     }
 
@@ -66,14 +66,14 @@ public class ActiveBuffs : MonoBehaviour
     private void CheckDistance()
     {
         Collider[] buffStations = Physics.OverlapSphere(player.transform.position, 5f, LayerMask.GetMask("Buff Stations"));
-        
+
         GameObject closestStation = null;
-        
+
         if (buffStations.Length > 0)
         {
             closestStation = buffStations[0].gameObject;
         }
-        
+
         foreach (var station in buffStations)
         {
             if (Vector3.Distance(player.transform.position, station.gameObject.transform.position) <=
@@ -88,7 +88,7 @@ public class ActiveBuffs : MonoBehaviour
             if (Input.GetKey(KeyCode.E))
             {
                 holdDownTimer += Time.deltaTime;
-                
+
                 if (holdDownTimer >= 1)
                 {
                     switch (closestStation.GetComponent<StationBuff>().buff)
