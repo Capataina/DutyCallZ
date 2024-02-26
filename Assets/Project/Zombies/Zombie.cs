@@ -49,7 +49,7 @@ public class Zombie : MonoBehaviour
         //    damage = Mathf.Round(armor / damage);
         //}
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && isLiving)
         {
             Die();
         }
@@ -105,6 +105,7 @@ public class Zombie : MonoBehaviour
             hurtbox.enabled = false;
         }
         isLiving = false;
+        ZombieSpawner.current.zombiesKilled++;
     }
 
     public void ObjectParameter(object test)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
@@ -14,6 +15,14 @@ public class ZombieSpawner : MonoBehaviour
     private float zombiesToSpawn;
     private GameObject[] spawnPoints;
     private float timer;
+    private float zombiesSpawned;
+    [HideInInspector] public float zombiesKilled;
+    [HideInInspector] public static ZombieSpawner current;
+
+    private void Awake()
+    {
+        current = this;
+    }
 
     void Start()
     {
@@ -25,8 +34,8 @@ public class ZombieSpawner : MonoBehaviour
         // Check if there are any zombies left only if the current wave has ended
         if (!waveEnded)
         {
-            var zombies = GameObject.FindGameObjectsWithTag("Zombie");
-            if (zombies.Length <= 0)
+            print(zombiesKilled + " killed, target: " + zombiesSpawned);
+            if (zombiesKilled == zombiesSpawned)
             {
                 // Debug.Log("Wave ended.");
                 PrepareNextWave();
@@ -36,10 +45,14 @@ public class ZombieSpawner : MonoBehaviour
 
     void PrepareNextWave()
     {
+        zombiesKilled = 0;
+        zombiesSpawned = 0;
         waveCount++;
         zombiesToSpawn = Mathf.Floor(Mathf.Pow(5 + waveCount, 1.25f));
         waveCooldown = zombiesToSpawn / 2;
         waveCooldown = Mathf.Clamp(waveCooldown, 5f, 20f);
+        // DEBUGGING
+        waveCooldown = 1;
 
         if (spawnPoints.Length > 0)
         {
@@ -52,6 +65,7 @@ public class ZombieSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(waveCooldown);
 
+        zombiesSpawned = zombiesToSpawn;
         for (int i = 0; i < zombiesToSpawn; i++)
         {
             SpawnZombie();
@@ -94,7 +108,8 @@ public class ZombieSpawner : MonoBehaviour
         {
             GameObject spawnPoint = spawnPoints[selectedIndex];
             GameObject zombie = Instantiate(zombiePrefab, spawnPoint.transform.position, Quaternion.identity);
-            zombie.GetComponent<Zombie>().AdjustHealthAndArmor((int)waveCount);
+            Zombie component = zombie.GetComponent<Zombie>();
+            component.AdjustHealthAndArmor((int)waveCount);
         }
         else
         {
