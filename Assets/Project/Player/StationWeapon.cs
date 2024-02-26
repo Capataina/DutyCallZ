@@ -12,6 +12,7 @@ public class StationWeapon : MonoBehaviour
     {
         Vector,
         KS23,
-        Glock
+        Pistol1911,
+        AK47,
     }
 }

@@ -111,7 +111,8 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   recoilController: {fileID: 0}
   weaponRecoilAnimation: {fileID: 0}
-  muzzleFlashSpawner: {fileID: 0}
+  muzzleFlashSpawner: {fileID: 4982882569051394427}
+  weaponType: 0
   hipXRecoil: 4
   hipYRecoil: 1
   recoilDuration: 0.05
@@ -125,7 +126,9 @@ MonoBehaviour:
   recoilAnimMinXRot: 25
   recoilAnimYRot: 2
   recoilAnimZRot: 2
-  showHitIndicator: 1
+  showHitIndicator: 0
+  currentAmmo: 0
+  bulletsInMag: 0
 --- !u!1001 &3614244332139355786
 PrefabInstance:
   m_ObjectHideFlags: 0
