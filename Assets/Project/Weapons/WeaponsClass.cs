@@ -9,8 +9,8 @@ public abstract class WeaponsClass : MonoBehaviour
     [SerializeField] private float fireCooldown;
     [SerializeField] private float reloadTimer;
     [SerializeField] private float damage;
-    [SerializeField] private float magazineSize;
-    [SerializeField] private float maxAmmo;
+    [SerializeField] public float magazineSize;
+    [SerializeField] public float maxAmmo;
     [SerializeField] private float burstNumber;
     [SerializeField] private float burstDelay;
     [SerializeField] private float accuracy;
@@ -22,6 +22,7 @@ public abstract class WeaponsClass : MonoBehaviour
     [SerializeField] public CameraRecoilController recoilController;
     [SerializeField] public WeaponRecoilAnimation weaponRecoilAnimation;
     [SerializeField] public MuzzleFlashSpawner muzzleFlashSpawner;
+    [SerializeField] public StationWeapon.WeaponType weaponType;
     [Header("Camera Recoil")]
     [SerializeField] private float hipXRecoil;
     [SerializeField] private float hipYRecoil;
@@ -41,8 +42,8 @@ public abstract class WeaponsClass : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] private bool showHitIndicator;
 
-    public float currentAmmo;
-    public float bulletsInMag;
+    [HideInInspector] public float currentAmmo;
+    [HideInInspector] public float bulletsInMag;
     private float timer;
     private bool canShoot;
     private bool isReloading;
@@ -166,6 +167,18 @@ public abstract class WeaponsClass : MonoBehaviour
         isReloading = false;
         canShoot = true;
         //Debug.Log("Reload Complete");
+    }
+
+    public void ReplenishAmmo(float ammoCost)
+    {
+        if (currentAmmo < maxAmmo || bulletsInMag < magazineSize)
+        {
+            currentAmmo = maxAmmo;
+            bulletsInMag = magazineSize;
+            UIManager.instance.UpdateAmmo(bulletsInMag, currentAmmo);
+            PlayerStats.current.currentScore -= ammoCost;
+            UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
+        }
     }
 
     private void Awake()

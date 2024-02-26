@@ -65,7 +65,7 @@ public class ActiveBuffs : MonoBehaviour
 
     private void CheckDistance()
     {
-        Collider[] buffStations = Physics.OverlapSphere(player.transform.position, 5f, LayerMask.GetMask("Buff Stations"));
+        Collider[] buffStations = Physics.OverlapSphere(player.transform.position, 2f, LayerMask.GetMask("Buff Stations"));
 
         GameObject closestStation = null;
 
@@ -91,20 +91,26 @@ public class ActiveBuffs : MonoBehaviour
 
                 if (holdDownTimer >= 1)
                 {
-                    switch (closestStation.GetComponent<StationBuff>().buff)
+                    var closestStationBuff = closestStation.GetComponent<StationBuff>();
+
+                    switch (closestStationBuff.buff)
                     {
                         case StationBuff.BuffType.Speed:
-                            if (!activeBuffs.Contains(StationBuff.BuffType.Speed))
+                            if (!activeBuffs.Contains(StationBuff.BuffType.Speed) && PlayerStats.current.currentScore >= closestStationBuff.buffCost)
                             {
                                 print("gave speed buff");
+                                PlayerStats.current.currentScore -= closestStationBuff.buffCost;
+                                UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
                                 speedBuff = true;
                                 holdDownTimer = 0;
                             }
                             break;
                         case StationBuff.BuffType.Regen:
-                            if (!activeBuffs.Contains(StationBuff.BuffType.Regen))
+                            if (!activeBuffs.Contains(StationBuff.BuffType.Regen) && PlayerStats.current.currentScore >= closestStationBuff.buffCost)
                             {
                                 print("gave regen buff");
+                                PlayerStats.current.currentScore -= closestStationBuff.buffCost;
+                                UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
                                 regenBuff = true;
                                 holdDownTimer = 0;
                             }
