@@ -75,7 +75,7 @@ public abstract class WeaponsClass : MonoBehaviour
         for (int i = 0; i < burstNumber; i++)
         {
             Shoot();
-            
+
             if (bulletsInMag <= 0)
             {
                 StartCoroutine(Reload());
@@ -121,13 +121,14 @@ public abstract class WeaponsClass : MonoBehaviour
             }
 
             Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.position + Vector3.Normalize(playerCamera.transform.forward + accuracyOffset) * 999f, Color.green, 5);
+            print(LayerMask.LayerToName(objectHit.collider.gameObject.layer));
             if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
             {
                 var hurtbox = objectHit.collider.GetComponent<Hurtbox>();
                 hurtbox.TakeDamage(damage, objectHit.point);
             }
         }
-    
+
         // UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
         HandleRecoil();
         HandleRecoilAnimation();
@@ -158,7 +159,7 @@ public abstract class WeaponsClass : MonoBehaviour
             bulletsInMag += currentAmmo;
             currentAmmo = 0;
         }
-        
+
         // UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
 
         //Debug.Log("Bullets in mag after reload:" + bulletsInMag);

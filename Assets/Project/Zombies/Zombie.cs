@@ -13,7 +13,7 @@ public class Zombie : MonoBehaviour
     private Transform player;
     private float health;
     private bool isAttacking;
-
+    private Rigidbody[] rigidbodies;
 
     private void Start()
     {
@@ -27,6 +27,12 @@ public class Zombie : MonoBehaviour
         foreach (Hurtbox hurtbox in hurtboxes)
         {
             hurtbox.takeDamageFunction = TakeDamageEvent;
+        }
+
+        rigidbodies = GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rigidbody in rigidbodies)
+        {
+            rigidbody.isKinematic = true;
         }
     }
 
@@ -83,6 +89,10 @@ public class Zombie : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject); // Destroy the entire zombie game object
+        foreach (Rigidbody rigidbody in rigidbodies)
+        {
+            rigidbody.isKinematic = false;
+        }
     }
 
     public void ObjectParameter(object test)
