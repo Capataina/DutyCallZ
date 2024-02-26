@@ -13,6 +13,6 @@ public class Hurtbox : MonoBehaviour
         PlayerStats.current.currentScore += Mathf.Floor(totalDamage / 2);
         // UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
         takeDamageFunction.Invoke(totalDamage);
-        CustomEventSystem.current.SpawnDamageText(totalDamage, hitPoint, damageColor);
+        CustomEventSystem.current.SpawnDamageText(Mathf.RoundToInt(totalDamage), hitPoint, damageColor);
     }
 }

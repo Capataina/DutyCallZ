@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,12 +11,18 @@ public class PlayerShooting : MonoBehaviour
     private CameraRecoilController playerCameraRecoilController;
     // private MeleeAttack meleeAttack;
     private Camera playerCamera;
-    
+
     [Header("Melee")]
     [SerializeField] private float meleeDamage;
     [SerializeField] private LayerMask meleeMask;
     [SerializeField] private float meleeRange;
     [SerializeField] private float meleeRadius;
+
+    [Header("Grenade")]
+    [SerializeField] private GameObject greande;
+    [SerializeField] private Vector3 throwForce;
+    [SerializeField] private float torque;
+
     private void Awake()
     {
         weaponSway = GetComponentInChildren<WeaponSway>();
@@ -36,8 +40,13 @@ public class PlayerShooting : MonoBehaviour
         {
             MeleeAttack();
         }
-        
-        
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            ThrowGrenade();
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Alpha1) && currentWeapons.Count > 0)
         {
             // print("pressed 1");
@@ -68,6 +77,18 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    private void ThrowGrenade()
+    {
+        GameObject newGrenade = Instantiate(greande);
+        newGrenade.transform.position = Camera.main.transform.position + transform.forward * 0.5f;
+        Rigidbody rb = newGrenade.GetComponent<Rigidbody>();
+        rb.AddForce(Camera.main.transform.rotation * throwForce, ForceMode.Impulse);
+        var x = Random.Range(-torque, torque);
+        var y = Random.Range(-torque, torque);
+        var z = Random.Range(-torque, torque);
+        rb.AddTorque(new Vector3(x, y, z));
+    }
+
     public void ActivateWeapon(int weaponIndex)
     {
         for (int i = 0; i < currentWeapons.Count; i++)
@@ -95,7 +116,7 @@ public class PlayerShooting : MonoBehaviour
     void MeleeAttack()
     {
         var playerCameraPosition = playerCamera.transform;
-        if (Physics.SphereCast(playerCameraPosition.position,meleeRadius, playerCameraPosition.forward, out var objectHit, meleeRange, meleeMask))
+        if (Physics.SphereCast(playerCameraPosition.position, meleeRadius, playerCameraPosition.forward, out var objectHit, meleeRange, meleeMask))
         {
             Debug.DrawRay(playerCameraPosition.position, playerCameraPosition.position + playerCameraPosition.forward * meleeRange, Color.blue, 5);
             if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
