@@ -96,12 +96,12 @@ MonoBehaviour:
   automatic: 0
   fireCooldown: 0.1
   reloadTimer: 1
-  damage: 25
+  damage: 50
   magazineSize: 12
   maxAmmo: 999
   burstNumber: 1
   burstDelay: 0
-  accuracy: 0.985
+  accuracy: 0.99
   shootingMask:
     serializedVersion: 2
     m_Bits: 1015
