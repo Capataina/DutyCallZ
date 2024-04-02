@@ -295,9 +295,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
-  jumpVelocity: 0.1
-  gravity: 0.0016
-  terminalVelocity: 1
+  jumpVelocity: 0.08
+  gravity: 0.001
+  terminalVelocity: 0.05
   cameraAnimationController: {fileID: 1870193580}
   input: {x: 0, y: 0, z: 0}
   movementDirection: {x: 0, y: 0, z: 0}
