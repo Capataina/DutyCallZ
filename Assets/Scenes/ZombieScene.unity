@@ -261,6 +261,55 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d786802e9c5d4b7499bd8c8091291b9b, type: 2}
   m_BuildHeightMesh: 0
+--- !u!20 &52516514 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3367120092691918868, guid: ed6e094ef58081043abdb55ad98486ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 1024345943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &165183945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6839578716274041870, guid: ed6e094ef58081043abdb55ad98486ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 1024345943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &165183946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165183945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f350845089b29f54f80c9a824f0bd0ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 6
+  sprintSpeed: 12
+  crouchSpeed: 2
+  slideSpeed: 4
+  airStrafeSpeed: 15
+  playerController: {fileID: 165183954}
+  playerCamera: {fileID: 52516514}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1
+  jumpVelocity: 0.1
+  gravity: 0.0016
+  terminalVelocity: 1
+  cameraAnimationController: {fileID: 1870193580}
+  input: {x: 0, y: 0, z: 0}
+  movementDirection: {x: 0, y: 0, z: 0}
+  isGrounded: 0
+  velocity: {x: 0, y: 0, z: 0}
+  lastGroundSpeed: 0
+--- !u!143 &165183954 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 2096096287751785051, guid: ed6e094ef58081043abdb55ad98486ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 1024345943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &286241268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -860,6 +909,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2039136694506075463, guid: ed6e094ef58081043abdb55ad98486ab,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6839578716274041870, guid: ed6e094ef58081043abdb55ad98486ab,
         type: 3}
       propertyPath: m_Name
@@ -868,7 +922,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6839578716274041870, guid: ed6e094ef58081043abdb55ad98486ab,
+        type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 165183946}
   m_SourcePrefab: {fileID: 100100000, guid: ed6e094ef58081043abdb55ad98486ab, type: 3}
 --- !u!1001 &1639916757
 PrefabInstance:
@@ -1031,6 +1089,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbcb1266ec6c3f347815453bb2b4ea9b, type: 3}
+--- !u!95 &1870193580 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 420827309340304146, guid: ed6e094ef58081043abdb55ad98486ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 1024345943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &606088541530154243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1047,7 +1111,7 @@ PrefabInstance:
     - target: {fileID: 3949743739835622435, guid: b89180db31b237e4990eef7971b2d66f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8358702278008737297, guid: b89180db31b237e4990eef7971b2d66f,
         type: 3}

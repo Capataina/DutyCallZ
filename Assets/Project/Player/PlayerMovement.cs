@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float slideSpeed;
     [SerializeField] private float slideDeceleration;
     [SerializeField] private float jumpForce;
-    [SerializeField] private CharacterController playerController;
+    [SerializeField] public CharacterController playerController;
     [SerializeField] private float gravity;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Camera playerCamera;
