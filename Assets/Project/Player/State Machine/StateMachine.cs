@@ -19,6 +19,8 @@ public class StateMachine : MonoBehaviour
     [SerializeField] public float gravity;
     [SerializeField] public float terminalVelocity;
     [SerializeField] public Animator cameraAnimationController;
+    [SerializeField] public Animator playerAnimationController;
+    [SerializeField] public CapsuleCollider playerCollider;
 
     [HideInInspector] public BaseState currentState;
     [HideInInspector] public Vector3 input;

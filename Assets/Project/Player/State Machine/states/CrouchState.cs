@@ -23,10 +23,16 @@ public class CrouchState : BaseState
 
     public override void EnterState()
     {
+        stateMachine.playerAnimationController.Play("PlayerCrouch", 0);
+        stateMachine.playerCollider.height = 1;
+        stateMachine.playerCollider.center = new Vector3(0, 0.5f, 0);
     }
 
     public override void ExitState()
     {
+        stateMachine.playerCollider.height = 2;
+        stateMachine.playerCollider.center = Vector3.zero;
+        stateMachine.playerAnimationController.Play("PlayerUncrouch", 0);
     }
     public override void UpdateState()
     {

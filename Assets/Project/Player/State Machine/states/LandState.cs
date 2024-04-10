@@ -14,7 +14,7 @@ public class LandState : BaseState
 
     public override void EnterState()
     {
-        stateMachine.cameraAnimationController.Play("PlayerLand", 0);
+        stateMachine.playerAnimationController.Play("PlayerLand", 0);
     }
 
     public override void ExitState()
