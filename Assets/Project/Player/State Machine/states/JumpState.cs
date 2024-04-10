@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class JumpState : BaseState
@@ -15,6 +13,7 @@ public class JumpState : BaseState
     public override void EnterState()
     {
         stateMachine.velocity.y = stateMachine.jumpVelocity;
+        AnimationTools.CrossFadeToAnimationFT(stateMachine.playerAnimationController, "Neutral", 0.2f, 0);
     }
 
     public override void ExitState()

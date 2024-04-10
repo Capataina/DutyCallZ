@@ -68,7 +68,7 @@ public class IsGroundedState : BaseState
                 }
                 else if (Input.GetKeyDown(KeyCode.C))
                 {
-                    SwitchSubState(stateFactory.Crouch());
+                    SwitchSubState(stateFactory.Slide());
                 }
                 else if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -77,6 +77,20 @@ public class IsGroundedState : BaseState
                 break;
             case CrouchState:
                 if (Input.GetKeyDown(KeyCode.C))
+                {
+                    SwitchSubState(stateFactory.Idle());
+                }
+                else if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    SwitchSubState(stateFactory.Jump());
+                }
+                break;
+            case SlideState:
+                if (stateMachine.slidingSpeed < stateMachine.slideSpeedThreshold)
+                {
+                    SwitchSubState(stateFactory.Idle());
+                }
+                else if (Input.GetKeyDown(KeyCode.C))
                 {
                     SwitchSubState(stateFactory.Idle());
                 }

@@ -32,7 +32,7 @@ public class CrouchState : BaseState
     {
         stateMachine.playerCollider.height = 2;
         stateMachine.playerCollider.center = Vector3.zero;
-        stateMachine.playerAnimationController.Play("PlayerUncrouch", 0);
+        AnimationTools.CrossFadeToAnimationFT(stateMachine.playerAnimationController, "PlayerUncrouch", 0f, 0);
     }
     public override void UpdateState()
     {

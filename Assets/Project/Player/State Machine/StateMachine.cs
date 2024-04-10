@@ -11,6 +11,9 @@ public class StateMachine : MonoBehaviour
     [SerializeField] public float sprintSpeed;
     [SerializeField] public float crouchSpeed;
     [SerializeField] public float slideSpeed;
+    [SerializeField] public float slideHorizonalSpeed;
+    [SerializeField] public float slideSpeedThreshold;
+    [SerializeField] public float slidingDeceleration;
     [SerializeField] public float airStrafeSpeed;
     [SerializeField] public CharacterController playerController;
     [SerializeField] public Camera playerCamera;
@@ -21,6 +24,7 @@ public class StateMachine : MonoBehaviour
     [SerializeField] public Animator cameraAnimationController;
     [SerializeField] public Animator playerAnimationController;
     [SerializeField] public CapsuleCollider playerCollider;
+    [SerializeField] public GameObject playerModel;
 
     [HideInInspector] public BaseState currentState;
     [HideInInspector] public Vector3 input;
@@ -28,6 +32,8 @@ public class StateMachine : MonoBehaviour
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public Vector3 velocity;
     [HideInInspector] public float lastGroundSpeed;
+    [HideInInspector] public float slidingSpeed;
+    [HideInInspector] public Vector3 slideDiretion;
 
     private void Start()
     {

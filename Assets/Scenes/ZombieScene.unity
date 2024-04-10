@@ -261,6 +261,12 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d786802e9c5d4b7499bd8c8091291b9b, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &49989549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 15831871584753642, guid: ed6e094ef58081043abdb55ad98486ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 1024345943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &286241268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -868,13 +874,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5647499175915032411, guid: ed6e094ef58081043abdb55ad98486ab,
         type: 3}
+      propertyPath: slideSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647499175915032411, guid: ed6e094ef58081043abdb55ad98486ab,
+        type: 3}
+      propertyPath: playerModel
+      value: 
+      objectReference: {fileID: 49989549}
+    - target: {fileID: 5647499175915032411, guid: ed6e094ef58081043abdb55ad98486ab,
+        type: 3}
       propertyPath: playerCollider
       value: 
       objectReference: {fileID: 708735076}
+    - target: {fileID: 5647499175915032411, guid: ed6e094ef58081043abdb55ad98486ab,
+        type: 3}
+      propertyPath: slideHorizonalSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647499175915032411, guid: ed6e094ef58081043abdb55ad98486ab,
+        type: 3}
+      propertyPath: slideSpeedThreshold
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647499175915032411, guid: ed6e094ef58081043abdb55ad98486ab,
+        type: 3}
+      propertyPath: slidingDeceleration
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6839578716274041870, guid: ed6e094ef58081043abdb55ad98486ab,
         type: 3}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809378630071774997, guid: ed6e094ef58081043abdb55ad98486ab,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
