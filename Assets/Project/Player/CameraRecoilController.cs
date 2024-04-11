@@ -1,15 +1,15 @@
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class CameraRecoilController : MonoBehaviour
 {
 
-    [SerializeField] Transform playerCamera;
+    [SerializeField] Transform cameraAnchor;
     [SerializeField] Transform playerCameraParent;
     [SerializeField] Transform cameraShakeParent;
     [SerializeField] public WeaponsClass currentWeapon;
-    [SerializeField] float returnSpeed;
     [SerializeField] float maxReturnHeight;
     [SerializeField] float cameraShakeReturnSpeed;
     [SerializeField] float cameraShakeSpeed;
@@ -20,9 +20,12 @@ public class CameraRecoilController : MonoBehaviour
     float height;
     float shakeTime;
     float currentStrength;
+    bool returning = false;
+    bool recoilProcessing = false;
 
     Vector3 targetRotation;
     Vector3 currentRotation;
+    [HideInInspector] public Quaternion recoilResetTarget;
 
     public void AddRecoil(float xRecoil, float duration)
     {
@@ -30,6 +33,8 @@ public class CameraRecoilController : MonoBehaviour
         height = xRecoil;
         this.duration = duration;
         time = duration;
+        recoilProcessing = true;
+        returning = false;
     }
 
     public void AddCameraShake(float XShakeStrengh, float YShakeStrengh, float ZShakeStrength)
@@ -37,28 +42,46 @@ public class CameraRecoilController : MonoBehaviour
         currentStrength = ZShakeStrength;
     }
 
+    // Transform the angles from 90-0 and 360-270 to one continuous
+    // 180-0 spectrum for comparisons
+    private float TransformToLinearSpace(float angle)
+    {
+        if (angle > 270)
+        {
+            return angle - 270;
+        }
+        else
+        {
+            return angle + 90;
+        }
+    }
+
     void HandleVerticalRecoil()
     {
         if (time > 0)
         {
             float rotAmount = -height * Time.deltaTime / duration;
-            float rotX = playerCameraParent.localEulerAngles.x;
-            float negataiveX = (rotX > 180) ? rotX - 360 : rotX;
-            if (Mathf.Abs(negataiveX) > maxReturnHeight)
+            cameraAnchor.Rotate(rotAmount, 0, 0, Space.Self);
+            time -= Time.deltaTime;
+            returning = false;
+        }
+        else if (recoilProcessing)
+        {
+            float camX = cameraAnchor.localRotation.eulerAngles.x;
+            camX = TransformToLinearSpace(camX);
+            float targetX = recoilResetTarget.eulerAngles.x;
+            targetX = TransformToLinearSpace(targetX);
+            bool lowerThanTarget = camX > targetX;
+            if (Quaternion.Angle(cameraAnchor.localRotation, recoilResetTarget) > 0.15f && !lowerThanTarget)
             {
-                playerCamera.Rotate(rotAmount, 0, 0, Space.Self);
+                returning = true;
+                cameraAnchor.localRotation = Quaternion.RotateTowards(cameraAnchor.localRotation, recoilResetTarget, currentWeapon.recoilReturnSpeed * Time.deltaTime);
             }
             else
             {
-                playerCameraParent.Rotate(rotAmount, 0, 0, Space.Self);
+                returning = false;
+                recoilProcessing = false;
             }
-            time -= Time.deltaTime;
-        }
-        else if (playerCameraParent.localEulerAngles.sqrMagnitude > 0.01f)
-        {
-            //currentReturnForce = returnSpeed;
-            playerCameraParent.localRotation = Quaternion.Slerp(playerCameraParent.localRotation, Quaternion.identity, returnSpeed * Time.deltaTime);
-            //recoilActive = false;
         }
     }
 
@@ -75,5 +98,20 @@ public class CameraRecoilController : MonoBehaviour
     {
         HandleVerticalRecoil();
         HandleCameraShake();
+    }
+
+
+    private void LateUpdate()
+    {
+        float deltaX = Input.GetAxisRaw("Mouse X");
+        float deltaY = Input.GetAxisRaw("Mouse Y");
+        if (deltaY > 0)
+        {
+            returning = false;
+        }
+        if (deltaX != 0 && deltaY != 0 && !returning)
+        {
+            recoilResetTarget = cameraAnchor.transform.localRotation;
+        }
     }
 }

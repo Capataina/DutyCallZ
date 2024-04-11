@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 5402639301862996131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,11 +58,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acec4a71658fb594d9257e8655dcbd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dir: {x: 1, y: 0.25, z: 0}
-  initialSpeed: 8
+  dir: {x: 1, y: 0.25}
+  initialSpeed: 1
   decel: 10
-  lifeTime: 1
+  lifeTime: 0.7
   rectTransform: {fileID: 1165607357965302430}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!114 &5551332123600754322
 MonoBehaviour:
   m_ObjectHideFlags: 0

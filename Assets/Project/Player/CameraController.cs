@@ -57,5 +57,4 @@ public class CameraController : MonoBehaviour
 
         currentTilt = Mathf.Lerp(currentTilt, 0, zTiltReturnSpeed * Time.deltaTime);
     }
-
 }

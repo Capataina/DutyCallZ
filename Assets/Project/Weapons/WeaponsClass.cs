@@ -27,6 +27,7 @@ public abstract class WeaponsClass : MonoBehaviour
     [SerializeField] private float hipXRecoil;
     [SerializeField] private float hipYRecoil;
     [SerializeField] private float recoilDuration;
+    [SerializeField] public float recoilReturnSpeed = 12;
     [Header("Camera Shake")]
     [SerializeField] private float xShake;
     [SerializeField] private float yShake;
@@ -89,14 +90,16 @@ public abstract class WeaponsClass : MonoBehaviour
         }
     }
 
-    public virtual void HandleRecoilAnimation()
+    public virtual void HandleRecoilWeaponAnimation()
     {
+        // this is the animation on the weapon model
         weaponRecoilAnimation.PlayRecoilAnimationPos(recoilAnimXPos, recoilAnimYPos, recoilAnimZPos);
         weaponRecoilAnimation.PlayRecoilAnimationRot(recoilAnimMaxXRot, recoilAnimMinXRot, recoilAnimYRot, recoilAnimZRot);
     }
 
-    public virtual void HandleRecoil()
+    public virtual void HandleRecoilCameraAnimation()
     {
+        // this is the animation on the camera
         recoilController.AddRecoil(hipXRecoil, recoilDuration);
         recoilController.AddCameraShake(xShake, yShake, zShake);
     }
@@ -121,7 +124,6 @@ public abstract class WeaponsClass : MonoBehaviour
             }
 
             Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.position + Vector3.Normalize(playerCamera.transform.forward + accuracyOffset) * 999f, Color.green, 5);
-            print(LayerMask.LayerToName(objectHit.collider.gameObject.layer));
             if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
             {
                 var hurtbox = objectHit.collider.GetComponent<Hurtbox>();
@@ -130,8 +132,8 @@ public abstract class WeaponsClass : MonoBehaviour
         }
 
         // UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
-        HandleRecoil();
-        HandleRecoilAnimation();
+        HandleRecoilCameraAnimation();
+        HandleRecoilWeaponAnimation();
     }
 
     protected virtual IEnumerator Reload()

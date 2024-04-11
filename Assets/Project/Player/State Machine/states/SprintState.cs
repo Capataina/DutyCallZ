@@ -25,5 +25,6 @@ public class SprintState : BaseState
 
     public override void UpdateState()
     {
+        stateMachine.weaponRockController.WeaponRockMoving();
     }
 }

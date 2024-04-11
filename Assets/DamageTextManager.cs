@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class DamageTextManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text damageText;
+    [SerializeField] TMP_Text damageText;
+    [SerializeField] Transform cam;
 
     private void Start()
     {
@@ -14,11 +15,16 @@ public class DamageTextManager : MonoBehaviour
     {
         GameObject newText = Instantiate(damageText.gameObject);
         newText.transform.SetParent(transform);
-        newText.transform.position = position;
+        newText.GetComponent<DamageText>().targetPos = position;
         TMP_Text textComponent = newText.GetComponent<TMP_Text>();
         textComponent.text = damage.ToString();
         float originalAlpha = textComponent.alpha;
         textComponent.color = color;
         textComponent.alpha = originalAlpha;
+    }
+
+    private void Update()
+    {
+        transform.position = cam.position;
     }
 }

@@ -24,5 +24,6 @@ public class WalkState : BaseState
 
     public override void UpdateState()
     {
+        stateMachine.weaponRockController.WeaponRockMoving();
     }
 }

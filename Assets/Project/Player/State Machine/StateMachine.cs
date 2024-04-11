@@ -25,6 +25,7 @@ public class StateMachine : MonoBehaviour
     [SerializeField] public Animator playerAnimationController;
     [SerializeField] public CapsuleCollider playerCollider;
     [SerializeField] public GameObject playerModel;
+    [SerializeField] public WeaponRock weaponRockController;
 
     [HideInInspector] public BaseState currentState;
     [HideInInspector] public Vector3 input;
