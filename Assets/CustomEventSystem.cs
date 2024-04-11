@@ -10,9 +10,9 @@ public class CustomEventSystem : MonoBehaviour
         current = this;
     }
 
-    public event Action<float, Vector3, Color> onSpawnDamageText;
-    public void SpawnDamageText(float damage, Vector3 position, Color textColor)
+    public event Action<float, Transform, Color> onSpawnDamageText;
+    public void SpawnDamageText(float damage, Transform transform, Color textColor)
     {
-        onSpawnDamageText?.Invoke(damage, position, textColor);
+        onSpawnDamageText?.Invoke(damage, transform, textColor);
     }
 }

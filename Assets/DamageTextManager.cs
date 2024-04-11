@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DamageTextManager : MonoBehaviour
 {
-    [SerializeField] TMP_Text damageText;
+    [SerializeField] GameObject damageText;
     [SerializeField] Transform cam;
 
     private void Start()
@@ -11,11 +11,11 @@ public class DamageTextManager : MonoBehaviour
         CustomEventSystem.current.onSpawnDamageText += SpawnDamageText;
     }
 
-    private void SpawnDamageText(float damage, Vector3 position, Color color)
+    private void SpawnDamageText(float damage, Transform transform, Color color)
     {
         GameObject newText = Instantiate(damageText.gameObject);
-        newText.transform.SetParent(transform);
-        newText.GetComponent<DamageText>().targetPos = position;
+        newText.transform.SetParent(base.transform);
+        newText.GetComponent<DamageText>().targetTransform = transform;
         TMP_Text textComponent = newText.GetComponent<TMP_Text>();
         textComponent.text = damage.ToString();
         float originalAlpha = textComponent.alpha;
