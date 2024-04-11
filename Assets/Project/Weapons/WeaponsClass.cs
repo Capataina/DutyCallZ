@@ -1,7 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+/*
+    Base calss for all wepaons 
+    TODO: Can amybe be better handled with a state machine
+*/
 public abstract class WeaponsClass : MonoBehaviour
 {
     [Header("Weapon Properties")]
@@ -117,13 +120,15 @@ public abstract class WeaponsClass : MonoBehaviour
 
         if (Physics.Raycast(playerCamera.transform.position, Vector3.Normalize(playerCamera.transform.forward + accuracyOffset), out var objectHit, 999f, shootingMask))
         {
+            // Debugging related
             if (showHitIndicator)
             {
                 GameObject newIndicator = Instantiate(hitIndicator);
                 newIndicator.transform.position = objectHit.point;
             }
-
             Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.position + Vector3.Normalize(playerCamera.transform.forward + accuracyOffset) * 999f, Color.green, 5);
+
+            // If shooting a zombie, hurt it 
             if (objectHit.collider.gameObject.layer == LayerMask.NameToLayer("Zombies"))
             {
                 var hurtbox = objectHit.collider.GetComponent<Hurtbox>();
@@ -131,7 +136,6 @@ public abstract class WeaponsClass : MonoBehaviour
             }
         }
 
-        // UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
         HandleRecoilCameraAnimation();
         HandleRecoilWeaponAnimation();
     }
@@ -142,14 +146,10 @@ public abstract class WeaponsClass : MonoBehaviour
 
         isReloading = true;
         canShoot = false;
-        //Debug.Log("Reloading...");
 
         yield return new WaitForSeconds(reloadTimer);
 
         float bulletsToReload = magazineSize - bulletsInMag;
-
-        //Debug.Log("Bullets in mag before reload:" + bulletsInMag);
-        //Debug.Log("Total ammo before reload:" + currentAmmo);
 
         if (currentAmmo >= bulletsToReload)
         {
@@ -162,14 +162,8 @@ public abstract class WeaponsClass : MonoBehaviour
             currentAmmo = 0;
         }
 
-        // UIManager.instance.UpdateAmmo(bulletsInMag,currentAmmo);
-
-        //Debug.Log("Bullets in mag after reload:" + bulletsInMag);
-        //Debug.Log("Total ammo after reload:" + currentAmmo);
-
         isReloading = false;
         canShoot = true;
-        //Debug.Log("Reload Complete");
     }
 
     public void ReplenishAmmo(float ammoCost)
@@ -178,9 +172,7 @@ public abstract class WeaponsClass : MonoBehaviour
         {
             currentAmmo = maxAmmo;
             bulletsInMag = magazineSize;
-            // UIManager.instance.UpdateAmmo(bulletsInMag, currentAmmo);
             PlayerStats.current.currentScore -= ammoCost;
-            // UIManager.instance.UpdateScore(PlayerStats.current.currentScore);
         }
     }
 

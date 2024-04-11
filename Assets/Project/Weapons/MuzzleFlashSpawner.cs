@@ -1,6 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
+/*
+    Spawns and kills a muzzle flash really quickly
+*/
 public class MuzzleFlashSpawner : MonoBehaviour
 {
     [SerializeField] GameObject muzzleFlash;

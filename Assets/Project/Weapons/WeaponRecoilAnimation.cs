@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/*
+    Handles the procedural animation of the weapon while shooting
+*/
 public class WeaponRecoilAnimation : MonoBehaviour
 {
     [SerializeField] Transform recoilParent;
@@ -12,6 +15,7 @@ public class WeaponRecoilAnimation : MonoBehaviour
     Vector3 targetRotation;
     Vector3 currentRotation;
 
+    // Change the position of the weapon model
     public void PlayRecoilAnimationPos(float xRecoil, float yRecoil, float zRecoil)
     {
         float xVal = Random.Range(-xRecoil, xRecoil);
@@ -20,6 +24,7 @@ public class WeaponRecoilAnimation : MonoBehaviour
         targetPosition += new Vector3(xVal, yVal, -zVal);
     }
 
+    // Change the rotation of the weapon model
     public void PlayRecoilAnimationRot(float xMaxRecoil, float xMinRecoil, float yRecoil, float zRecoil)
     {
         float xVal = Random.Range(xMinRecoil, xMaxRecoil);
@@ -30,6 +35,7 @@ public class WeaponRecoilAnimation : MonoBehaviour
 
     void Update()
     {
+        // Smoothly rotate/move the weapon model while constantly trying to pull it back
         targetPosition = Vector3.Lerp(targetPosition, Vector3.zero, returnSpeedPos * Time.deltaTime);
         recoilParent.localPosition = Vector3.Lerp(recoilParent.localPosition, targetPosition, recoilSpeedPos * Time.deltaTime);
 
