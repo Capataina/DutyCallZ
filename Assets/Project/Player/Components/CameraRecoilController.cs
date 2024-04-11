@@ -7,12 +7,9 @@ public class CameraRecoilController : MonoBehaviour
 {
 
     [SerializeField] Transform cameraAnchor;
-    [SerializeField] Transform playerCameraParent;
     [SerializeField] Transform cameraShakeParent;
     [SerializeField] public WeaponsClass currentWeapon;
-    [SerializeField] float maxReturnHeight;
     [SerializeField] float cameraShakeReturnSpeed;
-    [SerializeField] float cameraShakeSpeed;
     [SerializeField] float zShapeFaze;
 
     float time;
@@ -20,13 +17,13 @@ public class CameraRecoilController : MonoBehaviour
     float height;
     float shakeTime;
     float currentStrength;
-    bool returning = false;
-    bool recoilProcessing = false;
+    bool returning = false; // describes if the recoil is being reset right now
+    bool recoilProcessing = false; // describes if the overall recoil (including reset) is still ongoing
 
-    Vector3 targetRotation;
     Vector3 currentRotation;
     [HideInInspector] public Quaternion recoilResetTarget;
 
+    // Move the camera by xRecoil up, for a given duration
     public void AddRecoil(float xRecoil, float duration)
     {
         // Vertical Recoil
@@ -37,7 +34,8 @@ public class CameraRecoilController : MonoBehaviour
         returning = false;
     }
 
-    public void AddCameraShake(float XShakeStrengh, float YShakeStrengh, float ZShakeStrength)
+    // Shake the camera using Z-tilt
+    public void AddCameraZShake(float ZShakeStrength)
     {
         currentStrength = ZShakeStrength;
     }
@@ -60,6 +58,8 @@ public class CameraRecoilController : MonoBehaviour
     {
         if (time > 0)
         {
+            // while the camera is still moving towards the vertical recoil
+            // target
             float rotAmount = -height * Time.deltaTime / duration;
             cameraAnchor.Rotate(rotAmount, 0, 0, Space.Self);
             time -= Time.deltaTime;
@@ -67,6 +67,7 @@ public class CameraRecoilController : MonoBehaviour
         }
         else if (recoilProcessing)
         {
+            // no longer moving up 
             float camX = cameraAnchor.localRotation.eulerAngles.x;
             camX = TransformToLinearSpace(camX);
             float targetX = recoilResetTarget.eulerAngles.x;
@@ -74,17 +75,20 @@ public class CameraRecoilController : MonoBehaviour
             bool lowerThanTarget = camX > targetX;
             if (Quaternion.Angle(cameraAnchor.localRotation, recoilResetTarget) > 0.15f && !lowerThanTarget)
             {
+                // if the reset target is not reached move the recoil down
                 returning = true;
                 cameraAnchor.localRotation = Quaternion.RotateTowards(cameraAnchor.localRotation, recoilResetTarget, currentWeapon.recoilReturnSpeed * Time.deltaTime);
             }
             else
             {
+                // recoil is finished and reset
                 returning = false;
                 recoilProcessing = false;
             }
         }
     }
 
+    // Shakes the camera in Z axis
     void HandleCameraShake()
     {
         currentStrength = Mathf.Lerp(currentStrength, 0, cameraShakeReturnSpeed * Time.deltaTime);
@@ -100,15 +104,18 @@ public class CameraRecoilController : MonoBehaviour
         HandleCameraShake();
     }
 
-
     private void LateUpdate()
     {
         float deltaX = Input.GetAxisRaw("Mouse X");
         float deltaY = Input.GetAxisRaw("Mouse Y");
+
+        // Cancel recoil reset
         if (deltaY > 0)
         {
             returning = false;
         }
+
+        // Set the recoil reset target for when the recoil stops
         if (deltaX != 0 && deltaY != 0 && !returning)
         {
             recoilResetTarget = cameraAnchor.transform.localRotation;

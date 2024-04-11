@@ -15,6 +15,7 @@ public class WeaponPickup : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    // Give the player a weapon of provided prefab
     public void GiveWeapon(GameObject weapon)
     {
         var playerCameraRecoilController = player.GetComponent<CameraRecoilController>();
@@ -25,6 +26,7 @@ public class WeaponPickup : MonoBehaviour
 
         var newWeaponClass = newWeapon.GetComponent<WeaponsClass>();
 
+        // asign camera to the weapon
         newWeaponClass.playerCamera = Camera.main;
 
         StationWeapon stationWeapon = newWeapon.GetComponent<StationWeapon>(); // Assuming this exists to get the weapon type
@@ -61,6 +63,8 @@ public class WeaponPickup : MonoBehaviour
             playerShooting.currentWeapons[replaceIndex] = newWeapon;
             playerShooting.ActivateWeapon(replaceIndex);
         }
+
+        // TODO: This dependency is not pretty
 
         newWeaponClass.cameraController = player.GetComponent<CameraController>();
         newWeaponClass.recoilController = playerCameraRecoilController;

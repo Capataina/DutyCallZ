@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    For a unified interface for state generation
+*/
 public class StateFactory
 {
     StateMachine stateMachine;

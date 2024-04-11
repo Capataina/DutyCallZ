@@ -16,14 +16,18 @@ public abstract class BaseState
     {
         this.stateMachine = stateMachine;
         this.stateFactory = stateFactory;
-
     }
 
+    // Triggered once when entering state
     public abstract void EnterState();
+    // Triggered every frame as long as state is active
     public abstract void UpdateState();
+    // Triggered every frame, used to check if state switches are necessery
     public abstract void CheckSwitchSubStates();
+    // Triggerd once when leaving state
     public abstract void ExitState();
 
+    // Activat the initial substate if any
     public void InitializeSubState(BaseState initialSubState)
     {
         if (initialSubState != null)
@@ -33,6 +37,8 @@ public abstract class BaseState
         }
     }
 
+    // Call the update and state switch checks down the chain
+    // of active states
     public void BaseUpdate()
     {
         UpdateState();
@@ -43,6 +49,7 @@ public abstract class BaseState
         CheckSwitchSubStates();
     }
 
+    // Switch the substate of this state
     public void SwitchSubState(BaseState newState)
     {
         if (subState.GetType() != newState.GetType())

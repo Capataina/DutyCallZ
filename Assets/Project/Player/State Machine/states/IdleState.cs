@@ -24,6 +24,6 @@ public class IdleState : BaseState
 
     public override void UpdateState()
     {
-        stateMachine.weaponRockController.WeaponRockIdle();
+        stateMachine.weaponRockController.WeaponSwayIdle();
     }
 }

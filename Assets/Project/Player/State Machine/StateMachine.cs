@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Holds all data related to the state machine
+*/
 public class StateMachine : MonoBehaviour
 {
     StateFactory stateFactory;
 
     // Data
+    [Header("Movement Speeds")]
     [SerializeField] public float walkSpeed;
     [SerializeField] public float sprintSpeed;
     [SerializeField] public float crouchSpeed;
@@ -15,17 +19,19 @@ public class StateMachine : MonoBehaviour
     [SerializeField] public float slideSpeedThreshold;
     [SerializeField] public float slidingDeceleration;
     [SerializeField] public float airStrafeSpeed;
-    [SerializeField] public CharacterController playerController;
-    [SerializeField] public Camera playerCamera;
+    [Header("Jumping/Falling")]
     [SerializeField] private LayerMask groundMask;
     [SerializeField] public float jumpVelocity;
     [SerializeField] public float gravity;
     [SerializeField] public float terminalVelocity;
+    [Header("Dependencies")]
     [SerializeField] public Animator cameraAnimationController;
     [SerializeField] public Animator playerAnimationController;
     [SerializeField] public CapsuleCollider playerCollider;
     [SerializeField] public GameObject playerModel;
-    [SerializeField] public WeaponRock weaponRockController;
+    [SerializeField] public WeaponSway weaponRockController;
+    [SerializeField] public CharacterController playerController;
+    [SerializeField] public Camera playerCamera;
 
     [HideInInspector] public BaseState currentState;
     [HideInInspector] public Vector3 input;

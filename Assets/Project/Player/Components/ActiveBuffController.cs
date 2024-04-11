@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveBuffs : MonoBehaviour
+public class ActiveBuffController : MonoBehaviour
 {
 
     private GameObject player;
     public float buffDuration;
 
-    // all active buffs
     private List<BuffType> activeBuffs = new List<BuffType>();
+
+    public bool speedBuff;
+    public bool regenBuff;
 
     private PlayerStats playerStats;
 
@@ -19,7 +21,6 @@ public class ActiveBuffs : MonoBehaviour
         playerStats = player.GetComponent<PlayerStats>();
     }
 
-    // Adds provided active buff to player
     public void AddBuff(BuffType buff)
     {
         switch (buff)

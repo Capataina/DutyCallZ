@@ -6,8 +6,8 @@ public class PlayerShooting : MonoBehaviour
     public List<GameObject> currentWeapons;
     public WeaponsClass heldWeapon;
 
+    private WeaponTilt weaponTilt;
     private WeaponSway weaponSway;
-    private WeaponRock weaponRock;
     private CameraRecoilController playerCameraRecoilController;
     // private MeleeAttack meleeAttack;
     private Camera playerCamera;
@@ -25,11 +25,9 @@ public class PlayerShooting : MonoBehaviour
 
     private void Awake()
     {
+        weaponTilt = GetComponentInChildren<WeaponTilt>();
         weaponSway = GetComponentInChildren<WeaponSway>();
-        weaponRock = GetComponentInChildren<WeaponRock>();
         playerCameraRecoilController = GetComponentInChildren<CameraRecoilController>();
-        // meleeAttack = GetComponentInChildren<MeleeAttack>();
-        // meleeAttack.damage = playerMeleeDamage;
         playerCamera = Camera.main;
     }
 
@@ -46,10 +44,10 @@ public class PlayerShooting : MonoBehaviour
             ThrowGrenade();
         }
 
-
+        // TODO: THIS MIGHT NOT NEED TO BE IN HERE
+        /// ------------------------
         if (Input.GetKeyDown(KeyCode.Alpha1) && currentWeapons.Count > 0)
         {
-            // print("pressed 1");
             ActivateWeapon(0);
         }
 
@@ -57,6 +55,7 @@ public class PlayerShooting : MonoBehaviour
         {
             ActivateWeapon(1);
         }
+        /// ------------------------
 
         if (heldWeapon)
         {
@@ -91,6 +90,7 @@ public class PlayerShooting : MonoBehaviour
 
     public void ActivateWeapon(int weaponIndex)
     {
+        // activate weapon at a given index of inventory
         for (int i = 0; i < currentWeapons.Count; i++)
         {
             if (i == weaponIndex)
@@ -104,13 +104,12 @@ public class PlayerShooting : MonoBehaviour
                 currentWeapons[i].SetActive(false);
             }
         }
-        // print(heldWeapon.currentAmmo + "javdjaygdvawhjdbawkdHBWAJUWAbdjukaWBDAUjADB");
-        // UIManager.instance.UpdateAmmo(heldWeapon.bulletsInMag, heldWeapon.currentAmmo);
+        // assign every component the active weapon
+        // TODO: RATHER THAN ASSIGNING EVERY COMOPNENT, EVERY COMPONENT THAT NEEDS THE WEAPON CAN READ IT
         var heldWeaponTransform = heldWeapon.transform;
         playerCameraRecoilController.currentWeapon = heldWeapon;
-        weaponSway.activeWeapon = heldWeaponTransform;
-        weaponRock.weapon = heldWeaponTransform;
-
+        weaponTilt.activeWeapon = heldWeaponTransform;
+        weaponSway.weapon = heldWeaponTransform;
     }
 
     void MeleeAttack()

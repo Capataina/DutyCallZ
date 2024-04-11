@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        // manage mouse lock
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
@@ -32,12 +33,14 @@ public class CameraController : MonoBehaviour
         float deltaX = Input.GetAxisRaw("Mouse X");
         float deltaY = Input.GetAxisRaw("Mouse Y");
 
+        // rotate y for player, x for camera
         var cameraEulerAngles = cameraAnchor.transform.localEulerAngles;
         var playerEulerAngles = playerTransform.transform.eulerAngles;
 
         float newRotationY = playerEulerAngles.y + deltaX * mouseSensitivity;
         float newRotationX = cameraEulerAngles.x - deltaY * mouseSensitivity;
 
+        // tilt camera based on horizontal mouse swings
         currentTilt -= deltaX * zTiltStrength;
 
         if (newRotationX is < 270 and > 180)
@@ -55,6 +58,7 @@ public class CameraController : MonoBehaviour
         cameraAnchor.transform.localRotation = newRotationCamera;
         playerTransform.transform.rotation = newRotationPlayer;
 
+        // always reset the z-tilt slowly
         currentTilt = Mathf.Lerp(currentTilt, 0, zTiltReturnSpeed * Time.deltaTime);
     }
 }

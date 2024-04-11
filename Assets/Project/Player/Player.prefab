@@ -123,7 +123,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 9ae46ce9650ded6448243627112564a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6db8cd745f21440b74d9689e5c61d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
+  playerMovementSM: {fileID: 0}
   weapon: {fileID: 0}
   returnSpeed: 1
   xStrengthMoving: 0.01
@@ -292,7 +292,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 511
+    m_Bits: 4607
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -524,6 +524,7 @@ GameObject:
   - component: {fileID: 316704254225223347}
   - component: {fileID: 3112404116199057590}
   - component: {fileID: 183677820865187445}
+  - component: {fileID: 1263588112854834982}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -588,10 +589,11 @@ MonoBehaviour:
   walkSpeed: 6
   sprintSpeed: 12
   crouchSpeed: 2
-  slideSpeed: 4
+  slideSpeed: 25
+  slideHorizonalSpeed: 5
+  slideSpeedThreshold: 5
+  slidingDeceleration: 12
   airStrafeSpeed: 15
-  playerController: {fileID: 2096096287751785051}
-  playerCamera: {fileID: 3367120092691918868}
   groundMask:
     serializedVersion: 2
     m_Bits: 1
@@ -600,12 +602,18 @@ MonoBehaviour:
   terminalVelocity: 0.05
   cameraAnimationController: {fileID: 420827309340304146}
   playerAnimationController: {fileID: 8809378630071774997}
-  playerCollider: {fileID: 0}
+  playerCollider: {fileID: 8907358145462987020}
+  playerModel: {fileID: 15831871584753642}
+  weaponRockController: {fileID: 5145970186972576708}
+  playerController: {fileID: 2096096287751785051}
+  playerCamera: {fileID: 3367120092691918868}
   input: {x: 0, y: 0, z: 0}
   movementDirection: {x: 0, y: 0, z: 0}
   isGrounded: 0
   velocity: {x: 0, y: 0, z: 0}
   lastGroundSpeed: 0
+  slidingSpeed: 0
+  slideDiretion: {x: 0, y: 0, z: 0}
 --- !u!114 &4603082147870170214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,15 +666,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f0ed85c261f8e45be3c944dd179c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 84662452605902985}
-  playerCameraParent: {fileID: 4171263668145931611}
+  cameraAnchor: {fileID: 84662452605902985}
   cameraShakeParent: {fileID: 6652259630715553480}
   currentWeapon: {fileID: 0}
-  returnSpeed: 2.5
-  maxReturnHeight: 3
   cameraShakeReturnSpeed: 15
-  cameraShakeSpeed: 20
   zShapeFaze: 60
+  recoilResetTarget: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &316704254225223347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +720,23 @@ MonoBehaviour:
   healthRegen: 3
   baseHealthRegen: 3
   baseArmor: 0
+--- !u!114 &1263588112854834982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6839578716274041870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0191c792571c3e4599335aa314768e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 3
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  cam: {fileID: 3367120092691918868}
 --- !u!1 &7025752111937306444
 GameObject:
   m_ObjectHideFlags: 0

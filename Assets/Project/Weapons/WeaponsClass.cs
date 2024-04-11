@@ -101,7 +101,7 @@ public abstract class WeaponsClass : MonoBehaviour
     {
         // this is the animation on the camera
         recoilController.AddRecoil(hipXRecoil, recoilDuration);
-        recoilController.AddCameraShake(xShake, yShake, zShake);
+        recoilController.AddCameraZShake(zShake);
     }
 
     // ReSharper disable Unity.PerformanceAnalysis

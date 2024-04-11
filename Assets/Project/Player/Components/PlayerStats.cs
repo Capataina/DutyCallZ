@@ -1,12 +1,14 @@
 using UnityEngine;
 
+// Singleton component that holds all player relevant data
+
 public class PlayerStats : MonoBehaviour
 {
     public float currentScore = 0;
 
     private float currentHealth;
     [SerializeField] private float maxHealth;
-    // Should probably not be here
+    // TODO: Should probably not be here
     [SerializeField] Animator cameraAnimator;
     [HideInInspector] public float healthRegen;
     [SerializeField] public float baseHealthRegen;
@@ -19,7 +21,6 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         current = this;
-        // UIManager.instance.UpdateScore(currentScore);
     }
 
 

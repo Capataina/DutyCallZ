@@ -4,11 +4,11 @@ public class StationBuff : Interactable
 {
     public BuffType buff;
     public float buffCost;
-    ActiveBuffs activeBuffs;
+    ActiveBuffController activeBuffs;
 
     private void Start()
     {
-        activeBuffs = GameObject.FindGameObjectWithTag("Player").GetComponent<ActiveBuffs>();
+        activeBuffs = GameObject.FindGameObjectWithTag("Player").GetComponent<ActiveBuffController>();
     }
 
     public override void DisplayPrompt()
