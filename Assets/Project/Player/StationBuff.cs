@@ -1,14 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class StationBuff : MonoBehaviour
+public class StationBuff : Interactable
 {
     public BuffType buff;
     public float buffCost;
-    public enum BuffType
+    ActiveBuffs activeBuffs;
+
+    private void Start()
     {
-        Speed,
-        Regen
+        activeBuffs = GameObject.FindGameObjectWithTag("Player").GetComponent<ActiveBuffs>();
     }
+
+    public override void DisplayPrompt()
+    {
+        UIManager.instance.DisplayText($"Do you want to buy {buff} for {buffCost} points?");
+    }
+
+    public override void Interact(GameObject gameObject)
+    {
+        if (PlayerStats.current.currentScore >= buffCost)
+        {
+            activeBuffs.AddBuff(buff);
+            PlayerStats.current.currentScore -= buffCost;
+        }
+    }
+
+
+}
+public enum BuffType
+{
+    Speed,
+    Regen
 }

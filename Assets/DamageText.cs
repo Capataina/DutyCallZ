@@ -9,7 +9,6 @@ public class DamageText : MonoBehaviour
     [SerializeField] float decel;
     [SerializeField] float lifeTime;
     [SerializeField] RectTransform rectTransform;
-    [SerializeField] Transform parent;
 
     float currentSpeed;
     float time;

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dir: {x: 1, y: 0.25}
-  initialSpeed: 1
+  initialSpeed: 1.2
   decel: 10
   lifeTime: 0.7
   rectTransform: {fileID: 5728181531485490473}
