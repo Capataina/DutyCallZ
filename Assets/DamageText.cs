@@ -20,14 +20,8 @@ public class DamageText : MonoBehaviour
     private void Start()
     {
         currentSpeed = initialSpeed;
-        Vector3 pos = (targetTransform.position - Camera.main.transform.position).normalized;
-        Quaternion rot = Quaternion.LookRotation(pos);
-        transform.rotation = rot;
         dir.x *= Random.Range(0, 2) * 2 - 1;
         dir.y = Random.Range(-dir.y, dir.y);
-        parent.localPosition = pos;
-        originCoord.x = pos.z / Mathf.Abs(pos.z) * Mathf.Acos(pos.x / Mathf.Sqrt(pos.x * pos.x + pos.z * pos.z));
-        originCoord.y = Mathf.Acos(pos.y);
     }
 
     private void Update()
