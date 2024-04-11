@@ -37,7 +37,6 @@ public class ZombieSpawner : MonoBehaviour
             print(zombiesKilled + " killed, target: " + zombiesSpawned);
             if (zombiesKilled == zombiesSpawned)
             {
-                // Debug.Log("Wave ended.");
                 PrepareNextWave();
             }
         }
