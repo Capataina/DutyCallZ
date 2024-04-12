@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4992653376333762695}
   - component: {fileID: 4491783241381583240}
   - component: {fileID: 3486849060927515484}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: AK47 Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17cb653780675549877560c13fe0a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionDuration: 2
+  isInteractable: 1
   weaponPrefab: {fileID: 8325833202016298120, guid: 2bfc6c199d920674287287a608d2d40e,
     type: 3}
   weapon: 3

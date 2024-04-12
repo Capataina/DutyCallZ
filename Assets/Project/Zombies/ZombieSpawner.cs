@@ -8,13 +8,12 @@ public class ZombieSpawner : MonoBehaviour
 {
     [SerializeField] private float biasFactor;
     public GameObject zombiePrefab; // Assign in the inspector
-    public GameObject player; // Assign in the inspector
+    GameObject player; // Assign in the inspector
     private float waveCount;
     private bool waveEnded; // Initialize to true to start the first wave immediately
     private float waveCooldown;
     private float zombiesToSpawn;
     private GameObject[] spawnPoints;
-    private float timer;
     private float zombiesSpawned;
     [HideInInspector] public float zombiesKilled;
     [HideInInspector] public static ZombieSpawner current;
@@ -27,6 +26,7 @@ public class ZombieSpawner : MonoBehaviour
     void Start()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("ZombieSpawnPoint");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8786950615033074288}
   - component: {fileID: 5986061101269298030}
   - component: {fileID: 6727474915485446851}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: KS23 Gun Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17cb653780675549877560c13fe0a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionDuration: 2
+  isInteractable: 1
   weaponPrefab: {fileID: 6527137763087784338, guid: ceb222f2d364690489afad4a110477f8,
     type: 3}
   weapon: 1

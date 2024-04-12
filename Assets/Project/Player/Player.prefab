@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: c1bc08fb76e576e41a64d35cea8821c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -597,9 +597,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
-  jumpVelocity: 0.04
-  gravity: 0.0005
-  terminalVelocity: 0.05
+  jumpVelocity: 0.045
+  gravity: 0.00075
+  terminalVelocity: 0.06
   cameraAnimationController: {fileID: 420827309340304146}
   playerAnimationController: {fileID: 8809378630071774997}
   playerCollider: {fileID: 8907358145462987020}

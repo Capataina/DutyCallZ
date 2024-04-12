@@ -274,11 +274,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Speed Buff Station
       objectReference: {fileID: 0}
-    - target: {fileID: 5263412543447563495, guid: 95c65c58cb116c047a97f1b1a46ebd85,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 8159254462194443035, guid: 95c65c58cb116c047a97f1b1a46ebd85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -334,12 +329,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95c65c58cb116c047a97f1b1a46ebd85, type: 3}
---- !u!4 &374098749 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 442642167027212978, guid: ed6e094ef58081043abdb55ad98486ab,
-    type: 3}
-  m_PrefabInstance: {fileID: 1024345943}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,11 +1354,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: KS23 Gun Station
       objectReference: {fileID: 0}
-    - target: {fileID: 4364929854286086143, guid: 271f404bffe0d3843bcdf056402f476e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 5757060288432111880, guid: 271f404bffe0d3843bcdf056402f476e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1419,11 +1403,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6727474915485446851, guid: 271f404bffe0d3843bcdf056402f476e,
-        type: 3}
-      propertyPath: interactionDuration
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1493,11 +1472,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Regen Buff Station
       objectReference: {fileID: 0}
-    - target: {fileID: 5044071567877398095, guid: 0fa154bd772dba14ca69de2110558bfe,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1515,11 +1489,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Glock Gun Station
-      objectReference: {fileID: 0}
-    - target: {fileID: 701206086895201942, guid: 141d9fd396cc61b45927ef5e1eb3173f,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6125733643937145207, guid: 141d9fd396cc61b45927ef5e1eb3173f,
         type: 3}
@@ -1571,11 +1540,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8502649674459457546, guid: 141d9fd396cc61b45927ef5e1eb3173f,
-        type: 3}
-      propertyPath: interactionDuration
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1589,11 +1553,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 167102933142678129, guid: e3ed9f5e8a6ad324d983b2096ec38d34,
-        type: 3}
-      propertyPath: interactionDuration
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2190220603690734705, guid: e3ed9f5e8a6ad324d983b2096ec38d34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1648,11 +1607,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 1911 Station
-      objectReference: {fileID: 0}
-    - target: {fileID: 7957107232689259604, guid: e3ed9f5e8a6ad324d983b2096ec38d34,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1858,17 +1812,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1812017240}
-    - target: {fileID: 497280000400846369, guid: 3e97d80a9ff7ee8499210a30d194db7f,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 374098749}
-    - target: {fileID: 497280000400846369, guid: 3e97d80a9ff7ee8499210a30d194db7f,
-        type: 3}
-      propertyPath: damageText
-      value: 
-      objectReference: {fileID: 2960830505582004428, guid: e38cf244a1b04064fa25a0a6f8532967,
-        type: 3}
     - target: {fileID: 520440154139753895, guid: 3e97d80a9ff7ee8499210a30d194db7f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1974,11 +1917,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldSpaceCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 5259648728124411540, guid: 3e97d80a9ff7ee8499210a30d194db7f,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1992,11 +1930,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3486849060927515484, guid: 88af40b7208b873438e16937d841e9c2,
-        type: 3}
-      propertyPath: interactionDuration
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3557426251909247974, guid: 88af40b7208b873438e16937d841e9c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2051,11 +1984,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AK47 Station
-      objectReference: {fileID: 0}
-    - target: {fileID: 8903796586328733811, guid: 88af40b7208b873438e16937d841e9c2,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2138,20 +2066,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2351152057484511870, guid: 6a0dda69f27a760478ac9c390c05af0a,
-        type: 3}
-      propertyPath: interactionDuration
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6555390283561748525, guid: 6a0dda69f27a760478ac9c390c05af0a,
         type: 3}
       propertyPath: m_Name
       value: Vector Gun Station
-      objectReference: {fileID: 0}
-    - target: {fileID: 6555390283561748525, guid: 6a0dda69f27a760478ac9c390c05af0a,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7193795200849541201, guid: 6a0dda69f27a760478ac9c390c05af0a,
         type: 3}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 252861861169040349}
   - component: {fileID: 7714987375031362834}
   - component: {fileID: 6775975755181856115}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Regen Buff Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,5 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4310d59569cf594da665d926cac8688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionDuration: 0
+  isInteractable: 1
   buff: 1
   buffCost: 1500

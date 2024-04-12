@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6735450249697039070}
   - component: {fileID: 2675511414341186863}
   - component: {fileID: 2351152057484511870}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Vector Gun Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17cb653780675549877560c13fe0a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionDuration: 2
+  isInteractable: 1
   weaponPrefab: {fileID: 2639023526062894591, guid: 5e18c44af9fcef54190cf6e7fcf82828,
     type: 3}
   weapon: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7321340489384453759}
   - component: {fileID: 2633729201824750508}
   - component: {fileID: 8502649674459457546}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Glock Gun Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17cb653780675549877560c13fe0a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionDuration: 2
+  isInteractable: 1
   weaponPrefab: {fileID: 8010371965732762512, guid: 2ba110ee88340a647ac535893d133bad,
     type: 3}
   weapon: 2

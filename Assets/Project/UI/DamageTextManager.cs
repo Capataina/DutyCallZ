@@ -4,11 +4,12 @@ using UnityEngine;
 public class DamageTextManager : MonoBehaviour
 {
     [SerializeField] GameObject damageText;
-    [SerializeField] Transform cam;
+    Transform cam;
 
     private void Start()
     {
         CustomEventSystem.current.onSpawnDamageText += SpawnDamageText;
+        cam = Camera.main.transform;
     }
 
     private void SpawnDamageText(float damage, Transform transform, Color color)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -62,7 +63,8 @@ public class StateMachine : MonoBehaviour
         Quaternion lookDirectionQuaternion = Quaternion.LookRotation(lookDirection);
         movementDirection = lookDirectionQuaternion * input;
 
-        isGrounded = Physics.Raycast(playerController.transform.position, -transform.up, 1.05f, groundMask);
+        RaycastHit temp;
+        isGrounded = Physics.SphereCast(playerController.transform.position, 0.5f, -transform.up, out temp, 0.55f, groundMask);
     }
 
 }
